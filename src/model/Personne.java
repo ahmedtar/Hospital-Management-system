@@ -1,23 +1,23 @@
-package application;
+package model;
 
 public class Personne {
 	private String nom;
 	private String prenom;
-	private String sex;
+	private String sexe;
 	private int age;
 	private String numTel;
 	private String adresse;
 	
 	
 
-	public Personne(String nom, String prenom, String sex, int age, String numTel, String adresse) {
+	public Personne(String nom, String prenom, String sexe, int age, String numTel, String adresse) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
-		this.sex = sex;
+		this.sexe = sexe;
 		this.age = age;
 		this.numTel = numTel;
-		this.setAdresse(adresse);
+		this.adresse=adresse;
 	}
 	
 	public String getNom() {
@@ -32,11 +32,11 @@ public class Personne {
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
-	public String getSex() {
-		return sex;
+	public String getSexe() {
+		return sexe;
 	}
-	public void setSex(String sex) {
-		this.sex = sex;
+	public void setSexe(String sexe) {
+		this.sexe = sexe;
 	}
 	public int getAge() {
 		return age;

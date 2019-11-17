@@ -1,8 +1,10 @@
-package application;
+package model;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Medecin extends Personne {
-	
-	private String id;
+	private static final AtomicInteger count = new AtomicInteger(0); 
+	private int id;
 	private Departement dept;
 	private String specialisation;
 	private Patient[] patients;
@@ -16,6 +18,8 @@ public class Medecin extends Personne {
 		this.dept = dept;
 		this.specialisation = specialisation;
 		this.patients = patients;
+		
+		id= count.incrementAndGet();
 	}
 
 
@@ -39,7 +43,7 @@ public class Medecin extends Personne {
 	}
 
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 

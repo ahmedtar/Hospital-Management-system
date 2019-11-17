@@ -1,10 +1,12 @@
-package application;
+package model;
 
 import java.util.Date;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Patient extends Personne {
+	private static final AtomicInteger count = new AtomicInteger(0);
 	
-	private String id;
+	private int id;
 	private Chambre chambre;
 	private String maladie;
 	private Date dateEntree;
@@ -22,9 +24,10 @@ public class Patient extends Personne {
 		this.maladie = maladie;
 		this.dateEntree = dateEntree;
 		this.dateSortie = dateSortie;
+		id= count.incrementAndGet();
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 

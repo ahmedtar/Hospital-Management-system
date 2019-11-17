@@ -1,8 +1,11 @@
-package application;
+package model;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Chambre {
+	private static final AtomicInteger count = new AtomicInteger(0);
 	
-	private String id;
+	private int id;
 	private Departement dept;
 	private Patient[] patients;
 	private boolean enService;
@@ -17,10 +20,11 @@ public class Chambre {
 		this.patients = patients;
 		this.enService = enService;
 		this.lits = lits;
+		id= count.incrementAndGet();
 	}
 
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
