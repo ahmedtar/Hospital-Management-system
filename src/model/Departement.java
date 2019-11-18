@@ -8,18 +8,16 @@ public class Departement {
 	private int id;
 	private String nom;
 	private Medecin[] medecins;
-	private Chambre[] chambres;
+	//private Chambre[] chambres;
 
 	//l'id n'est pas defini dans le constructeur et n'a pas de setters 
 	//car la base de données permet de le generer automatiquement 
 	//en cochant la case A_I lors du creation du colonne id
 	
 
-	public Departement(String nom, Medecin[] medecins, Chambre[] chambres) {
+	public Departement(String nom) {
 		super();
 		this.nom = nom;
-		this.medecins = medecins;
-		this.chambres = chambres;
 		id= count.incrementAndGet();
 	}
 	public int getId() {
@@ -38,12 +36,12 @@ public class Departement {
 	public void setMedecins(Medecin[] medecins) {
 		this.medecins = medecins;
 	}
-	public Chambre[] getChambres() {
+/*	public Chambre[] getChambres() {
 		return chambres;
 	}
 	public void setChambres(Chambre[] chambres) {
 		this.chambres = chambres;
 	}
-	
+	*/
 	
 }

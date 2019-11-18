@@ -6,7 +6,7 @@ public class Chambre {
 	private static final AtomicInteger count = new AtomicInteger(0);
 	
 	private int id;
-	private Departement dept;
+	//private Departement dept;
 	private Patient[] patients;
 	private boolean enService;
 	private Lit[] lits;
@@ -14,13 +14,11 @@ public class Chambre {
 	//l'id n'est pas defini dans le constructeur et n'a pas de setters 
 	//car la base de données permet de le generer automatiquement 
 	//en cochant la case A_I lors du creation du colonne id
-	public Chambre(Departement dept, Patient[] patients, boolean enService, Lit[] lits) {
+	public Chambre() {
 		super();
-		this.dept = dept;
-		this.patients = patients;
-		this.enService = enService;
-		this.lits = lits;
+		//this.dept = dept;
 		id= count.incrementAndGet();
+		enService=true;
 	}
 
 
@@ -29,14 +27,14 @@ public class Chambre {
 	}
 
 
-	public Departement getDept() {
+	/*public Departement getDept() {
 		return dept;
 	}
 
 
 	public void setDept(Departement dept) {
 		this.dept = dept;
-	}
+	}*/
 
 
 	public Patient[] getPatients() {

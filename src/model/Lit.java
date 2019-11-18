@@ -15,10 +15,9 @@ public class Lit {
 	
 
 
-	public Lit(boolean enService, Patient patient, Chambre chambre) {
+	public Lit(boolean enService, Chambre chambre) {
 		super();
 		this.enService = enService;
-		this.patient = patient;
 		this.chambre = chambre;
 		id= count.incrementAndGet();
 	}

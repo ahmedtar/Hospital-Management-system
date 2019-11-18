@@ -1,6 +1,6 @@
 package model;
 
-public class Personne {
+public abstract class Personne {
 	private String nom;
 	private String prenom;
 	private String sexe;
@@ -60,6 +60,14 @@ public class Personne {
 	public void setAdresse(String adresse) {
 		this.adresse = adresse;
 	}
+
+	@Override
+	public String toString() {
+		return " nom=" + nom + ", prenom=" + prenom + ", sexe=" + sexe + ", age=" + age + ", numTel=" + numTel
+				+ ", adresse=" + adresse ;
+	}
+
+	
 	
 	
 	

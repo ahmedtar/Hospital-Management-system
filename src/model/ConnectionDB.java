@@ -42,7 +42,7 @@ public class ConnectionDB {
 		Statement stmt=con.createStatement();
 		String req="Insert into Patient"
 				+ "(Chambre ,Maladie,dateEntree,dateSortie) values "
-				+ "('"+p.getId()+"','"+p.getChambre()+"','"+p.getMaladie()+"','"+p.getDateEntree()+"','"+p.getDateSortie()+"')";
+				+ "('"+p.getId()+"','"+/*p.getChambre().getId()+*/"','"+p.getMaladie()+"','"+p.getDateEntree()+"','"+p.getDateSortie()+"')";
 		int r=stmt.executeUpdate(req);
 		con.close();
 		
@@ -57,7 +57,7 @@ public class ConnectionDB {
 		Statement stmt=con.createStatement();
 		String req="Insert into Patient"
 				+ "values "
-				+ "('"+m.getId()+"','"+m.getDept()+"','"+m.getSpecialisation()+"','"+m.getPatients()+"')";
+				+ "('"+m.getId()+"','"+m.getDept().getId()+"','"+m.getSpecialisation()+"','"+m.getPatients()+"')";
 		int r=stmt.executeUpdate(req);
 		con.close();
 		

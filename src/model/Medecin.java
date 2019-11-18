@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Medecin extends Personne {
@@ -13,11 +14,10 @@ public class Medecin extends Personne {
 
 
 	public Medecin(String nom, String prenom, String sex, int age, String numTel, String adresse, Departement dept,
-			String specialisation, Patient[] patients) {
+			String specialisation) {
 		super(nom, prenom, sex, age, numTel, adresse);
 		this.dept = dept;
 		this.specialisation = specialisation;
-		this.patients = patients;
 		
 		id= count.incrementAndGet();
 	}
@@ -55,6 +55,13 @@ public class Medecin extends Personne {
 
 	public void setPatients(Patient[] patients) {
 		this.patients = patients;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Medecin [ "+super.toString()+ ", dept=" + dept.getNom() + ", specialisation=" + specialisation + ", patients="
+				+ Arrays.toString(patients) + "]";
 	}
 	
 	
