@@ -4,7 +4,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Departement {
 
-	private static final AtomicInteger count = new AtomicInteger(0);
+	//private static final AtomicInteger count = new AtomicInteger(0);
 	private int id;
 	private String nom;
 	private Medecin[] medecins;
@@ -18,7 +18,7 @@ public class Departement {
 	public Departement(String nom) {
 		super();
 		this.nom = nom;
-		id= count.incrementAndGet();
+		//id= count.incrementAndGet();
 	}
 	public int getId() {
 		return id;

@@ -2,6 +2,7 @@ package model;
 
 public abstract class Personne {
 	private String nom;
+	private String cne;
 	private String prenom;
 	private String sexe;
 	private int age;
@@ -10,10 +11,11 @@ public abstract class Personne {
 	
 	
 
-	public Personne(String nom, String prenom, String sexe, int age, String numTel, String adresse) {
+	public Personne(String nom, String prenom, String cne, String sexe, int age, String numTel, String adresse) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
+		this.cne=cne;
 		this.sexe = sexe;
 		this.age = age;
 		this.numTel = numTel;
@@ -65,6 +67,14 @@ public abstract class Personne {
 	public String toString() {
 		return " nom=" + nom + ", prenom=" + prenom + ", sexe=" + sexe + ", age=" + age + ", numTel=" + numTel
 				+ ", adresse=" + adresse ;
+	}
+
+	public String getCne() {
+		return cne;
+	}
+
+	public void setCne(String cne) {
+		this.cne = cne;
 	}
 
 	

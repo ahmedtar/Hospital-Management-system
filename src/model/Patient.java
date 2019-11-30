@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Patient extends Personne {
-	private static final AtomicInteger count = new AtomicInteger(0);
+	//private static final AtomicInteger count = new AtomicInteger(0);
 	
 	private int id;
 //	private Chambre chambre;
@@ -19,12 +19,12 @@ public class Patient extends Personne {
 	//car la base de données permet de le generer automatiquement 
 	//en cochant la case A_I lors du creation du colonne id
 
-	public Patient(String nom, String prenom, String sex, int age, String numTel, String adresse,
+	public Patient(String nom, String prenom,String cne, String sex, int age, String numTel, String adresse,
 			String maladie, String dateEntree) {
-		super(nom, prenom, sex, age, numTel, adresse);
+		super(nom, prenom, cne,sex, age, numTel, adresse);
 		this.maladie = maladie;
 		this.dateEntree =new Date(dateEntree);
-		id= count.incrementAndGet();
+				//id= count.incrementAndGet();
 	}
 
 	public int getId() {
