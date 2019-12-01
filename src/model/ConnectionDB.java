@@ -2,6 +2,7 @@ package model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -10,7 +11,7 @@ import java.util.Date;
 public class ConnectionDB {
 	
 	private Connection con;
-	private Statement stmt;
+	private PreparedStatement stmt;
 	
 	public ConnectionDB() {
 		
@@ -19,7 +20,7 @@ public class ConnectionDB {
 			String user="root";
 			String pass="";
 			con=DriverManager.getConnection(url,user,pass);
-			stmt=con.createStatement();
+		//	stmt=con.createStatement();
 			
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -41,9 +42,15 @@ public class ConnectionDB {
 	}*/
 	public int insere(Departement d)throws SQLException{
 		//Statement stmt=con.createStatement();
-		String req="insert into departement values ('"+d.getId()+"','"+d.getNom()+"')";
-		int r=stmt.executeUpdate(req);
-		//con.close();
+		//String req="insert into departement values ('"+d.getId()+"','"+d.getNom()+"')";
+		String sql="insert into departement values ( ? , ? )";
+		stmt=con.prepareStatement(sql);
+		
+		stmt.setInt(1,d.getId());
+		stmt.setString(2,d.getNom());
+		
+		int r=stmt.executeUpdate();
+		
 		System.out.println("done");
 		return r;
 	}
@@ -55,7 +62,7 @@ public class ConnectionDB {
 		ResultSet rSet=stmt.executeQuery(sql);
 		rSet.next();
 		int id=rSet.getInt("id");
-		String req="INSERT INTO patient (id,lit,nom,prenom,sexe,age,numTel,adresse,maladie,dateEntree,dateSortie,medecin) VALUES ('"+m.getId()+"','"+1+"','"+m.getNom()+"','"+m.getPrenom()+"','"+m.getSexe()+"','"+m.getAge()+"','"+m.getNumTel()+"','"+m.getAdresse()+"','"+m.getMaladie()+"','"+m.getDateEntree()+"','"+m.getDateSortie()+"','"+id+"')";
+		String req="INSERT INTO patient VALUES ('"+m.getId()+"','"+1+"','"+m.getNom()+"','"+m.getPrenom()+"','"+m.getSexe()+"','"+m.getAge()+"','"+m.getNumTel()+"','"+m.getAdresse()+"','"+m.getMaladie()+"','"+m.getDateEntree()+"','"+m.getDateSortie()+"','"+id+"')";
 		int r=stmt.executeUpdate(req);
 		
 		return r;
@@ -76,6 +83,8 @@ public class ConnectionDB {
 		return r;
 		
 	}
+	
+	
 	
 	public void close() throws SQLException {
 		this.con.close();
