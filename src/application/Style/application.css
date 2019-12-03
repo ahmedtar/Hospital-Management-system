@@ -1,7 +1,7 @@
-.mediaView{
-	
-  
-  -fx-min-width: 100%;
-  -fx-min-height: 100%;
-}
 
+#user{
+	-fx-text-fill: #fff6fc;
+}
+#pass{
+	-fx-text-fill: #fff6fc;
+}

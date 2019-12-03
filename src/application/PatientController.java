@@ -25,10 +25,23 @@ public class PatientController implements Initializable{
 	stage.setScene(scene);
 	stage.show();
 	}
+   
+   @FXML
+	
+  	public void goAdd(ActionEvent event) throws IOException {
+  	AnchorPane pane=FXMLLoader.load(getClass().getResource("Ajouter.fxml"));
+  	Scene scene=new Scene(pane);
+  	Stage stage=(Stage) ((Node) event.getSource()).getScene().getWindow();
+  	stage.setScene(scene);
+  	stage.show();
+  	}
+
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
 	}
+	
+	
 
 }

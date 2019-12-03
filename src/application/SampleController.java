@@ -34,11 +34,9 @@ public class SampleController implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {	
 		Media media=new Media("file:///C:/Users/asus/Desktop/HMS1/hospital-management-systeme/src/application/video/backVedio.mp4");
 		MediaPlayer player=new MediaPlayer(media);
-		player.setAutoPlay(true);
-		mediaView.setMediaPlayer(player);
-		player.setVolume(0);
-		player.play();
-	
+        mediaView.setMediaPlayer(player);
+        player.setVolume(0);
+        player.play();
 	}
 	
 }
