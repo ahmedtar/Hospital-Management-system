@@ -63,7 +63,7 @@
                <children>
                   <Button id="add" mnemonicParsing="false" prefHeight="53.0" prefWidth="75.0" stylesheets="@Style/StylePatient.css" text="AJOUTER" textFill="WHITE" />
                   <Button id="edit" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="75.0" stylesheets="@Style/StylePatient.css" text="MODIFIER" textFill="WHITE" />
-                  <Button id="insert" layoutX="79.0" layoutY="10.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="75.0" stylesheets="@Style/StylePatient.css" text="INSERE" textFill="WHITE" />
+                  <Button id="insert" layoutX="79.0" layoutY="10.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="75.0" stylesheets="@Style/StylePatient.css" text="AFFICHER" textFill="WHITE" />
                   <Button id="delete" layoutX="148.0" layoutY="10.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="75.0" stylesheets="@Style/StylePatient.css" text="SUPPRIMER" textFill="WHITE" />
                </children>
             </HBox>

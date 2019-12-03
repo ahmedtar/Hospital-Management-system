@@ -63,7 +63,7 @@ public class HomeController implements Initializable{
         fadeTransition.play();
 
         fadeTransition.setOnFinished(event -> {
-            FadeTransition fadeTransition1=new FadeTransition(Duration.seconds(3),pane3);
+            FadeTransition fadeTransition1=new FadeTransition(Duration.seconds(30),pane3);
             fadeTransition1.setFromValue(1);
             fadeTransition1.setToValue(0);
             fadeTransition1.play();

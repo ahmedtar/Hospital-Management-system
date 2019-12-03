@@ -9,12 +9,15 @@
     -fx-background-color: #00b0ff ;
 }
 #btns:hover {
-    -fx-background-color:#9e9e9e;
-    -fx-scale-y: 1.2;
-    -fx-scale-x: 1.2;
+	-fx-border-color: #fff;
+    /*-fx-background-color:#9e9e9e;*/
+    -fx-scale-y: 1.1;
+    -fx-scale-x: 1.1;
 }
 #btns:pressed:hover {
-	-fx-background-color:#212121;
+	/*-fx-background-color:#212121;*/
+	-fx-border-color: #fff;
+	-fx-border-width: 5px;
     -fx-scale-y: 0.9;
     -fx-scale-x: 0.9;
 }
