@@ -71,7 +71,7 @@ public class ConnectionDB {
 	
 	
 
-	public int inserer(Medecin m) throws SQLException { 
+	/*public int inserer(Medecin m) throws SQLException { 
 		//getting the id of the doctor's departement
 		String sql="Select id from departement where nom='"+m.getDept()+"'";
 		ResultSet rSet=stmt.executeQuery(sql);
@@ -83,7 +83,7 @@ public class ConnectionDB {
 		return r;
 		
 	}
-	
+	*/
 	
 	
 	public void close() throws SQLException {

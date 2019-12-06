@@ -1,35 +1,34 @@
 package model;
 
-import java.util.Arrays;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class Medecin extends Personne {
-	//private static final AtomicInteger count = new AtomicInteger(0); 
 	private int id;
-	private String dept;
 	private String specialisation;
-	private Patient[] patients;
-
+	private int departement;
+	private boolean enservice;
 	
 
 
-	public Medecin(String nom, String prenom,String cne, String sex, int age, String numTel, String adresse, String dept,
-			String specialisation) {
+	public Medecin(int id,String nom, String prenom,String cne, String sex, int age, String numTel,
+			String adresse,String specialisation, int departement,boolean enservice) {
 		super(nom, prenom,cne, sex, age, numTel, adresse);
-		this.dept = dept;
+		this.id=id;
 		this.specialisation = specialisation;
-		
-	//	id= count.incrementAndGet();
+		this.departement = departement;
+		this.enservice=enservice;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public int getDepartement() {
+		return departement;
 	}
 
 
-	public String getDept() {
-		return dept;
-	}
-
-
-	public void setDept(String dept) {
-		this.dept = dept;
+	public void setdepartement(int dept) {
+		this.departement = dept;
 	}
 
 
@@ -42,26 +41,20 @@ public class Medecin extends Personne {
 		this.specialisation = specialisation;
 	}
 
-
-	public int getId() {
-		return id;
+	public boolean isEnservice() {
+		return enservice;
 	}
 
 
-	public Patient[] getPatients() {
-		return patients;
+	public void setEnservice(boolean enservice) {
+		this.enservice = enservice;
 	}
-
-
-	public void setPatients(Patient[] patients) {
-		this.patients = patients;
-	}
-
-
+	
+	
 	@Override
 	public String toString() {
-		return "Medecin [ "+super.toString()+ ", dept=" + this.getDept() + ", specialisation=" + specialisation + ", patients="
-				+ Arrays.toString(patients) + "]";
+		return "Medecin : "+super.toString()+ ", specialisation=" +this.specialisation+ 
+				", departement=" + this.getDepartement() +", ensevice "+this.isEnservice();
 	}
 	
 	
