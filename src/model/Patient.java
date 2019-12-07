@@ -32,6 +32,11 @@ public class Patient extends Personne {
 	}
 
 	
+	public void setId(int id) {
+		this.id=id;
+		
+	}
+	
 	public void setMaladie(String maladie) {
 		this.maladie = maladie;
 	}
