@@ -41,7 +41,12 @@ public class ConnectionDB {
 	
 	
 	public void close() throws SQLException {
-		this.con.close();
+		try {
+			this.con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 

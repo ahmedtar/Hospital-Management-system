@@ -1,7 +1,5 @@
 package daoImpl;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,30 +7,20 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import dao.PatientDao;
 import model.Patient;
 
 
-public class PatientDAO {
-	
-
-	private Connection con;
-	private String url="jdbc:mysql://localhost:3306/hopital";
-	private String user="root";
-	private String pass="";
-	
-public PatientDAO() throws Exception {
-	
-		con = DriverManager.getConnection(url, user, pass);
-		System.out.println(" connection etablie a: " + url);
-	}
+public class PatientDaoImpl implements PatientDao {
 
 
-public void addPatient(Patient patient) throws Exception {
+public int addPatient(Patient patient) throws SQLException   {
+	ConnectionDB con=new ConnectionDB();
 	PreparedStatement myStmt = null;
-
+	int r=0;
 	try {
 		// prepared statement
-		myStmt = con.prepareStatement("insert into patient"
+		myStmt = con.getCon().prepareStatement("insert into patient"
 				+ " (nom, prenom, cne, age,dateEntree,numTel,sexe,adresse,maladie)"
 				+ " values (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		
@@ -49,24 +37,25 @@ public void addPatient(Patient patient) throws Exception {
 		
 		
 		
-		myStmt.executeUpdate();			
+		r=myStmt.executeUpdate();			
+	} catch (SQLException e) {
+		e.printStackTrace();
 	}
-	
-	
 	finally {
-		close(myStmt);
+		con.getCon().close();
 	}
-	System.out.println("Patient bien ajoutée!!");
-	
+	return r;
 }
 
 
-public void updatePatient(Patient patient) throws SQLException {
+public int updatePatient(Patient patient) throws SQLException {
+	ConnectionDB con=new ConnectionDB();
 	PreparedStatement myStmt = null;
+	int r=0;
 
 	try {
 		// prepared statement
-		myStmt = con.prepareStatement("update patient"
+		myStmt = con.getCon().prepareStatement("update patient"
 				+ " set nom=?, prenom=?, cne=?, age=?,dateEntree=?,numTel=?,sexe=?,adresse=?,maladie=?"
 				+ " where id=?");
 		
@@ -82,46 +71,61 @@ public void updatePatient(Patient patient) throws SQLException {
 		myStmt.setString(9, patient.getMaladie());
 		myStmt.setInt(10, patient.getId());
 		
-		myStmt.executeUpdate();			
+		r=myStmt.executeUpdate();			
 	}
-	
-	
+	 catch (SQLException e) {
+			e.printStackTrace();
+		}
 	finally {
-		close(myStmt);
+		con.close();
 	}
-	System.out.println("Le patient est a jour !!");
-	
+	return r;
 }
 
-//supprimer patient
-public void deletePatient(int patientId) throws SQLException {
-	PreparedStatement myStmt = null;
 
+
+
+
+
+
+//supprimer patient
+public int deletePatient(int patientId) throws SQLException {
+	ConnectionDB con=new ConnectionDB();
+	PreparedStatement myStmt = null;
+	int r=0;
 	try {
 		// prepare statement
-		myStmt = con.prepareStatement("delete from patient where id=?");
+		myStmt = con.getCon().prepareStatement("delete from patient where id=?");
 		
 		// set param
 		myStmt.setInt(1, patientId);
 		
 		// execute SQL
-		myStmt.executeUpdate();			
+		r=myStmt.executeUpdate();			
 	}
+	 catch (SQLException e) {
+			e.printStackTrace();
+		}
 	finally {
-		close(myStmt);
+		con.close();
 	}
-	System.out.println("patient bien supprimé!");
+return r;
 }
 
 
+
+
+
+
 public List<Patient> getAllPatients() throws Exception {
+	ConnectionDB con=new ConnectionDB();
 	List<Patient> list = new ArrayList<>();
 	
 	Statement myStmt = null;
 	ResultSet myRs = null;
 	
 	try {
-		myStmt = con.createStatement();
+		myStmt = con.getCon().createStatement();
 		myRs = myStmt.executeQuery("select * from patient order by nom");
 		
 		while (myRs.next()) {
@@ -129,17 +133,25 @@ public List<Patient> getAllPatients() throws Exception {
 			list.add(tempPatient);
 		}
 
-		return list;		
+				
 	}
+	 catch (SQLException e) {
+			e.printStackTrace();
+		}
 	finally {
-		close(myStmt, myRs);
+		con.close();
 	}
+	return list;
 }
 
 
 
 
+
+
+
 public List<Patient> searchPatient(String nom) throws Exception {
+	ConnectionDB con=new ConnectionDB();
 	List<Patient> list = new ArrayList<>();
 
 	PreparedStatement myStmt = null;
@@ -147,7 +159,7 @@ public List<Patient> searchPatient(String nom) throws Exception {
 
 	try {
 		nom += "%";
-		myStmt = con.prepareStatement("select * from patient where nom like ?  order by nom");
+		myStmt = con.getCon().prepareStatement("select * from patient where nom like ?  order by nom");
 		
 		myStmt.setString(1, nom);
 		
@@ -158,15 +170,19 @@ public List<Patient> searchPatient(String nom) throws Exception {
 			list.add(tempPatient);
 		}
 		
-		return list;
+		
 	}
+	 catch (SQLException e) {
+			e.printStackTrace();
+		}
 	finally {
-		close(myStmt, myRs);
+		con.close();
 	}
+	return list;
 }
 
 
-private Patient  convertRowToPatient(ResultSet myRs) throws SQLException {
+private Patient  convertRowToPatient(ResultSet myRs) throws Exception {
 	
 	int id = myRs.getInt("id");
 	String nom = myRs.getString("nom");
@@ -189,30 +205,8 @@ private Patient  convertRowToPatient(ResultSet myRs) throws SQLException {
 	tempPatient.setMedecin(null);
 	
 	return tempPatient;
-}
 
-private static void close(Connection myConn, Statement myStmt, ResultSet myRs)
-		throws SQLException {
-
-	if (myRs != null) {
-		myRs.close();
-	}
-
-	if (myStmt != null) {
-		
-	}
-	
-	if (myConn != null) {
-		myConn.close();
-	}
-}
-
-private void close(Statement myStmt, ResultSet myRs) throws SQLException {
-	close(null, myStmt, myRs);		
-}
-
-private void close(Statement myStmt) throws SQLException {
-	close(null, myStmt, null);		
-}
+ }
 
 }
+
