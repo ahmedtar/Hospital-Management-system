@@ -40,13 +40,20 @@ public class ConnectionDB {
 	}
 	
 	
+<<<<<<< HEAD
 	public void close() throws SQLException {
+=======
+	public void close() {
+>>>>>>> f0b92dff6552d61f281610c24cbdd86c42179973
 		try {
 			this.con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+<<<<<<< HEAD
 		
+=======
+>>>>>>> f0b92dff6552d61f281610c24cbdd86c42179973
 	}
 
 

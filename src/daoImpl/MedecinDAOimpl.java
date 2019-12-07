@@ -1,11 +1,12 @@
 package daoImpl;
-import java.io.*;
+
 import java.sql.*;
 import java.util.*;
 
+import dao.MedecinDAO;
 import model.Medecin;
 
-public class MedecinDAO {
+public class MedecinDAOimpl implements  MedecinDAO {
 	
 	
 	public void addMedecin(Medecin mdc){
@@ -30,7 +31,8 @@ public class MedecinDAO {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}finally {
-				close(stm);
+				con.close();
+				close(stm,null);
 			}
 			System.out.println("addition was successful");
 	}
@@ -62,7 +64,8 @@ public class MedecinDAO {
 			e.printStackTrace();
 		}
 		finally {
-			close(stm);
+			con.close();
+			close(stm,null);
 		}
 		System.out.println("you update DB ");
 	}
@@ -70,11 +73,12 @@ public class MedecinDAO {
 	
 	
 	public List<Medecin> getAllMdcs(){
+		ConnectionDB con=new ConnectionDB();
 		List<Medecin> tmplistmdc=new ArrayList<>();
 		Statement stm=null;
 		ResultSet rslt=null;
 		try {
-			stm=con.createStatement();
+			stm=con.getCon().createStatement();
 			rslt=stm.executeQuery("select * from medecin");
 			while(rslt.next()) {
 				Medecin tmpmdc=convertRowToMdc(rslt);
@@ -83,6 +87,7 @@ public class MedecinDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
+			con.close();
 			close(stm,rslt);
 		}
 		return tmplistmdc;
@@ -90,14 +95,14 @@ public class MedecinDAO {
 	
 
 public List<Medecin> searhMdc(String colomn,String str) {
-		
+		ConnectionDB con=new ConnectionDB();
 		List<Medecin> tmplistmdc=new ArrayList<>();
 		PreparedStatement stm=null;
 		ResultSet rslt=null;
 		if(colomn=="nom" || colomn=="prenom" ||colomn=="cne" ||colomn=="specialisation") {
 			try {
 				str+='%';
-				stm=con.prepareStatement("select * from medecin where "+colomn+" like ? ");
+				stm=con.getCon().prepareStatement("select * from medecin where "+colomn+" like ? ");
 				stm.setString(1, str);
 				rslt=stm.executeQuery();
 				
@@ -108,6 +113,7 @@ public List<Medecin> searhMdc(String colomn,String str) {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}finally {
+				con.close();
 				close(stm,rslt);
 			}
 			
@@ -121,12 +127,12 @@ public List<Medecin> searhMdc(String colomn,String str) {
 
 	
 public List<Medecin> searhDepartementDeMdc(int d) {
-		
+		ConnectionDB con=new ConnectionDB();
 		List<Medecin> tmplistmdc=new ArrayList<>();
 		PreparedStatement stm=null;
 		ResultSet rslt=null;
 		try {
-			stm=con.prepareStatement("select * from medecin where departement like ? ");
+			stm=con.getCon().prepareStatement("select * from medecin where departement like ? ");
 			stm.setInt(1, d);
 			rslt=stm.executeQuery();
 			
@@ -137,6 +143,7 @@ public List<Medecin> searhDepartementDeMdc(int d) {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
+			con.close();
 			close(stm,rslt);
 		}
 		
@@ -144,12 +151,12 @@ public List<Medecin> searhDepartementDeMdc(int d) {
 	}
 	
 public List<Medecin> searhInServiceMdcs(boolean m) {
-	
+	ConnectionDB con=new ConnectionDB();
 	List<Medecin> tmplistmdc=new ArrayList<>();
 	PreparedStatement stm=null;
 	ResultSet rslt=null;
 	try {
-		stm=con.prepareStatement("select * from medecin where enservice like ? ");
+		stm=con.getCon().prepareStatement("select * from medecin where enservice like ? ");
 		stm.setBoolean(1, m);
 		rslt=stm.executeQuery();
 		
@@ -160,6 +167,7 @@ public List<Medecin> searhInServiceMdcs(boolean m) {
 	} catch (SQLException e) {
 		e.printStackTrace();
 	}finally {
+		con.close();
 		close(stm,rslt);
 	}
 	
@@ -169,17 +177,19 @@ public List<Medecin> searhInServiceMdcs(boolean m) {
 
 
 	public void deleteMedecin(int id){
+		ConnectionDB con=new ConnectionDB();
 		PreparedStatement stm = null;
 
 		try {
-			stm = con.prepareStatement("delete from medecin where id=?");
+			stm = con.getCon().prepareStatement("delete from medecin where id=?");
 			stm.setInt(1, id);
 			stm.executeUpdate();			
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}
 		finally {
-			close(stm);
+			con.close();
+			close(stm,null);
 		}
 		System.out.println("you delete a medecin");
 	}
@@ -216,23 +226,14 @@ public List<Medecin> searhInServiceMdcs(boolean m) {
 	}
 	
 	
-	private static void close(Connection con,Statement stm ,ResultSet rslt) {
+	private static void close(Statement stm ,ResultSet rslt) {
 			try {
 				if(rslt!=null)rslt.close();
 				if(stm!=null)stm.close();
-				if(con!=null)con.close();
 				
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 	}
 	
-	private void close(Statement stm,ResultSet rslt) {
-		close(null,stm,rslt);
-	}
-	
-	private void close(Statement stm) {
-		close(null,stm,null);
-	}
-
 }
