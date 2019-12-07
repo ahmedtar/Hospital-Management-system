@@ -11,7 +11,7 @@ public class Main {
 		
 		//ConnectionDB con=new ConnectionDB();
 		//con.insere(departement);
-		Patient p=new Patient("ahmed", "elatrouz","EE123456", "homme", 20, "0631155864","N 33 bis marrakech", "cancer","09-10-2013" );
+		Patient p=new Patient("ahmed", "elatrouz","EE123456", "homme", 20, "0631155864","N 33 bis marrakech", "cancer","09/10/2013" );
 		System.out.println(p.getDateEntree());
 		//p.setDateSortie("10/10/1999");
 		//p.setMedecin(m);
@@ -20,6 +20,9 @@ public class Main {
 	//	System.out.println(con.inserer(p));
 		//System.out.println(p.toString());
 		//System.out.println(m.toString());
+		
+		p.setDateSortie("05/11/2016");
+		System.out.println(p.getDateSortie());
 	}
 
 }
