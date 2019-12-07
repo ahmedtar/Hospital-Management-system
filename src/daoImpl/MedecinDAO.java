@@ -1,44 +1,18 @@
-package model;
-
+package daoImpl;
 import java.io.*;
 import java.sql.*;
 import java.util.*;
 
+import model.Medecin;
+
 public class MedecinDAO {
-	private Connection con;
-	
-	public MedecinDAO(){
-		//get DB properties 
-		
-		Properties props=new Properties();
-		try {
-			props.load(new FileInputStream("hospital.properties"));
-		} catch (FileNotFoundException e) {
-			System.out.println("file hospital.properties not found");
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		String user=props.getProperty("user");
-		String password=props.getProperty("password");
-		String dburl=props.getProperty("dburl");
-		
-		//get DB connection
-		
-		try {
-			con=DriverManager.getConnection(dburl,user,password);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		System.out.println("connection successful to "+dburl);
-	}
 	
 	
 	public void addMedecin(Medecin mdc){
+		ConnectionDB con=new ConnectionDB();
 		PreparedStatement stm = null;
 			try {
-				stm = con.prepareStatement("insert into medecin"
+				stm = con.getCon().prepareStatement("insert into medecin"
 						+ " (nom, prenom, cne, sexe, age, numTel, adresse, specialisation, departement, enservice)"
 						+ " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 				
@@ -64,10 +38,11 @@ public class MedecinDAO {
 	
 	
 	public void updateMedecin(Medecin mdc,Medecin mdcmodifier){
+		ConnectionDB con=new ConnectionDB();
 		PreparedStatement stm = null;
 
 		try {
-			stm = con.prepareStatement("update medecin"
+			stm = con.getCon().prepareStatement("update medecin"
 					+ " set nom=?, prenom=?, cne=?, sexe=?,age=?,numTel=?,"
 					+ "adresse=?,specialisation=?,departement=?,enservice=?"
 					+ " where id=?");

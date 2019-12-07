@@ -1,5 +1,6 @@
 package model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -23,7 +24,9 @@ public class Patient extends Personne {
 			String maladie, String dateEntree) {
 		super(nom, prenom, cne,sex, age, numTel, adresse);
 		this.maladie = maladie;
-		this.dateEntree =new Date(dateEntree);
+		
+		SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/yyyy");
+		this.dateEntree =new Date(sdf.format(dateEntree));
 				//id= count.incrementAndGet();
 	}
 
@@ -50,7 +53,8 @@ public class Patient extends Personne {
 	}
 
 	public String getDateEntree() {
-		return dateEntree.toString();
+		SimpleDateFormat sdfDateFormat=new SimpleDateFormat("dd/MM/yyyy");
+		return sdfDateFormat.format(dateEntree);
 	}
 	
 	public void setDateSortie(String dateSortie) {
@@ -58,7 +62,8 @@ public class Patient extends Personne {
 	}
 
 	public String getDateSortie() {
-		return dateSortie.toString();
+		SimpleDateFormat sdfDateFormat=new SimpleDateFormat("dd/MM/yyyy");
+		return sdfDateFormat.format(dateSortie);
 	}
 
 	/*public Chambre getChambre() {
