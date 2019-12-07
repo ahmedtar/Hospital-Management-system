@@ -13,7 +13,7 @@ import model.Patient;
 
 public class PatientDaoImpl implements PatientDao {
 
-
+	@Override
 public int addPatient(Patient patient) throws SQLException   {
 	ConnectionDB con=new ConnectionDB();
 	PreparedStatement myStmt = null;
@@ -47,7 +47,7 @@ public int addPatient(Patient patient) throws SQLException   {
 	return r;
 }
 
-
+@Override
 public int updatePatient(Patient patient) throws SQLException {
 	ConnectionDB con=new ConnectionDB();
 	PreparedStatement myStmt = null;
@@ -89,6 +89,7 @@ public int updatePatient(Patient patient) throws SQLException {
 
 
 //supprimer patient
+@Override
 public int deletePatient(int patientId) throws SQLException {
 	ConnectionDB con=new ConnectionDB();
 	PreparedStatement myStmt = null;
@@ -116,7 +117,7 @@ return r;
 
 
 
-
+@Override
 public List<Patient> getAllPatients() throws Exception {
 	ConnectionDB con=new ConnectionDB();
 	List<Patient> list = new ArrayList<>();
@@ -149,7 +150,7 @@ public List<Patient> getAllPatients() throws Exception {
 
 
 
-
+@Override
 public List<Patient> searchPatient(String nom) throws Exception {
 	ConnectionDB con=new ConnectionDB();
 	List<Patient> list = new ArrayList<>();
@@ -170,6 +171,42 @@ public List<Patient> searchPatient(String nom) throws Exception {
 			list.add(tempPatient);
 		}
 		
+	}
+	 catch (SQLException e) {
+			e.printStackTrace();
+		}
+	finally {
+		con.close();
+	}
+	return list;
+}
+
+
+
+
+
+@Override
+public List<Patient> searchPatientByMaladie(String maladie) throws Exception {
+	
+	ConnectionDB con=new ConnectionDB();
+	List<Patient> list = new ArrayList<>();
+
+	PreparedStatement myStmt = null;
+	ResultSet myRs = null;
+
+	try {
+		maladie += "%";
+		myStmt = con.getCon().prepareStatement("select * from patient where maladie like ?  order by maladie");
+		
+		myStmt.setString(1, maladie);
+		
+		myRs = myStmt.executeQuery();
+		
+		while (myRs.next()) {
+			Patient tempPatient = convertRowToPatient(myRs);
+			list.add(tempPatient);
+		}
+		
 		
 	}
 	 catch (SQLException e) {
@@ -180,6 +217,45 @@ public List<Patient> searchPatient(String nom) throws Exception {
 	}
 	return list;
 }
+
+
+
+
+
+
+@Override
+public List<Patient> searchPatientByDateEntree(String dateEntree) throws Exception {
+	ConnectionDB con=new ConnectionDB();
+	List<Patient> list = new ArrayList<>();
+
+	PreparedStatement myStmt = null;
+	ResultSet myRs = null;
+
+	try {
+		dateEntree += "%";
+		myStmt = con.getCon().prepareStatement("select * from patient where dateEntree like ?  order by dateEntree");
+		
+		myStmt.setString(1, dateEntree);
+		
+		myRs = myStmt.executeQuery();
+		
+		while (myRs.next()) {
+			Patient tempPatient = convertRowToPatient(myRs);
+			list.add(tempPatient);
+		}
+		
+		
+	}
+	 catch (SQLException e) {
+			e.printStackTrace();
+		}
+	finally {
+		con.close();
+	}
+	return list;
+}
+
+
 
 
 private Patient  convertRowToPatient(ResultSet myRs) throws Exception {
@@ -207,6 +283,11 @@ private Patient  convertRowToPatient(ResultSet myRs) throws Exception {
 	return tempPatient;
 
  }
+
+
+
+
+
 
 }
 

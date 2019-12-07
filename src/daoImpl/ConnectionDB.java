@@ -20,14 +20,14 @@ public class ConnectionDB {
 		try {
 			props.load(new FileInputStream("hospital.properties"));
 			
-			String user=props.getProperty("user");
-			String password=props.getProperty("password");
-			String dburl=props.getProperty("dburl");
+			String user="root";
+			String	password="";
+			String	dburl="jdbc:mysql://localhost:3306/hopital0";
 			
 			con=DriverManager.getConnection(dburl,user,password);
 			System.out.println("connection successful to "+dburl);
 		} catch (IOException  | SQLException e) {
-			System.out.println("file hospital.properties not found");
+			//System.out.println("file hospital.properties not found");
 			e.printStackTrace();
 		}
 		
@@ -47,6 +47,7 @@ public class ConnectionDB {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+
 	}
 
 

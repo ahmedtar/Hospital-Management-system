@@ -77,8 +77,7 @@ public class Patient extends Personne {
 
 	@Override
 	public String toString() {
-		return "Patient [ "+super.toString()+ ", maladie=" + maladie + ", dateEntree=" + dateEntree + ", dateSortie="
-				+ dateSortie + ", medecin=" + medecin.getNom() +" "+medecin.getPrenom() +"]";
+		return "Patient [ "+super.toString()+ ", maladie=" + maladie + ", dateEntree=" + getDateEntree() + "]";
 	}
 
 	public Lit getLit() {
