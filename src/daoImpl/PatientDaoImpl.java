@@ -21,8 +21,8 @@ public int addPatient(Patient patient) throws SQLException   {
 	try {
 		// prepared statement
 		myStmt = con.getCon().prepareStatement("insert into patient"
-				+ " (nom, prenom, cne, age,dateEntree,numTel,sexe,adresse,maladie)"
-				+ " values (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+				+ " (nom, prenom, cne, age,dateEntree,numTel,sexe,adresse,maladie,dateSortie )"
+				+ " values (?, ?, ?, ?, ?, ?, ?, ?, ? ,?)");
 		
 		
 		myStmt.setString(1, patient.getNom());
@@ -34,6 +34,7 @@ public int addPatient(Patient patient) throws SQLException   {
 		myStmt.setString(7, patient.getSexe());
 		myStmt.setString(8, patient.getAdresse());
 		myStmt.setString(9, patient.getMaladie());
+		myStmt.setString(10, patient.getDateSortie());
 		
 		
 		
@@ -224,7 +225,7 @@ public List<Patient> searchPatientByMaladie(String maladie) throws Exception {
 
 
 @Override
-public List<Patient> searchPatientByDateEntree(String dateEntree) throws Exception {
+public  List<Patient> searchPatientByDateEntree(String dateEntree) throws Exception {
 	ConnectionDB con=new ConnectionDB();
 	List<Patient> list = new ArrayList<>();
 
@@ -257,6 +258,43 @@ public List<Patient> searchPatientByDateEntree(String dateEntree) throws Excepti
 
 
 
+@Override
+public List<Patient> searchPatientByCne(String cne) throws Exception {
+	
+	ConnectionDB con=new ConnectionDB();
+	List<Patient> list = new ArrayList<>();
+
+	PreparedStatement myStmt = null;
+	ResultSet myRs = null;
+
+	try {
+		cne += "%";
+		myStmt = con.getCon().prepareStatement("select * from patient where cne like ?  order by nom");
+		
+		myStmt.setString(1, cne);
+		
+		myRs = myStmt.executeQuery();
+		
+		while (myRs.next()) {
+			Patient tempPatient = convertRowToPatient(myRs);
+			list.add(tempPatient);
+		}
+		
+		
+	}
+	 catch (SQLException e) {
+			e.printStackTrace();
+		}
+	finally {
+		con.close();
+	}
+	return list;
+
+}
+
+
+
+
 
 private Patient  convertRowToPatient(ResultSet myRs) throws Exception {
 	
@@ -283,6 +321,8 @@ private Patient  convertRowToPatient(ResultSet myRs) throws Exception {
 	return tempPatient;
 
  }
+
+
 
 
 

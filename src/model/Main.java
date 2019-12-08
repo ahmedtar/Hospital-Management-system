@@ -3,7 +3,9 @@ package model;
 import java.sql.SQLException;
 import java.util.List;
 
+import dao.UtilisateurDao;
 import daoImpl.PatientDaoImpl;
+import daoImpl.UtilisateurDaoImpl;
 
 public class Main {
 		
@@ -13,7 +15,7 @@ public class Main {
 		
 		//ConnectionDB con=new ConnectionDB();
 		//con.insere(departement);
-		//Patient p=new Patient("ahmed", "elatrouz","EE123456", "homme", 20, "0631155864","N 33 bis marrakech", "cancer","09/10/2013" );
+	Patient p=new Patient("ahmed", "elatrouz","EE123456", "homme", 20, "0635555864","N 33 bis marrakech", "cancer","09/10/2013" );
 		//System.out.println(p.getDateEntree());
 		//p.setDateSortie("10/10/1999");
 		//p.setMedecin(m);
@@ -23,10 +25,15 @@ public class Main {
 		//System.out.println(p.toString());
 		//System.out.println(m.toString());
 		
-		//p.setDateSortie("05/11/2016");
+		//
 		//System.out.println(p.getDateSortie());
+	//p.setDateSortie("05/11/2016");
 	PatientDaoImpl dao=new PatientDaoImpl();
-	System.out.println(dao.searchPatient("ahmed"));
+	//System.out.println(dao.addPatient(p));
+	Utilisateur u1=new Utilisateur(5, "hooola", "nom", "prenom", "password", true, false);
+	UtilisateurDao dao1=new UtilisateurDaoImpl();
+	System.out.println(dao1.AddUtilisateur(u1));
+	System.out.println(dao.searchPatientByCne("EE123456"));
 	}
 
 }

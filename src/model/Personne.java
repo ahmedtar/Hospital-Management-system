@@ -63,11 +63,11 @@ public abstract class Personne {
 		this.adresse = adresse;
 	}
 
-	@Override
+/*	@Override
 	public String toString() {
 		return " nom=" + nom + ", prenom=" + prenom + ", sexe=" + sexe + ", age=" + age + ", numTel=" + numTel
 				+ ", adresse=" + adresse ;
-	}
+	}*/
 
 	public String getCne() {
 		return cne;
@@ -75,6 +75,12 @@ public abstract class Personne {
 
 	public void setCne(String cne) {
 		this.cne = cne;
+	}
+
+	@Override
+	public String toString() {
+		return " cne=" + cne + ", nom=" + nom + ", prenom=" + prenom + ", sexe=" + sexe + ", age=" + age
+				+ ", numTel=" + numTel + ", adresse=" + adresse ;
 	}
 
 	

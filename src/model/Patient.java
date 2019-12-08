@@ -56,13 +56,21 @@ public class Patient extends Personne {
 	}
 	
 	@SuppressWarnings("deprecation")
-	public void setDateSortie(String dateSortie) {
+	public void setDateSortie(String date) {
+
+		if(!(date==null)) {
 		SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/yyyy");
-		this.dateSortie =new Date(sdf.format(new Date(dateSortie)));
+		String string=sdf.format(new Date(date));
+		this.dateSortie =new Date(string);
+		}
+		else this.dateSortie =null;
+		
 	}
 
 	public String getDateSortie() {
-		SimpleDateFormat sdfDateFormat=new SimpleDateFormat("dd/MM/yyyy");
+
+		 SimpleDateFormat sdfDateFormat=new SimpleDateFormat("dd/MM/yyyy");
+		 if(this.dateSortie==null) return null;
 		return sdfDateFormat.format(dateSortie);
 	}
 	
@@ -75,10 +83,6 @@ public class Patient extends Personne {
 		this.medecin = medecin;
 	}
 
-	@Override
-	public String toString() {
-		return "Patient [ "+super.toString()+ ", maladie=" + maladie + ", dateEntree=" + getDateEntree() + "]";
-	}
 
 	public Lit getLit() {
 		return lit;
@@ -86,6 +90,13 @@ public class Patient extends Personne {
 
 	public void setLit(Lit lit) {
 		this.lit = lit;
+	}
+
+	@Override
+	public String toString() {
+		return "Patient [Id=" + getId() + ","+super.toString()+ ", Maladie=" + getMaladie() + ", DateEntree=" + getDateEntree()
+				+ ", DateSortie=" + getDateSortie() + ", Medecin=" + getMedecin() + ", Lit=" + getLit()
+				+ "]";
 	}
 
 	
