@@ -30,10 +30,11 @@ public class Main {
 	//p.setDateSortie("05/11/2016");
 	PatientDaoImpl dao=new PatientDaoImpl();
 	//System.out.println(dao.addPatient(p));
-	Utilisateur u1=new Utilisateur(5, "hooola", "nom", "prenom", "password", true, false);
+	Utilisateur u1=new Utilisateur(1, "hooola", "ahmed", "kniyti", "password", true, false);
 	UtilisateurDao dao1=new UtilisateurDaoImpl();
-	System.out.println(dao1.AddUtilisateur(u1));
-	System.out.println(dao.searchPatientByCne("EE123456"));
+	System.out.println(dao1.updateUtilisateur(u1));
+	//System.out.println(dao1.AddUtilisateur(u1));
+	//System.out.println(dao.searchPatientByCne("EE123456"));
 	}
 
 }
