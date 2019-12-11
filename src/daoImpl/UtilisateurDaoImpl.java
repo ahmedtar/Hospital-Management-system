@@ -1,6 +1,7 @@
 package daoImpl;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import dao.UtilisateurDao;
@@ -64,6 +65,30 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 			}
 		return r;
 
+	}
+
+	@Override
+	public int login(String login,String password) {
+		
+		ConnectionDB myCon=new ConnectionDB();
+		int r=0;
+		ResultSet rsl=null;
+		try {
+			PreparedStatement myStmt=myCon.getCon().prepareStatement("SELECT * FROM utilisateur where login = ? and password = ? ");
+			myStmt.setString(1, login);
+			myStmt.setString(2, password);
+			rsl=myStmt.executeQuery();
+			if(!rsl.next()) r=-1;
+			else r=1;
+		}
+		 catch (SQLException e) {
+				e.printStackTrace();
+			}
+		finally {
+			myCon.close();
+		}
+		
+		return r;
 	}
 
 }
