@@ -1,47 +1,36 @@
 package model;
 
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.List;
 
 public class Departement {
 
-	//private static final AtomicInteger count = new AtomicInteger(0);
 	private int id;
 	private String nom;
-	private Medecin[] medecins;
-	//private Chambre[] chambres;
-
-	//l'id n'est pas defini dans le constructeur et n'a pas de setters 
-	//car la base de données permet de le generer automatiquement 
-	//en cochant la case A_I lors du creation du colonne id
-	
-
-	public Departement(String nom) {
+	private List<Medecin> medecins;
+	public Departement(int id, String nom, List<Medecin> medecins) {
 		super();
+		this.id = id;
 		this.nom = nom;
-		//id= count.incrementAndGet();
+		this.medecins = medecins;
 	}
 	public int getId() {
 		return id;
 	}
-	
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getNom() {
 		return nom;
 	}
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	public Medecin[] getMedecins() {
+	public List<Medecin> getMedecins() {
 		return medecins;
 	}
-	public void setMedecins(Medecin[] medecins) {
+	public void setMedecins(List<Medecin> medecins) {
 		this.medecins = medecins;
 	}
-/*	public Chambre[] getChambres() {
-		return chambres;
-	}
-	public void setChambres(Chambre[] chambres) {
-		this.chambres = chambres;
-	}
-	*/
-	
+
+
 }

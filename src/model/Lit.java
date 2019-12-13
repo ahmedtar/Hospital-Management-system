@@ -1,10 +1,7 @@
 package model;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 public class Lit {
 
-	private static final AtomicInteger count = new AtomicInteger(0);
 	
 	private int id;
 	private boolean enService;
@@ -13,19 +10,23 @@ public class Lit {
 	
 	
 	
-
-
-	public Lit(boolean enService, Chambre chambre) {
+	
+	
+	
+	public Lit(int id, boolean enService, Patient patient, Chambre chambre) {
 		super();
+		this.id = id;
 		this.enService = enService;
+		this.patient = patient;
 		this.chambre = chambre;
-		id= count.incrementAndGet();
 	}
-
+	
 	public int getId() {
 		return id;
 	}
-	
+	public void setId(int id) {
+		this.id = id;
+	}
 	public boolean isEnService() {
 		return enService;
 	}
@@ -38,13 +39,14 @@ public class Lit {
 	public void setPatient(Patient patient) {
 		this.patient = patient;
 	}
-
 	public Chambre getChambre() {
 		return chambre;
 	}
-
 	public void setChambre(Chambre chambre) {
 		this.chambre = chambre;
 	}
+	
+	
+	
 
 }

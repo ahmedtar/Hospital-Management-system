@@ -15,4 +15,5 @@ public interface PatientDao {
 	 List<Patient> searchPatientByMaladie(String maladie) throws Exception;
 	List<Patient> searchPatientByDateEntree(String dateEntree) throws Exception;
 	List<Patient> searchPatientByCne(String cne) throws Exception;
+	Patient searchPatientByLit(int litId) throws Exception;
 }

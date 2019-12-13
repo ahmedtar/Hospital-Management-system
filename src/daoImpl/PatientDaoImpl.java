@@ -21,8 +21,8 @@ public int addPatient(Patient patient) throws SQLException   {
 	try {
 		// prepared statement
 		myStmt = con.getCon().prepareStatement("insert into patient"
-				+ " (nom, prenom, cne, age,dateEntree,numTel,sexe,adresse,maladie,dateSortie )"
-				+ " values (?, ?, ?, ?, ?, ?, ?, ?, ? ,?)");
+				+ " (nom, prenom, cne, age,dateEntree,numTel,sexe,adresse,maladie,dateSortie,lit,medecin )"
+				+ " values (?, ?, ?, ?, ?, ?, ?, ?, ? ,?,?,?)");
 		
 		
 		myStmt.setString(1, patient.getNom());
@@ -35,7 +35,8 @@ public int addPatient(Patient patient) throws SQLException   {
 		myStmt.setString(8, patient.getAdresse());
 		myStmt.setString(9, patient.getMaladie());
 		myStmt.setString(10, patient.getDateSortie());
-		
+		myStmt.setInt(11, patient.getLit().getId());
+		myStmt.setInt(12, patient.getMedecin().getId());
 		
 		
 		r=myStmt.executeUpdate();			
@@ -57,7 +58,7 @@ public int updatePatient(Patient patient) throws SQLException {
 	try {
 		// prepared statement
 		myStmt = con.getCon().prepareStatement("update patient"
-				+ " set nom=?, prenom=?, cne=?, age=?,dateEntree=?,numTel=?,sexe=?,adresse=?,maladie=?"
+				+ " set nom=?, prenom=?, cne=?, age=?,dateEntree=?,numTel=?,sexe=?,adresse=?,maladie=?,lit=?,medecin=?"
 				+ " where id=?");
 		
 		
@@ -71,7 +72,8 @@ public int updatePatient(Patient patient) throws SQLException {
 		myStmt.setString(8, patient.getAdresse());
 		myStmt.setString(9, patient.getMaladie());
 		myStmt.setInt(10, patient.getId());
-		
+		myStmt.setInt(11, patient.getLit().getId());
+		myStmt.setInt(12, patient.getMedecin().getId());
 		r=myStmt.executeUpdate();			
 	}
 	 catch (SQLException e) {
@@ -296,6 +298,43 @@ public List<Patient> searchPatientByCne(String cne) throws Exception {
 
 
 
+@Override
+public Patient searchPatientByLit(int litId ) throws Exception {
+	
+	ConnectionDB con=new ConnectionDB();
+
+	PreparedStatement myStmt = null;
+	ResultSet myRs = null;
+	Patient tempPatient=null;
+	try {
+		
+		myStmt = con.getCon().prepareStatement("select * from patient where lit= ? ");
+		
+		myStmt.setInt(1,litId);
+		
+		myRs = myStmt.executeQuery();
+		
+		myRs.next();
+		tempPatient = convertRowToPatient(myRs);
+		
+		
+	}
+	 catch (SQLException e) {
+			e.printStackTrace();
+		}
+	finally {
+		con.close();
+	}
+	return tempPatient;
+
+}
+
+
+
+
+
+
+
 private Patient  convertRowToPatient(ResultSet myRs) throws Exception {
 	
 	int id = myRs.getInt("id");
@@ -315,7 +354,8 @@ private Patient  convertRowToPatient(ResultSet myRs) throws Exception {
 	Patient tempPatient = new Patient(nom, prenom, cne, sexe, age, numTel, adresse, maladie, dateEntree);
 	tempPatient.setId(id);
 	tempPatient.setDateSortie(dateSortie);
-	tempPatient.setLit(null);
+	
+	//tempPatient.setLit();
 	tempPatient.setMedecin(null);
 	
 	return tempPatient;
