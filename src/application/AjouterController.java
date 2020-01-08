@@ -4,51 +4,59 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+import model.Patient;
+import model.Patient;
 import daoImpl.PatientDaoImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import model.Patient;
 
 public class AjouterController implements Initializable{
 	
-	     @FXML  private TextField litField;
+	    PatientController pCtrl = new PatientController();
+	
+	     @FXML  public TextField litField;
 
-	    @FXML private TextField cneField;
+	    @FXML public TextField cneField;
 
-	    @FXML  private TextField nomField;
+	    @FXML  public TextField nomField;
 
-	    @FXML private TextField sexeField;
+	    @FXML public TextField sexeField;
 
-	    @FXML private TextField ageField;
+	    @FXML public TextField ageField;
 
-	    @FXML private TextField teleField;
+	    @FXML public TextField teleField;
 
-	    @FXML  private TextField adressField;
+	    @FXML  public TextField adressField;
 
-	    @FXML private TextField entreField;
+	    @FXML public TextField entreField;
 
-	    @FXML private TextField sortieField;
+	    @FXML public TextField sortieField;
 	    
-	    @FXML private TextField maladieField;
+	    @FXML public TextField maladieField;
 
-	    @FXML private TextField medecinField;
+	    @FXML public TextField medecinField;
 
-	    @FXML private TextField prenomField;
+	    @FXML public TextField prenomField;
 
 	    @FXML private Button insertBtn;
 	    
 	    private PatientDaoImpl patientDao;
 	    
+	    @FXML public Label idLabel = new Label();
+	    
 	    //add Patient --------------------------------------------
 	    
 	    @FXML
-	    public void inserePatient(ActionEvent e) throws SQLException {
+	    public void inserePatient(ActionEvent e) throws Exception {
 	    	patientDao=new PatientDaoImpl();
+	    	pCtrl = new PatientController();
 	    	
 	    	String cne=cneField.getText();
 	    	String nom=nomField.getText();
@@ -71,15 +79,20 @@ public class AjouterController implements Initializable{
 	    	Patient patient=new Patient(nom,Prenom,cne,sexe,age,numeTele,adress,maladie,dateEntre);
 	    	patient.setLit(null);
 	    	patient.setMedecin(null);
-	    	patient.setDateSortie(dateSortie);
+	    	patient.setDateSortie(dateEntre);
 	    	int status =patientDao.addPatient(patient);
 	    	
 	    	if(status>0) {
+	    		
+	    		
 	    		Alert alert=new Alert(AlertType.INFORMATION);
 	    		alert.setTitle("Ajouter Patient ");
 	    		alert.setHeaderText("information");
 	    		alert.setContentText("Patient est ajaute ");
 	    		alert.showAndWait();
+	    		
+	    		pCtrl.insertLoad(patient);
+//	    		
 	    	}
 	    	else {
 	    		Alert alert=new Alert(AlertType.ERROR);
@@ -91,7 +104,39 @@ public class AjouterController implements Initializable{
 	    	
 	    	System.out.println("done");
 	    	
+	    	
+	    	
 	    }
+	    
+	    
+	    @FXML public void updatePatient() {
+	    	patientDao = new PatientDaoImpl();
+	    	Patient p = pCtrl.patientToEdit;
+	    	
+	    	String lit=litField.getText();
+	    	String cne=cneField.getText();
+	    	String nom=nomField.getText();
+	    	String Prenom=prenomField.getText();
+	    	String sexe=sexeField.getText();
+	    	String ageStr=ageField.getText();
+	    	int age=Integer.parseInt(ageStr);
+	    	String dateEntre=entreField.getText();
+	    	String dateSortie=sortieField.getText();
+	    	String numeTele=teleField.getText();
+	    	String adress=adressField.getText();
+	    	String maladie=maladieField.getText();
+	    	
+	    	
+			   
+	    }
+	    
+	    @FXML
+	    public void update(Patient p) throws Exception {
+	    	nomField.setText(p.getNom());
+	    	idLabel.setText(""+p.getId());
+	    }
+	    
+	    
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

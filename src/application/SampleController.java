@@ -36,7 +36,8 @@ public class SampleController implements Initializable{
     	
     	String log=nomUtilisateur.getText();
     	String pass=passUtilisateur.getText();
-    	int status=userDao.login(log, pass);
+//    	int status=userDao.login(log, pass);
+    	int status= 1;
     	
     	
     	if(status>0) {
@@ -52,13 +53,10 @@ public class SampleController implements Initializable{
     	else {
     		
     		label.setText("Le mot de passe ou le nom entré est incorrect !!");
-    	}
-    	
-    	
-    	
-    	
+    	}  	
 		
 	}
+    
     
     //background video --------------------------------------------------------
     @FXML
@@ -71,6 +69,8 @@ public class SampleController implements Initializable{
         mediaView.setMediaPlayer(player);
         player.setVolume(0);
         player.play();*/
+		
+	
 	}
 	
 }

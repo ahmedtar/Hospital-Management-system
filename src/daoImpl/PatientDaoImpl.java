@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dao.PatientDao;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import model.Patient;
 
 
@@ -154,34 +156,46 @@ public List<Patient> getAllPatients() throws Exception {
 
 
 @Override
-public List<Patient> searchPatient(String nom) throws Exception {
-	ConnectionDB con=new ConnectionDB();
-	List<Patient> list = new ArrayList<>();
-
-	PreparedStatement myStmt = null;
-	ResultSet myRs = null;
-
-	try {
-		nom += "%";
-		myStmt = con.getCon().prepareStatement("select * from patient where nom like ?  order by nom");
+public ObservableList<Patient> searchPatient(String n) throws Exception{
+	
+	 ConnectionDB conn = new ConnectionDB();
+	 ObservableList<Patient> list = FXCollections.observableArrayList();
+	 
+	 PreparedStatement pstm = null;
+	 ResultSet result = null;
+	 StringBuilder nom = new StringBuilder(n);
+	 
+	 try {
 		
-		myStmt.setString(1, nom);
-		
-		myRs = myStmt.executeQuery();
-		
-		while (myRs.next()) {
-			Patient tempPatient = convertRowToPatient(myRs);
-			list.add(tempPatient);
-		}
-		
+		 nom.append("%");
+		 pstm = conn.getCon().prepareStatement("select * from patient where "
+		 		                              + "id like ? or "
+		 		                              + "nom like ? or "
+		 		                              + "prenom like ? or "
+		 		                              + "cne like ? or "
+		 		                              + "maladie like ?");
+		 
+		 pstm.setString(1, nom.toString());
+		 pstm.setString(2, nom.toString());
+		 pstm.setString(3, nom.toString());
+		 pstm.setString(4, nom.toString());
+		 pstm.setString(5, nom.toString());
+		 
+		 result = pstm.executeQuery();
+		 
+		 while(result.next()) {
+			 Patient p = convertRowToPatient(result);
+			 list.add(p);
+//			 System.out.println(result.getString("id") +" , " + result.getString("nom") +" , " +result.getString("prenom") +" , " +  result.getInt("age"));
+		 }
+		 return list;
+		 
+	} finally {
+		pstm =null;
+		result = null;
 	}
-	 catch (SQLException e) {
-			e.printStackTrace();
-		}
-	finally {
-		con.close();
-	}
-	return list;
+	
+	 
 }
 
 
