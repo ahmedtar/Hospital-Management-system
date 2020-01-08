@@ -275,6 +275,7 @@ public void insertLoad(Patient patient) throws Exception {
    @FXML  public TextField litField;
    @FXML public TextField cneField;
    @FXML  public TextField nomField;
+   @FXML public TextField prenomField;
    @FXML public TextField sexeField;
    @FXML public TextField ageField;
    @FXML public TextField teleField;
@@ -283,7 +284,7 @@ public void insertLoad(Patient patient) throws Exception {
    @FXML public TextField sortieField;
    @FXML public TextField maladieField;
    @FXML public TextField medecinField;
-   @FXML public TextField prenomField;
+   
    
    
    
