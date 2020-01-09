@@ -72,6 +72,7 @@ public class PatientController implements Initializable{
 	}
 	
 	
+	
 	public ObservableList<Patient> list = FXCollections.observableArrayList();	
       
 
@@ -109,7 +110,9 @@ public class PatientController implements Initializable{
 	  
 // TabPane
 	 @FXML public TabPane tabPane = new TabPane();
-	 @FXML public Tab paneTabPane = new Tab();
+	 @FXML public Tab PatientTabPane = new Tab();
+	 @FXML public Tab LitTabPane = new Tab();
+	 @FXML public Tab UpdateTabPane = new Tab();
 	
 	
    @FXML
@@ -174,7 +177,7 @@ private void populateTableView() {
 			    		   final Button delete = new Button("X");
 			    		   final Button edit = new Button("Edit");
 			    		   
-			    		   
+	  // Edit Button Event
 			    		   edit.setOnAction(e -> {
 			    			   
 			    			   PatientDaoImpl dao = new PatientDaoImpl();
@@ -193,10 +196,8 @@ private void populateTableView() {
 								String sexe = p.getSexe();
 								if(sexe.equals("Homme")) {
 									hommeRadio.setSelected(true);
-									femmeRadio.setSelected(false);
 								}
 								else if(sexe.equals("Femme")) {
-									hommeRadio.setSelected(false);
 									femmeRadio.setSelected(true);
 								}
 								else {
@@ -219,10 +220,12 @@ private void populateTableView() {
 			    			    	
 			    					   
 								updateBtn.setVisible(true);
+								tabPane.getSelectionModel().select(UpdateTabPane);
 			    			    
 			    			   
 			    		   });
 			    		   
+      //Delete Button Event
 			    		   delete.setOnAction(e -> {
 			    			   try {
 								PatientDaoImpl dao = new PatientDaoImpl();
@@ -389,9 +392,11 @@ public Patient patientToEdit;
    		alert.setTitle("Ajouter Patient ");
    		alert.setHeaderText("information");
    		alert.setContentText("Le Patient est ajouté avec succès");
+   		this.insertLoad(patient);
+   		tabPane.getSelectionModel().select(PatientTabPane);
    		alert.showAndWait();
    		
-   		this.insertLoad(patient);
+   		
 //   		
    	}
    	else {
@@ -462,9 +467,14 @@ public Patient patientToEdit;
    		alert.setTitle("Modifier Patient ");
    		alert.setHeaderText("information");
    		alert.setContentText("Patient Modifié ");
+   		LoadTable();
+   		tabPane.getSelectionModel().select(PatientTabPane);
+   		updateBtn.setVisible(false);
+   		insertBtn.setVisible(true);
    		alert.showAndWait();
    		
-   		LoadTable();
+   		
+   		
 //   		
    	}
    	else {
