@@ -9,9 +9,12 @@ import model.Medecin;
 public class MedecinDAOimpl implements  MedecinDAO {
 	
 	
-	public void addMedecin(Medecin mdc){
+	public int addMedecin(Medecin mdc){
 		ConnectionDB con=new ConnectionDB();
 		PreparedStatement stm = null;
+		
+		int r=0;
+		
 			try {
 				stm = con.getCon().prepareStatement("insert into medecin"
 						+ " (nom, prenom, cne, sexe, age, numTel, adresse, specialisation, departement, enservice)"
@@ -27,7 +30,7 @@ public class MedecinDAOimpl implements  MedecinDAO {
 				stm.setString(8, mdc.getSpecialisation());
 				stm.setInt(9, mdc.getDepartement());
 				stm.setBoolean(10, mdc.isEnservice());
-				stm.executeUpdate();
+				r=stm.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}finally {
@@ -35,31 +38,32 @@ public class MedecinDAOimpl implements  MedecinDAO {
 				close(stm,null);
 			}
 			System.out.println("addition was successful");
+			return r;
 	}
 
 	
 	
-	public void updateMedecin(Medecin mdc,Medecin mdcmodifier){
+	public int updateMedecin(Medecin mdc){
 		ConnectionDB con=new ConnectionDB();
 		PreparedStatement stm = null;
-
+        int r=0;
 		try {
 			stm = con.getCon().prepareStatement("update medecin"
 					+ " set nom=?, prenom=?, cne=?, sexe=?,age=?,numTel=?,"
 					+ "adresse=?,specialisation=?,departement=?,enservice=?"
 					+ " where id=?");
-			stm.setString(1, mdcmodifier.getNom());
-			stm.setString(2, mdcmodifier.getPrenom());
-			stm.setString(3,mdcmodifier.getCne());
-			stm.setString(4, mdcmodifier.getSexe());
-			stm.setInt(5,mdcmodifier.getAge());
-			stm.setString(6,mdcmodifier.getNumTel());
-			stm.setString(7, mdcmodifier.getAdresse());
-			stm.setString(8, mdcmodifier.getSpecialisation());
-			stm.setInt(9, mdcmodifier.getDepartement());
-			stm.setBoolean(10, mdcmodifier.isEnservice());
+			stm.setString(1, mdc.getNom());
+			stm.setString(2, mdc.getPrenom());
+			stm.setString(3,mdc.getCne());
+			stm.setString(4, mdc.getSexe());
+			stm.setInt(5,mdc.getAge());
+			stm.setString(6,mdc.getNumTel());
+			stm.setString(7, mdc.getAdresse());
+			stm.setString(8, mdc.getSpecialisation());
+			stm.setInt(9, mdc.getDepartement());
+			stm.setBoolean(10, mdc.isEnservice());
 			stm.setInt(11, mdc.getId());
-			stm.executeUpdate();
+			r=stm.executeUpdate();
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -68,7 +72,39 @@ public class MedecinDAOimpl implements  MedecinDAO {
 			close(stm,null);
 		}
 		System.out.println("you update DB ");
+		return r;
 	}
+	
+	
+	
+	
+	
+	public int deleteMedecin(Medecin mdc){
+		ConnectionDB con=new ConnectionDB();
+		PreparedStatement stm = null;
+        int r=0;
+		try {
+			stm = con.getCon().prepareStatement("delete from medecin where id=?");
+			stm.setInt(1, mdc.getId());
+			r=stm.executeUpdate();			
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			con.close();
+			close(stm,null);
+		}
+		System.out.println("you delete a medecin");
+		return r;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 
 	
 	
@@ -149,6 +185,8 @@ public List<Medecin> searhDepartementDeMdc(int d) {
 		
 		return tmplistmdc;
 	}
+
+
 	
 public List<Medecin> searhInServiceMdcs(boolean m) {
 	ConnectionDB con=new ConnectionDB();
@@ -176,23 +214,7 @@ public List<Medecin> searhInServiceMdcs(boolean m) {
 
 
 
-	public void deleteMedecin(int id){
-		ConnectionDB con=new ConnectionDB();
-		PreparedStatement stm = null;
-
-		try {
-			stm = con.getCon().prepareStatement("delete from medecin where id=?");
-			stm.setInt(1, id);
-			stm.executeUpdate();			
-		}catch (SQLException e) {
-			e.printStackTrace();
-		}
-		finally {
-			con.close();
-			close(stm,null);
-		}
-		System.out.println("you delete a medecin");
-	}
+	
 
 	
 	

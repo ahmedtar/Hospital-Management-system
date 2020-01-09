@@ -22,6 +22,8 @@ public abstract class Personne {
 		this.adresse=adresse;
 	}
 	
+	
+	
 	public String getNom() {
 		return nom;
 	}
