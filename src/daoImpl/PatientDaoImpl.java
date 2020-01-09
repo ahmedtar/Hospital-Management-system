@@ -10,6 +10,8 @@ import java.util.List;
 import dao.PatientDao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import model.Lit;
+import model.Medecin;
 import model.Patient;
 
 
@@ -22,9 +24,10 @@ public int addPatient(Patient patient) throws SQLException   {
 	int r=0;
 	try {
 		// prepared statement
+		// ************Foreign Key Problem************** with MEDECIN and LIT
 		myStmt = con.getCon().prepareStatement("insert into patient"
 				+ " (nom, prenom, cne, age,dateEntree,numTel,sexe,adresse,maladie,dateSortie,lit,medecin )"
-				+ " values (?, ?, ?, ?, ?, ?, ?, ?, ? ,?,?,?)");
+				+ " values (?, ?, ?, ?, ?, ?, ?, ?, ? ,?,null,null)");
 		
 		
 		myStmt.setString(1, patient.getNom());
@@ -37,8 +40,9 @@ public int addPatient(Patient patient) throws SQLException   {
 		myStmt.setString(8, patient.getAdresse());
 		myStmt.setString(9, patient.getMaladie());
 		myStmt.setString(10, patient.getDateSortie());
-		myStmt.setInt(11, patient.getLit().getId());
-		myStmt.setInt(12, patient.getMedecin().getId());
+//		myStmt.setInt(11, patient.getLit().getId());
+//		myStmt.setInt(12, patient.getMedecin().getId());
+		
 		
 		
 		r=myStmt.executeUpdate();			
@@ -60,7 +64,9 @@ public int updatePatient(Patient patient) throws SQLException {
 	try {
 		// prepared statement
 		myStmt = con.getCon().prepareStatement("update patient"
-				+ " set nom=?, prenom=?, cne=?, age=?,dateEntree=?,numTel=?,sexe=?,adresse=?,maladie=?,lit=?,medecin=?"
+				+ " set nom=?, prenom=?, cne=?, age=?,dateEntree=?,numTel=?,sexe=?,"
+				+ "adresse=?,maladie=?"
+//				+ ",lit=?,medecin=?"  // Foreign Key Problem
 				+ " where id=?");
 		
 		
@@ -73,9 +79,9 @@ public int updatePatient(Patient patient) throws SQLException {
 		myStmt.setString(7, patient.getSexe());
 		myStmt.setString(8, patient.getAdresse());
 		myStmt.setString(9, patient.getMaladie());
+//		myStmt.setInt(10, patient.getLit().getId());
+//		myStmt.setInt(11, patient.getMedecin().getId());
 		myStmt.setInt(10, patient.getId());
-		myStmt.setInt(11, patient.getLit().getId());
-		myStmt.setInt(12, patient.getMedecin().getId());
 		r=myStmt.executeUpdate();			
 	}
 	 catch (SQLException e) {
@@ -378,7 +384,15 @@ private Patient  convertRowToPatient(ResultSet myRs) throws Exception {
 
 
 
-
+public static void main(String[] args) throws Exception{
+	PatientDaoImpl dao = new PatientDaoImpl();
+	Patient p = new Patient("test", "test", "test", "test", 0, "test", "test", "test", "20/20/2020");
+//	Lit l = ;
+	p.setLit(new Lit(1));
+	
+	dao.addPatient(p);
+	
+}
 
 
 

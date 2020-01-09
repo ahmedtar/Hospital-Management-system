@@ -3,14 +3,19 @@ package application;
 //JAVA Import
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.ResourceBundle;
 
+import com.mysql.cj.result.LocalDateValueFactory;
 
 //Classes Import
 import dao.PatientDao;
 import model.Patient;
 import daoImpl.PatientDaoImpl;
+import model.Lit;
 
 
 //javaFX Import
@@ -26,6 +31,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -36,7 +42,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import javafx.util.converter.LocalDateStringConverter;
 import javafx.scene.control.Labeled;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.Label;
@@ -55,11 +63,14 @@ public class PatientController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		populateTableView();
 		updateBtn.setVisible(false);
+		datePickerE.setValue(LocalDate.now());
+		datePickerS.setValue(LocalDate.now());
 		
 		
 		
 		
 	}
+	
 	
 	
 	public ObservableList<Patient> list = FXCollections.observableArrayList();	
@@ -99,7 +110,9 @@ public class PatientController implements Initializable{
 	  
 // TabPane
 	 @FXML public TabPane tabPane = new TabPane();
-	 @FXML public Tab paneTabPane = new Tab();
+	 @FXML public Tab PatientTabPane = new Tab();
+	 @FXML public Tab LitTabPane = new Tab();
+	 @FXML public Tab UpdateTabPane = new Tab();
 	
 	
    @FXML
@@ -135,7 +148,7 @@ private void populateTableView() {
 		sexeCol.setCellValueFactory(new PropertyValueFactory<Patient, String>("sexe"));
 		ageCol.setCellValueFactory(new PropertyValueFactory<Patient, Integer>("age"));
 		teleCol.setCellValueFactory(new PropertyValueFactory<Patient, String>("tele"));
-		adressCol.setCellValueFactory(new PropertyValueFactory<Patient, String>("adress"));
+		adressCol.setCellValueFactory(new PropertyValueFactory<Patient, String>("adresse"));
 		maladieCol.setCellValueFactory(new PropertyValueFactory<Patient, String>("maladie"));
 		entreeCOl.setCellValueFactory(new PropertyValueFactory<Patient, Date>("dateEntree"));
 		sortieCol.setCellValueFactory(new PropertyValueFactory<Patient, Date>("dateSortie"));
@@ -148,6 +161,7 @@ private void populateTableView() {
 			final TableCell<Patient, String> cell = new TableCell<Patient , String>(){
 				 
 				
+				@SuppressWarnings("deprecation")
 				@Override
 			    public void updateItem( String item , boolean empty) {
 			    	   super.updateItem(item , empty);
@@ -163,7 +177,7 @@ private void populateTableView() {
 			    		   final Button delete = new Button("X");
 			    		   final Button edit = new Button("Edit");
 			    		   
-			    		   
+	  // Edit Button Event
 			    		   edit.setOnAction(e -> {
 			    			   
 			    			   PatientDaoImpl dao = new PatientDaoImpl();
@@ -173,29 +187,45 @@ private void populateTableView() {
 								
 			    			   
 								
-							   idLabel.setText("ID : "+p.getId());
+							   idLabel.setText(""+p.getId());
 								
 							    litField.setText(""+p.getLit());
 								cneField.setText(p.getCne());
 								nomField.setText(p.getNom());
 								prenomField.setText(p.getPrenom());
-								sexeField.setText(p.getSexe());
+								String sexe = p.getSexe();
+								if(sexe.equals("Homme")) {
+									hommeRadio.setSelected(true);
+								}
+								else if(sexe.equals("Femme")) {
+									femmeRadio.setSelected(true);
+								}
+								else {
+									hommeRadio.setSelected(false);
+									femmeRadio.setSelected(false);
+								}
+								
 								ageField.setText(""+p.getAge());
 								teleField.setText(p.getNumTel());
 								adressField.setText(p.getAdresse());
 								maladieField.setText(p.getMaladie());
-//								entreeField.setText(p.getDateEntree());
-//								sortieField.setText(p.getDateSortie());
+								
+								DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+								datePickerE.setValue(LocalDate.parse(p.getDateEntree(), formatter));
+								datePickerS.setValue(LocalDate.parse(p.getDateSortie(), formatter));
+								
 //								medecinField.setText(""+p.getMedecin());
 			    		       
 //								dao.updatePatient(p);	
 			    			    	
 			    					   
 								updateBtn.setVisible(true);
+								tabPane.getSelectionModel().select(UpdateTabPane);
 			    			    
 			    			   
 			    		   });
 			    		   
+      //Delete Button Event
 			    		   delete.setOnAction(e -> {
 			    			   try {
 								PatientDaoImpl dao = new PatientDaoImpl();
@@ -212,7 +242,7 @@ private void populateTableView() {
 			    			   
 			    		   });
 			    		   
-			    		   HBox editCell = new HBox();
+			    		   HBox editCell = new HBox(2);
 			    		   editCell.getChildren().addAll(edit , delete);
 			    		   
 			    		   //set the created Button to cell
@@ -270,20 +300,27 @@ public void insertLoad(Patient patient) throws Exception {
 }
 	
 
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++  UPDATE TAB ++++++++++++++++++++++++++++++++
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++  UPDATE TABPANE +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+
+   //UpdatePane Input List
    @FXML  public TextField litField;
    @FXML public TextField cneField;
    @FXML  public TextField nomField;
    @FXML public TextField prenomField;
-   @FXML public TextField sexeField;
+   @FXML public RadioButton hommeRadio;
+   @FXML public RadioButton femmeRadio;
    @FXML public TextField ageField;
    @FXML public TextField teleField;
    @FXML  public TextField adressField;
-   @FXML public TextField entreeField;
-   @FXML public TextField sortieField;
+   
+   @FXML public DatePicker datePickerE;
+   @FXML public DatePicker datePickerS;
+   
    @FXML public TextField maladieField;
    @FXML public TextField medecinField;
+   
+   
    
    
    
@@ -303,30 +340,49 @@ public Patient patientToEdit;
    	patientDao=new PatientDaoImpl();
 //   	pCtrl = new PatientController();
    	
-   	int id = Integer.parseInt(idLabel.getText());
+//   	int id = Integer.parseInt(idLabel.getText());
+   	
+   	//Get the values of UpdatePane Input List
+   	String lit=litField.getText();
    	String cne=cneField.getText();
    	String nom=nomField.getText();
-   	String Prenom=prenomField.getText();
-   	String sexe=sexeField.getText();
+   	String prenom=prenomField.getText();
+   	
+   	String sexe="";
+   	if(hommeRadio.isSelected()) sexe = "Homme";
+   	else if(femmeRadio.isSelected()) sexe = "Femme";
+   	
    	String ageStr=ageField.getText();
-   	int age=Integer.parseInt(ageStr);
-   	String dateEntre=entreeField.getText();
-   	String dateSortie=sortieField.getText();
-   	String numeTele=teleField.getText();
+   	int age;
+   	if(ageStr.equals("")) age=0;
+   	else age = Integer.parseInt(ageStr);
+   	
+   	String datePickerE_str = datePickerE.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+   	String datePickerS_str ="";
+   	if(datePickerE.getValue()!=null) datePickerS_str = datePickerS.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+   	else {
+   		datePickerS_str = datePickerE_str;
+   		datePickerS.setValue(datePickerE.getValue());
+   	}
+   	String numTel=teleField.getText();
    	String adress=adressField.getText();
    	String maladie=maladieField.getText();
+   	
+   	
+ // ************Foreign Key Problem**************
    	
    	//String lit=litField.getText();
    	//int idLit=Integer.parseInt(lit);
    	//String medecin=medecinField.getText();
    	//int idMedcin=Integer.parseInt(medecin);
    	
-   	
-   	Patient patient=new Patient(nom,Prenom,cne,sexe,age,numeTele,adress,maladie,dateEntre);
-   	patient.setLit(null);
-   	patient.setMedecin(null);
-   	patient.setDateSortie(dateEntre);
-   	patient.setId(id);
+   	//Create and Insert New Patient
+   	Patient patient=new Patient( nom, prenom, cne , sexe, age, numTel, adress, maladie, datePickerE_str);
+   	  // ************Foreign Key Problem**************
+//   	patient.setLit(new Lit(Integer.parseInt(lit)));
+//   	patient.setMedecin(null);
+    	patient.setDateSortie(datePickerS_str);
+//   	patient.setId(id);
    	int status =patientDao.addPatient(patient);
    	
    	if(status>0) {
@@ -335,10 +391,12 @@ public Patient patientToEdit;
    		Alert alert=new Alert(AlertType.INFORMATION);
    		alert.setTitle("Ajouter Patient ");
    		alert.setHeaderText("information");
-   		alert.setContentText("Patient est ajaute ");
+   		alert.setContentText("Le Patient est ajouté avec succès");
+   		this.insertLoad(patient);
+   		tabPane.getSelectionModel().select(PatientTabPane);
    		alert.showAndWait();
    		
-   		this.insertLoad(patient);
+   		
 //   		
    	}
    	else {
@@ -359,43 +417,64 @@ public Patient patientToEdit;
     
    @FXML
    public void updatePatient(ActionEvent e) throws Exception {
-   	patientDao=new PatientDaoImpl();
-//   	pCtrl = new PatientController();
+	   patientDao=new PatientDaoImpl();
+//  	pCtrl = new PatientController();
+  	
+//  	int id = Integer.parseInt(idLabel.getText());
+  	
+  	//Get the values of UpdatePane Input List
+  	String lit=litField.getText();
+  	String cne=cneField.getText();
+  	String nom=nomField.getText();
+  	String prenom=prenomField.getText();
+  	
+  	String sexe="";
+  	if(hommeRadio.isSelected()) sexe = "Homme";
+  	else if(femmeRadio.isSelected()) sexe = "Femme";
+  	
+  	String ageStr=ageField.getText();
+  	int age;
+  	if(ageStr.equals("")) age=0;
+  	else age = Integer.parseInt(ageStr);
+  	
+  	String datePickerE_str = datePickerE.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+  	String datePickerS_str = datePickerS.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+  	String numTel=teleField.getText();
+  	String adress=adressField.getText();
+  	String maladie=maladieField.getText();
+  	
+  	
+// ************Foreign Key Problem**************
+  	
+  	//String lit=litField.getText();
+  	//int idLit=Integer.parseInt(lit);
+  	//String medecin=medecinField.getText();
+  	//int idMedcin=Integer.parseInt(medecin);
+  	
+  	//Create and Insert New Patient
+  	Patient patient=new Patient( nom, prenom, cne , sexe, age, numTel, adress, maladie, datePickerE_str);
+  	  // ************Foreign Key Problem**************
+//  	patient.setLit(new Lit(Integer.parseInt(lit)));
+//  	patient.setMedecin(null);
+   	patient.setDateSortie(datePickerS_str);
+  	patient.setId(Integer.parseInt(idLabel.getText()));
+  	int status =patientDao.updatePatient(patient);
    	
-   	String cne=cneField.getText();
-   	String nom=nomField.getText();
-   	String Prenom=prenomField.getText();
-   	String sexe=sexeField.getText();
-   	String ageStr=ageField.getText();
-   	int age=Integer.parseInt(ageStr);
-   	String dateEntre=entreeField.getText();
-   	String dateSortie=sortieField.getText();
-   	String numeTele=teleField.getText();
-   	String adress=adressField.getText();
-   	String maladie=maladieField.getText();
-   	
-   	//String lit=litField.getText();
-   	//int idLit=Integer.parseInt(lit);
-   	//String medecin=medecinField.getText();
-   	//int idMedcin=Integer.parseInt(medecin);
-   	
-   	
-   	Patient patient=new Patient(nom,Prenom,cne,sexe,age,numeTele,adress,maladie,dateEntre);
-   	patient.setLit(null);
-   	patient.setMedecin(null);
-   	patient.setDateSortie(dateEntre);
-   	int status =patientDao.updatePatient(patient);
-   	
-   	if(status>0) {
+   	if(status!=0) {
    		
    		
    		Alert alert=new Alert(AlertType.INFORMATION);
    		alert.setTitle("Modifier Patient ");
    		alert.setHeaderText("information");
    		alert.setContentText("Patient Modifié ");
+   		LoadTable();
+   		tabPane.getSelectionModel().select(PatientTabPane);
+   		updateBtn.setVisible(false);
+   		insertBtn.setVisible(true);
    		alert.showAndWait();
    		
-   		tableView.refresh();
+   		
+   		
 //   		
    	}
    	else {

@@ -49,60 +49,9 @@ public class HomeController implements Initializable{
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		pane1.setStyle("-fx-background-image: url(\"/application/imgs/1.jpg\")" ); 
-		pane2.setStyle("-fx-background-image: url(\"/application/imgs/10.jpg\")" );
-		pane3.setStyle("-fx-background-image: url(\"/application/imgs/5.jpg\")" );
-		pane4.setStyle("-fx-background-image: url(\"/application/imgs/11.jpg\")" );
-		Animation();
+	//	pane1.setStyle("-fx-background-image: url(\"/application/imgs/1.jpg\")" ); 
+		pane2.setStyle("-fx-background-image: url(\"/application/imgs/7972.jpg\")" );
 		
 	}
-	public  void  Animation(){
-        FadeTransition fadeTransition=new FadeTransition(Duration.seconds(3),pane4);
-        fadeTransition.setFromValue(1);
-        fadeTransition.setToValue(0);
-        fadeTransition.play();
-
-        fadeTransition.setOnFinished(event -> {
-            FadeTransition fadeTransition1=new FadeTransition(Duration.seconds(30),pane3);
-            fadeTransition1.setFromValue(1);
-            fadeTransition1.setToValue(0);
-            fadeTransition1.play();
-
-            fadeTransition1.setOnFinished(event1 -> {
-
-                FadeTransition fadeTransition2=new FadeTransition(Duration.seconds(3),pane2);
-                fadeTransition2.setFromValue(1);
-                fadeTransition2.setToValue(0);
-                fadeTransition2.play();
-
-                fadeTransition2.setOnFinished(event2 -> {
-
-                    FadeTransition fadeTransition00=new FadeTransition(Duration.seconds(3),pane2);
-                    fadeTransition00.setFromValue(0);
-                    fadeTransition00.setToValue(1);
-                    fadeTransition00.play();
-
-
-                    fadeTransition00.setOnFinished(event3 -> {
-                        FadeTransition fadeTransition11=new FadeTransition(Duration.seconds(3),pane3);
-                        fadeTransition11.setFromValue(0);
-                        fadeTransition11.setToValue(1);
-                        fadeTransition11.play();
-
-                        fadeTransition11.setOnFinished(event4 -> {
-                            FadeTransition fadeTransition22=new FadeTransition(Duration.seconds(3),pane4);
-                            fadeTransition22.setFromValue(0);
-                            fadeTransition22.setToValue(1);
-                            fadeTransition22.play();
-
-                            fadeTransition22.setOnFinished(event5 -> {
-                                Animation();
-                            });
-                        });
-                    });
-                });
-            });
-        });
-    }
-
+	
 }

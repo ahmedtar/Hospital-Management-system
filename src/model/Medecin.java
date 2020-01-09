@@ -19,7 +19,18 @@ public class Medecin extends Personne {
 	}
 	
 	
+<<<<<<< HEAD
 	
+=======
+	//Constructeur ajouté
+	public Medecin(String nom, String prenom, String cne, String sexe, int age, String numTel, String adresse, int id) {
+		super(nom, prenom, cne, sexe, age, numTel, adresse);
+		this.id = id;
+	}
+
+
+
+>>>>>>> 2419ded503aa47fdafa75bc76235f2c8559325be
 	public int getId() {
 		return id;
 	}
