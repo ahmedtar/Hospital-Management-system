@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.ResourceBundle;
 
+import com.mysql.cj.result.LocalDateValueFactory;
 
 //Classes Import
 import dao.PatientDao;
@@ -157,6 +158,7 @@ private void populateTableView() {
 			final TableCell<Patient, String> cell = new TableCell<Patient , String>(){
 				 
 				
+				@SuppressWarnings("deprecation")
 				@Override
 			    public void updateItem( String item , boolean empty) {
 			    	   super.updateItem(item , empty);
@@ -206,8 +208,11 @@ private void populateTableView() {
 								teleField.setText(p.getNumTel());
 								adressField.setText(p.getAdresse());
 								maladieField.setText(p.getMaladie());
-//								entreeField.setText(p.getDateEntree());
-//								sortieField.setText(p.getDateSortie());
+								
+								DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+								datePickerE.setValue(LocalDate.parse(p.getDateEntree(), formatter));
+								datePickerS.setValue(LocalDate.parse(p.getDateSortie(), formatter));
+								
 //								medecinField.setText(""+p.getMedecin());
 			    		       
 //								dao.updatePatient(p);	
@@ -350,7 +355,12 @@ public Patient patientToEdit;
    	else age = Integer.parseInt(ageStr);
    	
    	String datePickerE_str = datePickerE.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-   	String datePickerS_str = datePickerS.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+   	String datePickerS_str ="";
+   	if(datePickerE.getValue()!=null) datePickerS_str = datePickerS.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+   	else {
+   		datePickerS_str = datePickerE_str;
+   		datePickerS.setValue(datePickerE.getValue());
+   	}
    	String numTel=teleField.getText();
    	String adress=adressField.getText();
    	String maladie=maladieField.getText();
