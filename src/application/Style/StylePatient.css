@@ -118,3 +118,10 @@
     -fx-scale-x: 0.9;
 }
 
+#ajouteForm{
+	-fx-background-image: url(/application/imgs/desk1.jpg);
+		-fx-background-repeat: no-repeat ;
+	-fx-background-position: 50% 50% ; 
+	-fx-background-size: cover;
+}
+
