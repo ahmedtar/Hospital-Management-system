@@ -9,10 +9,6 @@ public class Lit {
 	private Chambre chambre;
 	
 	
-	
-	
-	
-	
 	public Lit(int id, boolean enService, Patient patient, Chambre chambre) {
 		super();
 		this.id = id;
@@ -21,9 +17,21 @@ public class Lit {
 		this.chambre = chambre;
 	}
 	
+	//Constructeurs ajourtés
+	public Lit() {
+		super();
+	}
+	
+	public Lit(int id) {
+	super();
+	this.id = id;
+}
+	
+	
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}

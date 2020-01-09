@@ -3,6 +3,8 @@ package application;
 //JAVA Import
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -11,6 +13,7 @@ import java.util.ResourceBundle;
 import dao.PatientDao;
 import model.Patient;
 import daoImpl.PatientDaoImpl;
+import model.Lit;
 
 
 //javaFX Import
@@ -26,6 +29,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -36,6 +40,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import javafx.util.converter.LocalDateStringConverter;
 import javafx.scene.control.Labeled;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -212,7 +217,7 @@ private void populateTableView() {
 			    			   
 			    		   });
 			    		   
-			    		   HBox editCell = new HBox();
+			    		   HBox editCell = new HBox(2);
 			    		   editCell.getChildren().addAll(edit , delete);
 			    		   
 			    		   //set the created Button to cell
@@ -285,6 +290,9 @@ public void insertLoad(Patient patient) throws Exception {
    @FXML public TextField maladieField;
    @FXML public TextField medecinField;
    
+   @FXML public DatePicker entreeDate;
+   @FXML public DatePicker sortieDate;
+   
    
    
    
@@ -303,18 +311,22 @@ public Patient patientToEdit;
    	patientDao=new PatientDaoImpl();
 //   	pCtrl = new PatientController();
    	
-   	int id = Integer.parseInt(idLabel.getText());
+//   	int id = Integer.parseInt(idLabel.getText());
+   	String lit=litField.getText();
    	String cne=cneField.getText();
    	String nom=nomField.getText();
-   	String Prenom=prenomField.getText();
+   	String prenom=prenomField.getText();
    	String sexe=sexeField.getText();
    	String ageStr=ageField.getText();
    	int age=Integer.parseInt(ageStr);
-   	String dateEntre=entreeField.getText();
-   	String dateSortie=sortieField.getText();
-   	String numeTele=teleField.getText();
+   	String datePickerE = entreeDate.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+   	String datePickerS = sortieDate.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+   	String numTel=teleField.getText();
    	String adress=adressField.getText();
    	String maladie=maladieField.getText();
+   	
+   	
+ // ************Foreign Key Problem**************
    	
    	//String lit=litField.getText();
    	//int idLit=Integer.parseInt(lit);
@@ -322,11 +334,12 @@ public Patient patientToEdit;
    	//int idMedcin=Integer.parseInt(medecin);
    	
    	
-   	Patient patient=new Patient(nom,Prenom,cne,sexe,age,numeTele,adress,maladie,dateEntre);
-   	patient.setLit(null);
-   	patient.setMedecin(null);
-   	patient.setDateSortie(dateEntre);
-   	patient.setId(id);
+   	Patient patient=new Patient( nom, prenom, cne , sexe, age, numTel, adress, maladie, datePickerE);
+   	  // ************Foreign Key Problem**************
+//   	patient.setLit(new Lit(Integer.parseInt(lit)));
+//   	patient.setMedecin(null);
+    	patient.setDateSortie(datePickerS);
+//   	patient.setId(id);
    	int status =patientDao.addPatient(patient);
    	
    	if(status>0) {

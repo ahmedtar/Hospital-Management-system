@@ -18,6 +18,15 @@ public class Medecin extends Personne {
 		this.enservice=enservice;
 	}
 	
+	
+	//Constructeur ajouté
+	public Medecin(String nom, String prenom, String cne, String sexe, int age, String numTel, String adresse, int id) {
+		super(nom, prenom, cne, sexe, age, numTel, adresse);
+		this.id = id;
+	}
+
+
+
 	public int getId() {
 		return id;
 	}
