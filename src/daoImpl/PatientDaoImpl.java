@@ -65,7 +65,8 @@ public int updatePatient(Patient patient) throws SQLException {
 		// prepared statement
 		myStmt = con.getCon().prepareStatement("update patient"
 				+ " set nom=?, prenom=?, cne=?, age=?,dateEntree=?,numTel=?,sexe=?,"
-				+ "adresse=?,maladie=?,lit=?,medecin=?"
+				+ "adresse=?,maladie=?"
+//				+ ",lit=?,medecin=?"  // Foreign Key Problem
 				+ " where id=?");
 		
 		
@@ -78,9 +79,9 @@ public int updatePatient(Patient patient) throws SQLException {
 		myStmt.setString(7, patient.getSexe());
 		myStmt.setString(8, patient.getAdresse());
 		myStmt.setString(9, patient.getMaladie());
-		myStmt.setInt(10, patient.getLit().getId());
-		myStmt.setInt(11, patient.getMedecin().getId());
-		myStmt.setInt(12, patient.getId());
+//		myStmt.setInt(10, patient.getLit().getId());
+//		myStmt.setInt(11, patient.getMedecin().getId());
+		myStmt.setInt(10, patient.getId());
 		r=myStmt.executeUpdate();			
 	}
 	 catch (SQLException e) {

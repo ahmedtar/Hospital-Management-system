@@ -182,7 +182,7 @@ private void populateTableView() {
 								
 			    			   
 								
-							   idLabel.setText("ID : "+p.getId());
+							   idLabel.setText(""+p.getId());
 								
 							    litField.setText(""+p.getLit());
 								cneField.setText(p.getCne());
@@ -378,7 +378,7 @@ public Patient patientToEdit;
    		Alert alert=new Alert(AlertType.INFORMATION);
    		alert.setTitle("Ajouter Patient ");
    		alert.setHeaderText("information");
-   		alert.setContentText("Patient est ajaute ");
+   		alert.setContentText("Le Patient est ajouté avec succès");
    		alert.showAndWait();
    		
    		this.insertLoad(patient);
@@ -400,64 +400,76 @@ public Patient patientToEdit;
    
    
     
-//   @FXML
-//   public void updatePatient(ActionEvent e) throws Exception {
-//   	patientDao=new PatientDaoImpl();
-////   	pCtrl = new PatientController();
-//   	
-//   	String cne=cneField.getText();
-//   	String nom=nomField.getText();
-//   	String Prenom=prenomField.getText();
-//
-//   	String sexe="";
-//   	if(hommeRadio.isSelected()) sexe = "Homme";
-//   	else if(femmeRadio.isSelected()) sexe = "Femme";
-//   	
-//   	String ageStr=ageField.getText();
-//   	int age=Integer.parseInt(ageStr);
-////   	String dateEntre=entreeField.getText();
-////   	String dateSortie=sortieField.getText();
-//   	String numeTele=teleField.getText();
-//   	String adress=adressField.getText();
-//   	String maladie=maladieField.getText();
-//   	
-//   	//String lit=litField.getText();
-//   	//int idLit=Integer.parseInt(lit);
-//   	//String medecin=medecinField.getText();
-//   	//int idMedcin=Integer.parseInt(medecin);
-//   	
-//   	
-//   	Patient patient=new Patient(nom,Prenom,cne,sexe,age,numeTele,adress,maladie,dateEntre);
-//   	patient.setLit(null);
-//   	patient.setMedecin(null);
-//   	patient.setDateSortie(dateEntre);
-//   	int status =patientDao.updatePatient(patient);
-//   	
-//   	if(status>0) {
+   @FXML
+   public void updatePatient(ActionEvent e) throws Exception {
+	   patientDao=new PatientDaoImpl();
+//  	pCtrl = new PatientController();
+  	
+//  	int id = Integer.parseInt(idLabel.getText());
+  	
+  	//Get the values of UpdatePane Input List
+  	String lit=litField.getText();
+  	String cne=cneField.getText();
+  	String nom=nomField.getText();
+  	String prenom=prenomField.getText();
+  	
+  	String sexe="";
+  	if(hommeRadio.isSelected()) sexe = "Homme";
+  	else if(femmeRadio.isSelected()) sexe = "Femme";
+  	
+  	String ageStr=ageField.getText();
+  	int age;
+  	if(ageStr.equals("")) age=0;
+  	else age = Integer.parseInt(ageStr);
+  	
+  	String datePickerE_str = datePickerE.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+  	String datePickerS_str = datePickerS.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+  	String numTel=teleField.getText();
+  	String adress=adressField.getText();
+  	String maladie=maladieField.getText();
+  	
+  	
+// ************Foreign Key Problem**************
+  	
+  	//String lit=litField.getText();
+  	//int idLit=Integer.parseInt(lit);
+  	//String medecin=medecinField.getText();
+  	//int idMedcin=Integer.parseInt(medecin);
+  	
+  	//Create and Insert New Patient
+  	Patient patient=new Patient( nom, prenom, cne , sexe, age, numTel, adress, maladie, datePickerE_str);
+  	  // ************Foreign Key Problem**************
+//  	patient.setLit(new Lit(Integer.parseInt(lit)));
+//  	patient.setMedecin(null);
+   	patient.setDateSortie(datePickerS_str);
+  	patient.setId(Integer.parseInt(idLabel.getText()));
+  	int status =patientDao.updatePatient(patient);
+   	
+   	if(status!=0) {
+   		
+   		
+   		Alert alert=new Alert(AlertType.INFORMATION);
+   		alert.setTitle("Modifier Patient ");
+   		alert.setHeaderText("information");
+   		alert.setContentText("Patient Modifié ");
+   		alert.showAndWait();
+   		
+   		LoadTable();
 //   		
-//   		
-//   		Alert alert=new Alert(AlertType.INFORMATION);
-//   		alert.setTitle("Modifier Patient ");
-//   		alert.setHeaderText("information");
-//   		alert.setContentText("Patient Modifié ");
-//   		alert.showAndWait();
-//   		
-//   		tableView.refresh();
-////   		
-//   	}
-//   	else {
-//   		Alert alert=new Alert(AlertType.ERROR);
-//   		alert.setTitle("Modifier Patient ");
-//   		alert.setHeaderText("information");
-//   		alert.setContentText("Patient n'est pas modifié correctement");
-//   		alert.showAndWait();
-//   	}
-//   	
-//   	System.out.println("done");
-//   	
-//   	
-//   	
-//   }
+   	}
+   	else {
+   		Alert alert=new Alert(AlertType.ERROR);
+   		alert.setTitle("Modifier Patient ");
+   		alert.setHeaderText("information");
+   		alert.setContentText("Patient n'est pas modifié correctement");
+   		alert.showAndWait();
+   	}
+   	
+   	System.out.println("done");
+   	
+   	
+   	
+   }
 
 
 

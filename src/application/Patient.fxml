@@ -465,7 +465,7 @@
                                     <Insets bottom="2.0" />
                                  </GridPane.margin>
                               </Button>
-                              <Button id="add" fx:id="updateBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="38.0" prefWidth="148.0" style="-fx-background-radius: 50PX;" stylesheets="@Style/StylePatient.css" text="MODIFIER" textAlignment="CENTER" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="11" GridPane.valignment="CENTER">
+                              <Button id="add" fx:id="updateBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#updatePatient" prefHeight="38.0" prefWidth="148.0" style="-fx-background-radius: 50PX;" stylesheets="@Style/StylePatient.css" text="MODIFIER" textAlignment="CENTER" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="11" GridPane.valignment="CENTER">
                                  <GridPane.margin>
                                     <Insets bottom="2.0" />
                                  </GridPane.margin>
@@ -759,7 +759,12 @@
                               <DropShadow />
                            </effect>
                         </GridPane>
-                        <Label fx:id="idLabel" layoutX="24.0" layoutY="130.0" prefHeight="51.0" prefWidth="178.0" text="ID : ">
+                        <Label layoutX="27.0" layoutY="130.0" prefHeight="51.0" prefWidth="50.0" text="ID : ">
+                           <font>
+                              <Font name="System Bold" size="22.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="idLabel" layoutX="74.0" layoutY="130.0" prefHeight="51.0" prefWidth="50.0">
                            <font>
                               <Font name="System Bold" size="22.0" />
                            </font>
