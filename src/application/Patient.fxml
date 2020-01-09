@@ -465,7 +465,7 @@
                                     <Insets bottom="2.0" />
                                  </GridPane.margin>
                               </Button>
-                              <Button id="add" fx:id="updateBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"  prefHeight="38.0" prefWidth="148.0" style="-fx-background-radius: 50PX;" stylesheets="@Style/StylePatient.css" text="MODIFIER" textAlignment="CENTER" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="11" GridPane.valignment="CENTER">
+                              <Button id="add" fx:id="updateBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="38.0" prefWidth="148.0" style="-fx-background-radius: 50PX;" stylesheets="@Style/StylePatient.css" text="MODIFIER" textAlignment="CENTER" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="11" GridPane.valignment="CENTER">
                                  <GridPane.margin>
                                     <Insets bottom="2.0" />
                                  </GridPane.margin>
@@ -489,7 +489,7 @@
                                     </Label>
                                     <TextField fx:id="litField" promptText="LIT" GridPane.columnIndex="1">
                                        <GridPane.margin>
-                                          <Insets left="5.0" right="20.0" />
+                                          <Insets right="20.0" />
                                        </GridPane.margin>
                                     </TextField>
                                  </children>
@@ -513,7 +513,7 @@
                                     </Label>
                                     <TextField fx:id="cneField" promptText="CNE" GridPane.columnIndex="1">
                                        <GridPane.margin>
-                                          <Insets left="5.0" right="20.0" />
+                                          <Insets right="20.0" />
                                        </GridPane.margin>
                                     </TextField>
                                  </children>
@@ -537,7 +537,7 @@
                                     </Label>
                                     <TextField fx:id="nomField" promptText="NOM" GridPane.columnIndex="1">
                                        <GridPane.margin>
-                                          <Insets left="5.0" right="20.0" />
+                                          <Insets right="20.0" />
                                        </GridPane.margin>
                                     </TextField>
                                  </children>
@@ -561,7 +561,7 @@
                                     </Label>
                                     <TextField fx:id="prenomField" promptText="PRENOM" GridPane.columnIndex="1">
                                        <GridPane.margin>
-                                          <Insets left="5.0" right="20.0" />
+                                          <Insets right="20.0" />
                                        </GridPane.margin>
                                     </TextField>
                                  </children>
@@ -617,7 +617,7 @@
                                     </Label>
                                     <TextField fx:id="ageField" promptText="AGE" GridPane.columnIndex="1">
                                        <GridPane.margin>
-                                          <Insets left="5.0" right="20.0" />
+                                          <Insets right="20.0" />
                                        </GridPane.margin>
                                     </TextField>
                                  </children>
@@ -641,7 +641,7 @@
                                     </Label>
                                     <TextField fx:id="teleField" promptText="NUMERO DE TELEPHONE" GridPane.columnIndex="1">
                                        <GridPane.margin>
-                                          <Insets left="5.0" right="20.0" />
+                                          <Insets right="20.0" />
                                        </GridPane.margin>
                                     </TextField>
                                  </children>
@@ -665,7 +665,7 @@
                                     </Label>
                                     <TextField fx:id="adressField" promptText="ADRESSE" GridPane.columnIndex="1">
                                        <GridPane.margin>
-                                          <Insets left="5.0" right="20.0" />
+                                          <Insets right="20.0" />
                                        </GridPane.margin>
                                     </TextField>
                                  </children>
@@ -689,7 +689,7 @@
                                     </Label>
                                     <TextField fx:id="maladieField" promptText="MALADIE" GridPane.columnIndex="1">
                                        <GridPane.margin>
-                                          <Insets left="5.0" right="20.0" />
+                                          <Insets right="20.0" />
                                        </GridPane.margin>
                                     </TextField>
                                  </children>
@@ -710,22 +710,25 @@
                                           <Insets left="10.0" />
                                        </GridPane.margin>
                                     </Label>
-                                    <DatePicker fx:id="entreeDate" styleClass="datepicker" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+                                    <DatePicker fx:id="entreeDate" prefHeight="25.0" prefWidth="115.0" styleClass="datepicker" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
                                        <GridPane.margin>
-                                          <Insets left="5.0" right="20.0" />
+                                          <Insets />
                                        </GridPane.margin>
                                     </DatePicker>
                                     <DatePicker fx:id="sortieDate" styleClass="datepicker" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
                                        <GridPane.margin>
-                                          <Insets right="20.0" />
+                                          <Insets />
                                        </GridPane.margin>
                                     </DatePicker>
                                     <Label focusTraversable="false" prefHeight="27.0" prefWidth="110.0" styleClass="updatePane_inputLabels" text="DATE DE SORTIE" GridPane.columnIndex="2" GridPane.valignment="CENTER">
                                        <GridPane.margin>
-                                          <Insets />
+                                          <Insets left="7.0" />
                                        </GridPane.margin>
                                     </Label>
                                  </children>
+                                 <GridPane.margin>
+                                    <Insets right="20.0" />
+                                 </GridPane.margin>
                               </GridPane>
                               <GridPane layoutX="10.0" layoutY="10.0" GridPane.rowIndex="10">
                                  <columnConstraints>
@@ -746,7 +749,7 @@
                                     </Label>
                                     <TextField fx:id="medecinField" promptText="MEDECIN" GridPane.columnIndex="1">
                                        <GridPane.margin>
-                                          <Insets left="5.0" right="20.0" />
+                                          <Insets right="20.0" />
                                        </GridPane.margin>
                                     </TextField>
                                  </children>
