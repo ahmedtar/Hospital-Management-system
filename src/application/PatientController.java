@@ -42,6 +42,7 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.converter.LocalDateStringConverter;
 import javafx.scene.control.Labeled;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.Label;
@@ -184,7 +185,20 @@ private void populateTableView() {
 								cneField.setText(p.getCne());
 								nomField.setText(p.getNom());
 								prenomField.setText(p.getPrenom());
-								sexeField.setText(p.getSexe());
+								String sexe = p.getSexe();
+								if(sexe.equals("Homme")) {
+									hommeRadio.setSelected(true);
+									femmeRadio.setSelected(false);
+								}
+								else if(sexe.equals("Femme")) {
+									hommeRadio.setSelected(false);
+									femmeRadio.setSelected(true);
+								}
+								else {
+									hommeRadio.setSelected(false);
+									femmeRadio.setSelected(false);
+								}
+								
 								ageField.setText(""+p.getAge());
 								teleField.setText(p.getNumTel());
 								adressField.setText(p.getAdresse());
@@ -275,23 +289,27 @@ public void insertLoad(Patient patient) throws Exception {
 }
 	
 
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++  UPDATE TAB ++++++++++++++++++++++++++++++++
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++  UPDATE TABPANE +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+
+   //UpdatePane Input List
    @FXML  public TextField litField;
    @FXML public TextField cneField;
    @FXML  public TextField nomField;
    @FXML public TextField prenomField;
-   @FXML public TextField sexeField;
+   @FXML public RadioButton hommeRadio;
+   @FXML public RadioButton femmeRadio;
    @FXML public TextField ageField;
    @FXML public TextField teleField;
    @FXML  public TextField adressField;
-   @FXML public TextField entreeField;
-   @FXML public TextField sortieField;
-   @FXML public TextField maladieField;
-   @FXML public TextField medecinField;
    
    @FXML public DatePicker entreeDate;
    @FXML public DatePicker sortieDate;
+   
+   @FXML public TextField maladieField;
+   @FXML public TextField medecinField;
+   
+   
    
    
    
@@ -312,11 +330,17 @@ public Patient patientToEdit;
 //   	pCtrl = new PatientController();
    	
 //   	int id = Integer.parseInt(idLabel.getText());
+   	
+   	//Get the values of UpdatePane Input List
    	String lit=litField.getText();
    	String cne=cneField.getText();
    	String nom=nomField.getText();
    	String prenom=prenomField.getText();
-   	String sexe=sexeField.getText();
+   	
+   	String sexe="";
+   	if(hommeRadio.isSelected()) sexe = "Homme";
+   	else if(femmeRadio.isSelected()) sexe = "Femme";
+   	
    	String ageStr=ageField.getText();
    	int age=Integer.parseInt(ageStr);
    	String datePickerE = entreeDate.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
@@ -333,7 +357,7 @@ public Patient patientToEdit;
    	//String medecin=medecinField.getText();
    	//int idMedcin=Integer.parseInt(medecin);
    	
-   	
+   	//Create and Insert New Patient
    	Patient patient=new Patient( nom, prenom, cne , sexe, age, numTel, adress, maladie, datePickerE);
    	  // ************Foreign Key Problem**************
 //   	patient.setLit(new Lit(Integer.parseInt(lit)));
@@ -370,60 +394,64 @@ public Patient patientToEdit;
    
    
     
-   @FXML
-   public void updatePatient(ActionEvent e) throws Exception {
-   	patientDao=new PatientDaoImpl();
-//   	pCtrl = new PatientController();
-   	
-   	String cne=cneField.getText();
-   	String nom=nomField.getText();
-   	String Prenom=prenomField.getText();
-   	String sexe=sexeField.getText();
-   	String ageStr=ageField.getText();
-   	int age=Integer.parseInt(ageStr);
-   	String dateEntre=entreeField.getText();
-   	String dateSortie=sortieField.getText();
-   	String numeTele=teleField.getText();
-   	String adress=adressField.getText();
-   	String maladie=maladieField.getText();
-   	
-   	//String lit=litField.getText();
-   	//int idLit=Integer.parseInt(lit);
-   	//String medecin=medecinField.getText();
-   	//int idMedcin=Integer.parseInt(medecin);
-   	
-   	
-   	Patient patient=new Patient(nom,Prenom,cne,sexe,age,numeTele,adress,maladie,dateEntre);
-   	patient.setLit(null);
-   	patient.setMedecin(null);
-   	patient.setDateSortie(dateEntre);
-   	int status =patientDao.updatePatient(patient);
-   	
-   	if(status>0) {
-   		
-   		
-   		Alert alert=new Alert(AlertType.INFORMATION);
-   		alert.setTitle("Modifier Patient ");
-   		alert.setHeaderText("information");
-   		alert.setContentText("Patient Modifié ");
-   		alert.showAndWait();
-   		
-   		tableView.refresh();
+//   @FXML
+//   public void updatePatient(ActionEvent e) throws Exception {
+//   	patientDao=new PatientDaoImpl();
+////   	pCtrl = new PatientController();
+//   	
+//   	String cne=cneField.getText();
+//   	String nom=nomField.getText();
+//   	String Prenom=prenomField.getText();
+//
+//   	String sexe="";
+//   	if(hommeRadio.isSelected()) sexe = "Homme";
+//   	else if(femmeRadio.isSelected()) sexe = "Femme";
+//   	
+//   	String ageStr=ageField.getText();
+//   	int age=Integer.parseInt(ageStr);
+////   	String dateEntre=entreeField.getText();
+////   	String dateSortie=sortieField.getText();
+//   	String numeTele=teleField.getText();
+//   	String adress=adressField.getText();
+//   	String maladie=maladieField.getText();
+//   	
+//   	//String lit=litField.getText();
+//   	//int idLit=Integer.parseInt(lit);
+//   	//String medecin=medecinField.getText();
+//   	//int idMedcin=Integer.parseInt(medecin);
+//   	
+//   	
+//   	Patient patient=new Patient(nom,Prenom,cne,sexe,age,numeTele,adress,maladie,dateEntre);
+//   	patient.setLit(null);
+//   	patient.setMedecin(null);
+//   	patient.setDateSortie(dateEntre);
+//   	int status =patientDao.updatePatient(patient);
+//   	
+//   	if(status>0) {
 //   		
-   	}
-   	else {
-   		Alert alert=new Alert(AlertType.ERROR);
-   		alert.setTitle("Modifier Patient ");
-   		alert.setHeaderText("information");
-   		alert.setContentText("Patient n'est pas modifié correctement");
-   		alert.showAndWait();
-   	}
-   	
-   	System.out.println("done");
-   	
-   	
-   	
-   }
+//   		
+//   		Alert alert=new Alert(AlertType.INFORMATION);
+//   		alert.setTitle("Modifier Patient ");
+//   		alert.setHeaderText("information");
+//   		alert.setContentText("Patient Modifié ");
+//   		alert.showAndWait();
+//   		
+//   		tableView.refresh();
+////   		
+//   	}
+//   	else {
+//   		Alert alert=new Alert(AlertType.ERROR);
+//   		alert.setTitle("Modifier Patient ");
+//   		alert.setHeaderText("information");
+//   		alert.setContentText("Patient n'est pas modifié correctement");
+//   		alert.showAndWait();
+//   	}
+//   	
+//   	System.out.println("done");
+//   	
+//   	
+//   	
+//   }
 
 
 
