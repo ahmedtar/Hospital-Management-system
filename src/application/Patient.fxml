@@ -25,9 +25,9 @@
 
 <AnchorPane minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PatientController">
    <children>
-      <TabPane prefHeight="685.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="30.0" tabMaxWidth="100.0" tabMinHeight="10.0" tabMinWidth="100.0">
+      <TabPane fx:id="tabPane" prefHeight="685.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="30.0" tabMaxWidth="100.0" tabMinHeight="10.0" tabMinWidth="100.0">
         <tabs>
-          <Tab text="Patients">
+          <Tab fx:id="PatientTabPane" text="Patients">
                <content>
                   <VBox prefHeight="719.0" prefWidth="1204.0">
                      <children>
@@ -89,7 +89,7 @@
                   </VBox>
                </content>
           </Tab>
-          <Tab text="Lits">
+          <Tab fx:id="LitTabPane" text="Lits">
                <content>
                   <GridPane alignment="CENTER" prefHeight="548.0" prefWidth="1201.0">
                     <columnConstraints>
@@ -432,7 +432,7 @@
                   </GridPane>
                </content>
           </Tab>
-            <Tab text="Update">
+            <Tab fx:id="UpdateTabPane" text="Update">
                <content>
                   <AnchorPane fx:id="ajouteForm" prefHeight="200.0" prefWidth="200.0" stylesheets="@Style/StylePatient.css">
                      <children>
