@@ -64,9 +64,9 @@
                               </AnchorPane>
                               <TableView fx:id="tableView" layoutX="3.0" layoutY="61.0" prefHeight="524.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
                                  <columns>
-                                    <TableColumn fx:id="litCol" prefWidth="99.99996948242188" text="LIT" />
-                                    <TableColumn fx:id="idCol" prefWidth="84.00003051757812" text="ID" />
-                                    <TableColumn fx:id="cneCol" prefWidth="75.0" text="CNE" />
+                                    <TableColumn fx:id="litCol" prefWidth="62.0" text="LIT" />
+                                    <TableColumn fx:id="idCol" prefWidth="110.00003051757812" text="ID" />
+                                    <TableColumn fx:id="cneCol" prefWidth="124.99996948242188" text="CNE" />
                                     <TableColumn fx:id="nomCol" prefWidth="75.0" text="NOM" />
                                     <TableColumn fx:id="prenomCol" prefWidth="75.0" text="PRENOM" />
                                     <TableColumn fx:id="sexeCol" prefWidth="75.0" text="SEXE" />
@@ -710,12 +710,12 @@
                                           <Insets left="10.0" />
                                        </GridPane.margin>
                                     </Label>
-                                    <DatePicker fx:id="entreeDate" prefHeight="25.0" prefWidth="115.0" styleClass="datepicker" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+                                    <DatePicker fx:id="datePickerE" prefHeight="25.0" prefWidth="115.0" styleClass="datepicker" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
                                        <GridPane.margin>
                                           <Insets />
                                        </GridPane.margin>
                                     </DatePicker>
-                                    <DatePicker fx:id="sortieDate" styleClass="datepicker" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+                                    <DatePicker fx:id="datePickerS" styleClass="datepicker" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
                                        <GridPane.margin>
                                           <Insets />
                                        </GridPane.margin>

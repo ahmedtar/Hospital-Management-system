@@ -4,6 +4,7 @@ package application;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -61,6 +62,8 @@ public class PatientController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		populateTableView();
 		updateBtn.setVisible(false);
+		datePickerE.setValue(LocalDate.now());
+		datePickerS.setValue(LocalDate.now());
 		
 		
 		
@@ -141,7 +144,7 @@ private void populateTableView() {
 		sexeCol.setCellValueFactory(new PropertyValueFactory<Patient, String>("sexe"));
 		ageCol.setCellValueFactory(new PropertyValueFactory<Patient, Integer>("age"));
 		teleCol.setCellValueFactory(new PropertyValueFactory<Patient, String>("tele"));
-		adressCol.setCellValueFactory(new PropertyValueFactory<Patient, String>("adress"));
+		adressCol.setCellValueFactory(new PropertyValueFactory<Patient, String>("adresse"));
 		maladieCol.setCellValueFactory(new PropertyValueFactory<Patient, String>("maladie"));
 		entreeCOl.setCellValueFactory(new PropertyValueFactory<Patient, Date>("dateEntree"));
 		sortieCol.setCellValueFactory(new PropertyValueFactory<Patient, Date>("dateSortie"));
@@ -303,8 +306,8 @@ public void insertLoad(Patient patient) throws Exception {
    @FXML public TextField teleField;
    @FXML  public TextField adressField;
    
-   @FXML public DatePicker entreeDate;
-   @FXML public DatePicker sortieDate;
+   @FXML public DatePicker datePickerE;
+   @FXML public DatePicker datePickerS;
    
    @FXML public TextField maladieField;
    @FXML public TextField medecinField;
@@ -342,9 +345,12 @@ public Patient patientToEdit;
    	else if(femmeRadio.isSelected()) sexe = "Femme";
    	
    	String ageStr=ageField.getText();
-   	int age=Integer.parseInt(ageStr);
-   	String datePickerE = entreeDate.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-   	String datePickerS = sortieDate.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+   	int age;
+   	if(ageStr.equals("")) age=0;
+   	else age = Integer.parseInt(ageStr);
+   	
+   	String datePickerE_str = datePickerE.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+   	String datePickerS_str = datePickerS.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
    	String numTel=teleField.getText();
    	String adress=adressField.getText();
    	String maladie=maladieField.getText();
@@ -358,11 +364,11 @@ public Patient patientToEdit;
    	//int idMedcin=Integer.parseInt(medecin);
    	
    	//Create and Insert New Patient
-   	Patient patient=new Patient( nom, prenom, cne , sexe, age, numTel, adress, maladie, datePickerE);
+   	Patient patient=new Patient( nom, prenom, cne , sexe, age, numTel, adress, maladie, datePickerE_str);
    	  // ************Foreign Key Problem**************
 //   	patient.setLit(new Lit(Integer.parseInt(lit)));
 //   	patient.setMedecin(null);
-    	patient.setDateSortie(datePickerS);
+    	patient.setDateSortie(datePickerS_str);
 //   	patient.setId(id);
    	int status =patientDao.addPatient(patient);
    	
