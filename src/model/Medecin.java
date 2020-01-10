@@ -25,11 +25,7 @@ public class Medecin extends Personne {
 	}
 
 
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 47a5afb3948235dddd82b6df500ebbd2496ff108
 	public int getId() {
 		return id;
 	}
