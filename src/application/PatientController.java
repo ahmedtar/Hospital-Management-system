@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import com.mysql.cj.result.LocalDateValueFactory;
@@ -31,6 +32,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -39,6 +41,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -62,7 +65,7 @@ public class PatientController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		populateTableView();
-		updateBtn.setVisible(false);
+		updateGridBtn.setVisible(false);
 		datePickerE.setValue(LocalDate.now());
 		datePickerS.setValue(LocalDate.now());
 		
@@ -207,7 +210,9 @@ private void populateTableView() {
 //								dao.updatePatient(p);	
 			    			    	
 			    					   
-								updateBtn.setVisible(true);
+								updateGridBtn.setVisible(true);
+								insertBtn.setVisible(false);
+								UpdateTabPane.setText("Modifier");
 								tabPane.getSelectionModel().select(UpdateTabPane);
 			    			    
 			    			   
@@ -215,18 +220,30 @@ private void populateTableView() {
 			    		   
       //Delete Button Event
 			    		   delete.setOnAction(e -> {
-			    			   try {
-								PatientDaoImpl dao = new PatientDaoImpl();
-								
-								Patient p = getTableView().getItems().get(getIndex());
-								dao.deletePatient(p.getId());
-								list.remove(p);
-								
-								
-							} catch (Exception e1) {
-								// TODO Auto-generated catch block
-								e1.printStackTrace();
-							}
+			    			   
+			    			    Alert alert=new Alert(AlertType.CONFIRMATION);
+			    		   		alert.setTitle("Suppression d'un Patient ");
+			    		   		alert.setHeaderText("Un patient va être supprimé");
+			    		   		alert.setContentText("Vous êtes sûr de vouloir supprimer ce Patient ?");
+			    		   		
+			    		   		Optional<ButtonType> result = alert.showAndWait();
+			    		   		if (result.get() == ButtonType.OK){
+			    		   			try {
+										PatientDaoImpl dao = new PatientDaoImpl();
+										
+										Patient p = getTableView().getItems().get(getIndex());
+										dao.deletePatient(p.getId());
+										list.remove(p);
+										
+										
+									} catch (Exception e1) {
+										// TODO Auto-generated catch block
+										e1.printStackTrace();
+									}
+			    		   		} else {
+			    		   		    alert.close();
+			    		   		}
+			    			   
 			    			   
 			    		   });
 			    		   
@@ -314,6 +331,8 @@ public void insertLoad(Patient patient) throws Exception {
    
    
    @FXML private Button updateBtn;
+   @FXML private Button anullerBtn;
+   @FXML private GridPane updateGridBtn;
    
    private PatientDaoImpl patientDao;
 
@@ -385,6 +404,8 @@ public Patient patientToEdit;
    		alert.showAndWait();
    		
    		
+   		
+   		
 //   		
    	}
    	else {
@@ -446,39 +467,52 @@ public Patient patientToEdit;
 //  	patient.setMedecin(null);
    	patient.setDateSortie(datePickerS_str);
   	patient.setId(Integer.parseInt(idLabel.getText()));
-  	int status =patientDao.updatePatient(patient);
+  	
+  	Alert confirmeAlert=new Alert(AlertType.CONFIRMATION);
+		confirmeAlert.setTitle("Modification d'un Patient ");
+		confirmeAlert.setHeaderText("Un patient va être modifié");
+		confirmeAlert.setContentText("Vous confirmez cette modification ?");
+		
+		Optional<ButtonType> result = confirmeAlert.showAndWait();
+		if (result.get() == ButtonType.OK){
+			int status =patientDao.updatePatient(patient);
+		   	
+		   	if(status!=0) {
+		   		
+		   		
+		   		Alert alert=new Alert(AlertType.INFORMATION);
+		   		alert.setTitle("Modifier Patient ");
+		   		alert.setHeaderText("information");
+		   		alert.setContentText("Patient Modifié ");
+		   		LoadTable();
+		   		tabPane.getSelectionModel().select(PatientTabPane);
+		   		updateGridBtn.setVisible(false); // Hide upate and Cancel Btns
+		   		insertBtn.setVisible(true);
+		   		UpdateTabPane.setText("Ajouter");
+		   		alert.showAndWait();		
+		   	}
+		   	else {
+		   		Alert alert=new Alert(AlertType.ERROR);
+		   		alert.setTitle("Modifier Patient ");
+		   		alert.setHeaderText("information");
+		   		alert.setContentText("Patient n'est pas modifié correctement");
+		   		alert.showAndWait();
+		   	}
+		} else {
+		    confirmeAlert.close();
+		}
+  	
    	
-   	if(status!=0) {
-   		
-   		
-   		Alert alert=new Alert(AlertType.INFORMATION);
-   		alert.setTitle("Modifier Patient ");
-   		alert.setHeaderText("information");
-   		alert.setContentText("Patient Modifié ");
-   		LoadTable();
-   		tabPane.getSelectionModel().select(PatientTabPane);
-   		updateBtn.setVisible(false);
-   		insertBtn.setVisible(true);
-   		alert.showAndWait();
-   		
-   		
-   		
-//   		
-   	}
-   	else {
-   		Alert alert=new Alert(AlertType.ERROR);
-   		alert.setTitle("Modifier Patient ");
-   		alert.setHeaderText("information");
-   		alert.setContentText("Patient n'est pas modifié correctement");
-   		alert.showAndWait();
-   	}
-   	
-   	System.out.println("done");
-   	
-   	
-   	
+   }
+   
+   @FXML
+   public void goToPatientTabPane() {
+	   tabPane.getSelectionModel().select(PatientTabPane);
+	   updateGridBtn.setVisible(false);
+	   insertBtn.setVisible(true);
+	   UpdateTabPane.setText("Ajouter");
    }
 
 
-
+// ------------------------------- FIN -------------------------------- 
 }
