@@ -15,7 +15,12 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 
 	@Override
 	public int AddUtilisateur(Utilisateur u)  {
-		ConnectionDB con=new ConnectionDB();
+		ConnectionDB con=null;
+		try {
+			con = new ConnectionDB();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
 		PreparedStatement myStmt = null;
 		int r=0;
 		try {
@@ -48,7 +53,12 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 	@Override
 	public int deleteUtilisateur(int id) {
 		
-			ConnectionDB con=new ConnectionDB();
+			ConnectionDB con=null;
+			try {
+				con = new ConnectionDB();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 			PreparedStatement myStmt = null;
 			int r=0;
 			try {
@@ -72,7 +82,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 	}
 
 	@Override
-	public int login(String login,String password) {
+	public int login(String login,String password) throws SQLException {
 		
 		ConnectionDB myCon=new ConnectionDB();
 		int r=0;

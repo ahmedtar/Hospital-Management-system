@@ -12,13 +12,13 @@ public class ConnectionDB {
 	
 	private Connection con;
 	
-	public ConnectionDB() {
+	public ConnectionDB() throws SQLException{
 		
 	//get DB properties 
 		
 		Properties props=new Properties();
-		try {
-			props.load(new FileInputStream("hospital.properties"));
+		//try {
+			//props.load(new FileInputStream("hospital.properties"));
 			
 			String user="root";
 			String	password="";
@@ -26,10 +26,9 @@ public class ConnectionDB {
 			
 			con=DriverManager.getConnection(dburl,user,password);
 			System.out.println("connection successful to "+dburl);
-		} catch (IOException  | SQLException e) {
-			//System.out.println("file hospital.properties not found");
+		/*} catch (IOException  | SQLException e) {
 			e.printStackTrace();
-		}
+		}*/
 		
 
 	}
