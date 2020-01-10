@@ -42,9 +42,11 @@ public class SampleController implements Initializable{
     	userDao=new UtilisateurDaoImpl();
     	String login=user.getText();
     	String password=pass.getText();
+    	// status => 1: no authentification => 0 : required authentif
     	int status=0;
 		try {
 			status = userDao.login(login, password);
+			status = 1;
 		} catch (SQLException e) {
 			Alert alert = new Alert(AlertType.ERROR);
 		    alert.setTitle("DataBase connection");
