@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  ven. 10 jan. 2020 à 03:00
+-- Généré le :  ven. 10 jan. 2020 à 18:08
 -- Version du serveur :  10.4.8-MariaDB
 -- Version de PHP :  7.3.11
 
@@ -43,26 +43,6 @@ INSERT INTO `chambre` (`id`, `enService`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `departement`
---
-
-CREATE TABLE `departement` (
-  `id` int(10) NOT NULL,
-  `nom` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `departement`
---
-
-INSERT INTO `departement` (`id`, `nom`) VALUES
-(17, 'chirurgie'),
-(18, 'Geriatrie Autonomie'),
-(19, 'Médecine - Femme Mère Enfant');
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `lit`
 --
 
@@ -95,7 +75,6 @@ CREATE TABLE `medecin` (
   `numTel` varchar(10) NOT NULL,
   `adresse` varchar(100) NOT NULL,
   `specialisation` varchar(30) NOT NULL,
-  `departement` int(30) NOT NULL,
   `enservice` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -103,10 +82,9 @@ CREATE TABLE `medecin` (
 -- Déchargement des données de la table `medecin`
 --
 
-INSERT INTO `medecin` (`id`, `cne`, `nom`, `prenom`, `sexe`, `age`, `numTel`, `adresse`, `specialisation`, `departement`, `enservice`) VALUES
-(4, 'EE213655', 'smiytTbiba', 'kniytha', 'homme', 20, '0632302864', 'N 33 bis marrakech', 'radio', 17, 1),
-(6, 'EEnsjnjsvd', 'smiytTbiba', 'kniytha', 'homme', 25, '0632302877', 'N 33 bis marrakech', 'radio', 18, 1),
-(7, 'EE54799', 'smiytTbiba', 'kniytha', 'homme', 20, '0632302847', 'N 33 bis marrakech', 'radio', 18, 1);
+INSERT INTO `medecin` (`id`, `cne`, `nom`, `prenom`, `sexe`, `age`, `numTel`, `adresse`, `specialisation`, `enservice`) VALUES
+(4, 'EE213655', 'smiytTbiba', 'kniytha', 'homme', 20, '0632302864', 'N 33 bis marrakech', 'radio', 1),
+(6, 'EEnsjnjsvd', 'smiytTbiba', 'kniytha', 'homme', 25, '0632302877', 'N 33 bis marrakech', 'radio', 1);
 
 -- --------------------------------------------------------
 
@@ -173,13 +151,6 @@ ALTER TABLE `chambre`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `departement`
---
-ALTER TABLE `departement`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `nom` (`nom`);
-
---
 -- Index pour la table `lit`
 --
 ALTER TABLE `lit`
@@ -191,8 +162,7 @@ ALTER TABLE `lit`
 --
 ALTER TABLE `medecin`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `numTel` (`numTel`),
-  ADD KEY `departement` (`departement`);
+  ADD UNIQUE KEY `numTel` (`numTel`);
 
 --
 -- Index pour la table `patient`
@@ -219,12 +189,6 @@ ALTER TABLE `utilisateur`
 --
 ALTER TABLE `chambre`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT pour la table `departement`
---
-ALTER TABLE `departement`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT pour la table `lit`
@@ -259,12 +223,6 @@ ALTER TABLE `utilisateur`
 --
 ALTER TABLE `lit`
   ADD CONSTRAINT `lit_ibfk_1` FOREIGN KEY (`chambre`) REFERENCES `chambre` (`id`) ON UPDATE CASCADE;
-
---
--- Contraintes pour la table `medecin`
---
-ALTER TABLE `medecin`
-  ADD CONSTRAINT `medecin_ibfk_1` FOREIGN KEY (`departement`) REFERENCES `departement` (`id`) ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `patient`

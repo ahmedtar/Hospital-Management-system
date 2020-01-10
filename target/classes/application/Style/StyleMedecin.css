@@ -1,0 +1,23 @@
+#exitBtn:pressed:hover {
+	-fx-background-color:#424242  ;
+	
+    -fx-scale-y: 0.9;
+    -fx-scale-x: 0.9;
+}
+#exitBtn:hover {
+	-fx-background-color:#424242 ;
+}
+
+
+#btns {
+    -fx-background-color: #44ccff ;
+}
+#btns:hover {
+    -fx-background-color: #9e9e9e ;
+}
+
+#btns:pressed:hover {
+	-fx-background-color: #9e9e9e ;
+    -fx-scale-y: 0.9;
+    -fx-scale-x: 0.9;
+}

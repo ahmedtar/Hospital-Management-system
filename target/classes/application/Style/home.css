@@ -6,22 +6,30 @@
 	
 }
 #btns {
-    -fx-background-color: #00b0ff ;
+    -fx-background-color: #44ccff ;
 }
 #btns:hover {
 	-fx-border-color: #fff;
 	-fx-border-width: 5px;
-    /*-fx-background-color:#9e9e9e;
-    -fx-scale-y: 1.1;
-    -fx-scale-x: 1.1;*/
+    
 }
 #btns:pressed:hover {
-	/*-fx-background-color:#212121;*/
 	-fx-border-color: #fff;
 	-fx-border-width: 5px;
     -fx-scale-y: 0.9;
     -fx-scale-x: 0.9;
 }
-#drawBtn:pressed:hover{
-	-fx-opacity: 0.5;
+
+
+
+#exitBtn:pressed:hover {
+	-fx-background-color:#424242  ;
+	
+    -fx-scale-y: 0.9;
+    -fx-scale-x: 0.9;
 }
+#exitBtn:hover {
+	-fx-background-color:#424242 ;
+}
+
+

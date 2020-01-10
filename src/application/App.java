@@ -20,6 +20,8 @@ public class App extends Application {
 			primaryStage.setTitle("Hospital Management System");
 			//primaryStage.initStyle(StageStyle.UNDECORATED);
 			primaryStage.setScene(scene);
+			primaryStage.setX(400);
+			primaryStage.setY(50);
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();

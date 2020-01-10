@@ -23,6 +23,8 @@ public class HomeController implements Initializable{
 			Scene scene=new Scene(pane);
 			Stage stage=(Stage) ((Node) event.getSource()).getScene().getWindow();
 			stage.setScene(scene);
+			stage.setX(400);
+			stage.setY(50);
 			stage.show();
 		}
 	 @FXML
@@ -31,6 +33,8 @@ public class HomeController implements Initializable{
 			Scene scene=new Scene(pane);
 			Stage stage=(Stage) ((Node) event.getSource()).getScene().getWindow();
 			stage.setScene(scene);
+			stage.setX(180);
+			stage.setY(50);
 			stage.show();
 		}
 
@@ -41,6 +45,8 @@ public class HomeController implements Initializable{
 			Scene scene=new Scene(pane);
 			Stage stage=(Stage) ((Node) event.getSource()).getScene().getWindow();
 			stage.setScene(scene);
+			stage.setX(180);
+			stage.setY(50);
 			stage.show();
 		}
 	 

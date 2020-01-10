@@ -64,6 +64,8 @@ public class SampleController implements Initializable{
     		
     		stage.getIcons().add(image);
     		stage.setTitle("Hospital Management System");
+    		stage.setX(180);
+			stage.setY(50);
     		//stage.initStyle(StageStyle.UNDECORATED);
     		stage.setScene(scene);
     		stage.show();

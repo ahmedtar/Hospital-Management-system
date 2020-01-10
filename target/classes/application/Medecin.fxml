@@ -11,6 +11,8 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -18,26 +20,42 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MedecinController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@Style/StyleMedecin.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MedecinController">
    <children>
-      <TabPane fx:id="tabPane" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TabPane fx:id="tabPane" layoutX="186.0" layoutY="87.0" prefHeight="510.0" prefWidth="339.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
           <Tab fx:id="medecinTab" text="MEDECIN">
                <content>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                  <AnchorPane prefHeight="571.0" prefWidth="993.0">
                      <children>
-                        <AnchorPane layoutX="162.0" layoutY="22.0" prefHeight="50.0" prefWidth="1200.0" style="-fx-background-color: #009eff;" AnchorPane.bottomAnchor="656.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
+                        <AnchorPane layoutX="18.0" layoutY="30.0" prefHeight="50.0" prefWidth="1000.0" style="-fx-background-color: #44ccff;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0">
                            <children>
-                              <Label alignment="CENTER" layoutX="61.0" layoutY="1.0" prefHeight="45.0" prefWidth="144.0" text="MEDECIN" textFill="WHITE" AnchorPane.topAnchor="1.0">
+                              <Label layoutX="102.0" layoutY="3.0" prefHeight="45.0" prefWidth="144.0" text="MEDECIN" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="0.0">
                                  <font>
                                     <Font size="21.0" />
                                  </font>
                               </Label>
-                              <Button layoutX="1134.0" layoutY="12.0" mnemonicParsing="false" onAction="#logout" text="logout" />
-                              <Button layoutX="1067.0" layoutY="12.0" mnemonicParsing="false" onAction="#goBackToHome" text="home" />
+                              <Button id="exitBtn" layoutX="866.0" layoutY="5.0" mnemonicParsing="false" onAction="#goBackToHome" prefHeight="33.0" prefWidth="67.0" style="-fx-background-color: #44ccff;" stylesheets="@Style/StyleMedecin.css" AnchorPane.topAnchor="5.0">
+                                 <graphic>
+                                    <ImageView fitHeight="32.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@imgs/baseline_house_white_18dp.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button id="exitBtn" layoutX="933.0" layoutY="3.0" mnemonicParsing="false" onAction="#logout" prefHeight="41.0" prefWidth="67.0" style="-fx-background-color: #44ccff;" stylesheets="@Style/StyleMedecin.css" AnchorPane.bottomAnchor="4.0">
+                                 <graphic>
+                                    <ImageView fitHeight="32.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@imgs/exit.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
                            </children>
                         </AnchorPane>
-                        <TableView fx:id="tableView" layoutX="7.0" layoutY="104.0" prefHeight="379.0" prefWidth="1200.0" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                        <TableView fx:id="tableView" layoutX="182.0" layoutY="187.0" prefHeight="384.0" prefWidth="378.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                           <columns>
                             <TableColumn fx:id="cneCol" prefWidth="75.0" text="CNE" />
                             <TableColumn fx:id="nomCol" prefWidth="75.0" text="NOM" />
@@ -54,17 +72,17 @@
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
                         </TableView>
-                        <TextField fx:id="searchField" layoutX="48.0" layoutY="90.0" onKeyPressed="#searchMedecin" prefHeight="35.0" prefWidth="300.0" promptText="Recherche" style="-fx-background-radius: 30;" />
-                        <Button layoutX="440.0" layoutY="90.0" mnemonicParsing="false" onAction="#clearSearchField" prefHeight="35.0" prefWidth="120.0" text="CLEAR" />
-                        <Button layoutX="582.0" layoutY="90.0" mnemonicParsing="false" onAction="#goToAjouter" prefHeight="35.0" prefWidth="120.0" text="Ajouter" />
+                        <TextField fx:id="searchField" layoutX="48.0" layoutY="90.0" onKeyPressed="#searchMedecin" prefHeight="35.0" prefWidth="300.0" promptText="Recherche" style="-fx-background-radius: 30;" AnchorPane.leftAnchor="80.0" />
+                        <Button id="btns" layoutX="423.0" layoutY="90.0" mnemonicParsing="false" onAction="#clearSearchField" prefHeight="35.0" prefWidth="120.0" style="-fx-background-radius: 30;" stylesheets="@Style/StyleMedecin.css" text="CLEAR" AnchorPane.rightAnchor="457.0" />
+                        <Button id="btns" layoutX="581.0" layoutY="90.0" mnemonicParsing="false" onAction="#goToAjouter" prefHeight="35.0" prefWidth="120.0" style="-fx-background-radius: 30;" stylesheets="@Style/StyleMedecin.css" text="Ajouter" AnchorPane.rightAnchor="299.0" />
                      </children>
                   </AnchorPane>
                </content></Tab>
           <Tab fx:id="modifierTab" text="MODIFIER">
                <content>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                  <AnchorPane prefHeight="607.0" prefWidth="1000.0">
                      <children>
-                        <GridPane layoutX="211.0" layoutY="277.0" style="-fx-background-radius: 30;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="130.0">
+                        <GridPane layoutX="325.0" layoutY="70.0" prefHeight="479.0" prefWidth="350.0" style="-fx-background-radius: 30;" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="65.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                           </columnConstraints>
@@ -140,16 +158,16 @@
                               <DropShadow />
                            </effect>
                         </GridPane>
-                        <AnchorPane layoutX="185.0" layoutY="14.0" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #009eff;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
+                        <AnchorPane layoutX="185.0" layoutY="14.0" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #44ccff;" AnchorPane.bottomAnchor="506.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0">
                            <children>
-                              <Label layoutX="89.0" layoutY="6.0" prefHeight="37.0" prefWidth="203.0" text="MODIFIER MEDECIN" textFill="WHITE">
+                              <Label layoutX="89.0" layoutY="6.0" prefHeight="37.0" prefWidth="203.0" text="MODIFIER MEDECIN" textFill="WHITE" AnchorPane.leftAnchor="100.0">
                                  <font>
                                     <Font size="21.0" />
                                  </font>
                               </Label>
                            </children>
                         </AnchorPane>
-                        <Button fx:id="modifBtn" layoutX="87.0" layoutY="621.0" mnemonicParsing="false" onAction="#update" prefHeight="38.0" prefWidth="126.0" style="-fx-background-color: #009eff; -fx-background-radius: 20;" text="Sauvgarde" textFill="WHITE">
+                        <Button id="btns" fx:id="modifBtn" layoutX="81.0" layoutY="502.0" mnemonicParsing="false" onAction="#update" prefHeight="38.0" prefWidth="126.0" style="-fx-background-radius: 20;" stylesheets="@Style/StyleMedecin.css" text="Sauvgarde" textFill="WHITE" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="60.0">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
@@ -159,9 +177,9 @@
                </content></Tab>
             <Tab fx:id="ajouterTab" text="AJOUTER">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="465.0" prefWidth="1000.0">
                      <children>
-                        <GridPane layoutX="489.0" layoutY="165.0" style="-fx-background-radius: 30;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="130.0">
+                        <GridPane layoutX="343.0" layoutY="80.0" prefHeight="462.0" prefWidth="366.0" style="-fx-background-radius: 30;" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="65.0">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                            </columnConstraints>
@@ -237,16 +255,16 @@
                               <DropShadow />
                            </effect>
                         </GridPane>
-                        <AnchorPane prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #009eff;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
+                        <AnchorPane prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #44ccff;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0">
                            <children>
-                              <Label layoutX="89.0" layoutY="6.0" prefHeight="37.0" prefWidth="203.0" text="AJOUTER MEDECIN" textFill="WHITE">
+                              <Label layoutX="89.0" layoutY="6.0" prefHeight="37.0" prefWidth="203.0" text="AJOUTER MEDECIN" textFill="WHITE" AnchorPane.leftAnchor="100.0">
                                  <font>
-                                    <Font name="System Bold" size="21.0" />
+                                    <Font size="21.0" />
                                  </font>
                               </Label>
                            </children>
                         </AnchorPane>
-                        <Button fx:id="insertBtn" layoutX="91.0" layoutY="621.0" mnemonicParsing="false" onAction="#insert" prefHeight="38.0" prefWidth="126.0" style="-fx-background-color: #009eff; -fx-background-radius: 20;" text="Sauvgarde" textFill="WHITE">
+                        <Button id="btns" fx:id="insertBtn" layoutX="91.0" layoutY="621.0" mnemonicParsing="false" onAction="#insert" prefHeight="38.0" prefWidth="126.0" style="-fx-background-radius: 20;" stylesheets="@Style/StyleMedecin.css" text="Sauvgarde" textFill="WHITE" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="60.0">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
