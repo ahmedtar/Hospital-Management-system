@@ -149,7 +149,10 @@ public class MedecinDAOimpl implements  MedecinDAO {
 	
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 47a5afb3948235dddd82b6df500ebbd2496ff108
 public List<Medecin> searchMdc(String str) {
 		ConnectionDB con=null;
 		try {
@@ -157,7 +160,11 @@ public List<Medecin> searchMdc(String str) {
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
+<<<<<<< HEAD
 		
+=======
+
+>>>>>>> 47a5afb3948235dddd82b6df500ebbd2496ff108
 		List<Medecin> tmplistmdc=new ArrayList<>();
 		PreparedStatement stm=null;
 		ResultSet rslt=null;
