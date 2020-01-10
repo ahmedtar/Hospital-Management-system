@@ -12,7 +12,6 @@ public interface MedecinDAO {
 	
 	public List<Medecin> getAllMdcs();
 	public List<Medecin> searhMdc(String colomn,String str);
-	public List<Medecin> searhDepartementDeMdc(int d);
 	public List<Medecin> searhInServiceMdcs(boolean m);
 	
 	

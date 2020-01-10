@@ -109,7 +109,7 @@ public class PatientController implements Initializable{
 	  @FXML private Button clearBtn;
 	  
 // TabPane
-	 @FXML public TabPane tabPane = new TabPane();
+	 @FXML public TabPane tabPane = new TabPane(); 
 	 @FXML public Tab PatientTabPane = new Tab();
 	 @FXML public Tab LitTabPane = new Tab();
 	 @FXML public Tab UpdateTabPane = new Tab();
@@ -123,18 +123,6 @@ public class PatientController implements Initializable{
 	stage.setScene(scene);
 	stage.show();
 	}
-   
-   
-   // AJouter Controller !!!!!!!!!!!!!!!!!!!!!!
-   @FXML
-  	public void goAdd(ActionEvent event) throws IOException {
-	   Stage stage=new Stage();
-  	Parent pane=FXMLLoader.load(getClass().getResource("Ajouter.fxml"));
-  	Scene scene=new Scene(pane);
-  	stage.setScene(scene);
-  	stage.show();
-  	}
-   
    
 	
 private void populateTableView() {

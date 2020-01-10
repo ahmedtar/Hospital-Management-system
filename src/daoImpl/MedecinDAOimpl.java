@@ -17,10 +17,10 @@ public class MedecinDAOimpl implements  MedecinDAO {
 		
 			try {
 				stm = con.getCon().prepareStatement("insert into medecin"
-						+ " (nom, prenom, cne, sexe, age, numTel, adresse, specialisation, departement, enservice)"
-						+ " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+						+ " (nom, prenom, cne, sexe, age, numTel, adresse, specialisation, enservice)"
+						+ " values (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 				
-				stm.setString(1, mdc.getNom());
+				stm.setString(1, mdc.getNom()); 
 				stm.setString(2, mdc.getPrenom());
 				stm.setString(3,mdc.getCne());
 				stm.setString(4, mdc.getSexe());
@@ -28,8 +28,7 @@ public class MedecinDAOimpl implements  MedecinDAO {
 				stm.setString(6,mdc.getNumTel());
 				stm.setString(7, mdc.getAdresse());
 				stm.setString(8, mdc.getSpecialisation());
-				stm.setInt(9, mdc.getDepartement());
-				stm.setBoolean(10, mdc.isEnservice());
+				stm.setBoolean(9, mdc.isEnservice());
 				r=stm.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -50,7 +49,7 @@ public class MedecinDAOimpl implements  MedecinDAO {
 		try {
 			stm = con.getCon().prepareStatement("update medecin"
 					+ " set nom=?, prenom=?, cne=?, sexe=?,age=?,numTel=?,"
-					+ "adresse=?,specialisation=?,departement=?,enservice=?"
+					+ "adresse=?,specialisation=?,enservice=?"
 					+ " where id=?");
 			stm.setString(1, mdc.getNom());
 			stm.setString(2, mdc.getPrenom());
@@ -60,9 +59,8 @@ public class MedecinDAOimpl implements  MedecinDAO {
 			stm.setString(6,mdc.getNumTel());
 			stm.setString(7, mdc.getAdresse());
 			stm.setString(8, mdc.getSpecialisation());
-			stm.setInt(9, mdc.getDepartement());
-			stm.setBoolean(10, mdc.isEnservice());
-			stm.setInt(11, mdc.getId());
+			stm.setBoolean(9, mdc.isEnservice());
+			stm.setInt(10, mdc.getId());
 			r=stm.executeUpdate();
 		}catch (SQLException e) {
 			e.printStackTrace();
@@ -160,33 +158,6 @@ public List<Medecin> searhMdc(String colomn,String str) {
 		return tmplistmdc;
 	}
 
-
-	
-public List<Medecin> searhDepartementDeMdc(int d) {
-		ConnectionDB con=new ConnectionDB();
-		List<Medecin> tmplistmdc=new ArrayList<>();
-		PreparedStatement stm=null;
-		ResultSet rslt=null;
-		try {
-			stm=con.getCon().prepareStatement("select * from medecin where departement like ? ");
-			stm.setInt(1, d);
-			rslt=stm.executeQuery();
-			
-			while(rslt.next()) {
-				Medecin tmpmdc=convertRowToMdc(rslt);
-				tmplistmdc.add(tmpmdc);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			con.close();
-			close(stm,rslt);
-		}
-		
-		return tmplistmdc;
-	}
-
-
 	
 public List<Medecin> searhInServiceMdcs(boolean m) {
 	ConnectionDB con=new ConnectionDB();
@@ -237,9 +208,8 @@ public List<Medecin> searhInServiceMdcs(boolean m) {
 			String numTel=rslt.getString("numTel");
 			String adresse=rslt.getString("adresse");
 			String specialisation=rslt.getString("specialisation");
-			int departement=rslt.getInt("departement");
 			boolean enservice=rslt.getBoolean("enservice");
-			tmpmdc= new Medecin(id,nom, prenom, cne, sexe, age, numTel, adresse, specialisation, departement, enservice);
+			tmpmdc= new Medecin(id,nom, prenom, cne, sexe, age, numTel, adresse, specialisation, enservice);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

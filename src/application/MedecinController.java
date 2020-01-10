@@ -2,15 +2,13 @@ package application;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import com.mysql.cj.xdevapi.Statement;
 
-import daoImpl.ConnectionDB;
 import daoImpl.MedecinDAOimpl;
+import daoImpl.PatientDaoImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,8 +19,9 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -30,9 +29,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-import model.Departement;
 import model.Medecin;
 
 public class MedecinController implements Initializable{
@@ -50,7 +49,6 @@ public class MedecinController implements Initializable{
 	    @FXML private TableColumn<Medecin,Integer> departCol;
 	    @FXML  private TableColumn<Medecin,Boolean > enServiceCol;
 	    @FXML private TableColumn<Medecin,String> deleteCol;
-	    @FXML private TableColumn<Medecin,String> updateCol;
 
 	    
 	    
@@ -64,7 +62,6 @@ public class MedecinController implements Initializable{
 	    @FXML private TextField specialisayionField1;
 	    @FXML private RadioButton homme1;
 	    @FXML private RadioButton femme1;
-	    @FXML private ChoiceBox<String> choiceDept;
 	    @FXML private RadioButton enService1;
 	    @FXML private RadioButton horsService1;
 	    
@@ -78,14 +75,16 @@ public class MedecinController implements Initializable{
 	    @FXML private TextField numField2;
 	    @FXML private TextField adressField2;
 	    @FXML private TextField specialisationField2;
-	    @FXML private ChoiceBox<String> ChoiceDept2;
 	    @FXML private RadioButton homme2;
 	    @FXML private RadioButton femme2;
 	    @FXML private RadioButton enService2;
 	    @FXML private RadioButton horsService2;
 
 
-	   
+	    @FXML private TabPane tabPane;
+	    @FXML private Tab medecinTab;
+	    @FXML private Tab modifierTab;
+	    @FXML private Tab ajouterTab;
 
 	
 	    private MedecinDAOimpl medecinDao;
@@ -104,9 +103,9 @@ public class MedecinController implements Initializable{
 	
 	public void populateTableView() {
 		List<Medecin> list=new ArrayList<>();
-		medecinDao =new MedecinDAOimpl();
+		this.medecinDao =new MedecinDAOimpl();
 		list=medecinDao.getAllMdcs();
-		medecinlist=FXCollections.observableArrayList(list);
+		this.medecinlist=FXCollections.observableArrayList(list);
 		
 		cneCol.setCellValueFactory(new PropertyValueFactory<>("cne"));
 		nomCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
@@ -116,8 +115,8 @@ public class MedecinController implements Initializable{
 		numCol.setCellValueFactory(new PropertyValueFactory<>("numTel"));
 		adressCol.setCellValueFactory(new PropertyValueFactory<>("adresse"));
 		specialCol.setCellValueFactory(new PropertyValueFactory<>("specialisation"));
-		departCol.setCellValueFactory(new PropertyValueFactory<>("departement"));
 		enServiceCol.setCellValueFactory(new PropertyValueFactory<>("enservice"));
+		
 		
 		
 		//update button in table rows for update employee----------------------------------------------------------------------------------------------------------------
@@ -133,8 +132,10 @@ public class MedecinController implements Initializable{
 		                            setGraphic(null); 
 		                            setText(null);
 		                        } else {
-		                        	  final Button btn = new Button("UPDATE");
-		                        	  btn.setOnAction(event -> {
+		                        	  final Button update = new Button("Edit");
+		                        	  final Button delete = new Button("X");
+		                        	  
+		                        	  update.setOnAction(event -> {
 		                        		  Medecin medecin=getTableView().getItems().get(getIndex());
 		                        		  
 		                        		  id0=medecin.getId();
@@ -162,12 +163,35 @@ public class MedecinController implements Initializable{
 		                        		 adressField1.setText(adress);
 		                        		 specialisayionField1.setText(specialite);
 		                        		
-		                        		 
+		                        		 tabPane.getSelectionModel().select(modifierTab);
 		                        		 
 		                        		
 		                        	  });
-		                           
-		                        	 setGraphic(btn);
+		                        	  delete.setOnAction(event -> {
+			                        		Medecin medecin=getTableView().getItems().get(getIndex());
+			                        		int status=medecinDao.deleteMedecin(medecin);
+			                        		medecinlist.remove(medecin);
+			                        		if(status>0) {
+			                      	    		Alert alert=new Alert(AlertType.INFORMATION);
+			                      	    		alert.setTitle("supprimer medecin ");
+			                      	    		alert.setContentText("medecin est supprime");
+			                      	    		alert.showAndWait();
+			                      	    		
+			                      	    	}
+			                      	    	else {
+			                      	    		Alert alert=new Alert(AlertType.ERROR);
+			                      	    		alert.setTitle("supprimer medecin ");
+			                      	    		alert.setContentText("medecin n'est pas suppriome");
+			                      	    		alert.showAndWait();
+			                      	    	}
+			                      	    	
+			                      	    	
+			                        	  });
+		                        	  
+		                        	  HBox editCell = new HBox(15);
+		   			    		      editCell.getChildren().addAll(update , delete);
+		   			    		      
+		                        	 setGraphic(editCell);
 		                             setText(null);
 		                        }
 		                    }
@@ -178,55 +202,23 @@ public class MedecinController implements Initializable{
 		        };
 		        
 		        
-		        
-		//Delete buttons in table rows ------------------------------------------------------------------------------------------------------------------
-		        
-		        Callback<TableColumn<Medecin, String>, TableCell<Medecin, String>> cellFactory1 = 
-						new Callback<TableColumn<Medecin, String>, TableCell<Medecin, String>>() {
-		           
-		            public TableCell<Medecin, String> call(final TableColumn<Medecin, String> param) {
-		                final TableCell<Medecin, String> cell = new TableCell<Medecin, String>() {
-		                    @Override
-		                    public void updateItem(String item, boolean empty) {
-		                        super.updateItem(item, empty);
-		                        if (empty) {
-		                            setGraphic(null); 
-		                            setText(null);
-		                        } 
-		                        else {
-		                        	  final Button btn = new Button("DELETE");
-		                        	  btn.setOnAction(event -> {
-		                        		Medecin medecin=getTableView().getItems().get(getIndex());
-		                        		int status=medecinDao.deleteMedecin(medecin);
-		                        		medecinlist.remove(medecin);
-		                        		if(status>0) {
-		                      	    		Alert alert=new Alert(AlertType.INFORMATION);
-		                      	    		alert.setTitle("supprimer medecin ");
-		                      	    		alert.setContentText("medecin est supprime");
-		                      	    		alert.showAndWait();
-		                      	    		
-		                      	    	}
-		                      	    	else {
-		                      	    		Alert alert=new Alert(AlertType.ERROR);
-		                      	    		alert.setTitle("supprimer medecin ");
-		                      	    		alert.setContentText("medecin n'est pas suppriome");
-		                      	    		alert.showAndWait();
-		                      	    	}
-		                      	    	
-		                      	    	
-		                        	  });
-		                        	  setGraphic(btn);
-		                              setText(null);
-		                        }
-		                    }
-		                };
-		                return cell;
-		            }
-		        };
-		
-	    updateCol.setCellFactory(cellFactory);
-		deleteCol.setCellFactory(cellFactory1);
-		        
+	    
+		deleteCol.setCellFactory(cellFactory);
+		try {
+			this.LoadTable();
+			System.out.println("Table Loaded Successufuly");
+		} catch (Exception e) {
+          System.out.println("Table Loading Error");
+			e.printStackTrace();
+		}
+	}
+	
+	@FXML
+	public void LoadTable() throws Exception {
+		List<Medecin> list=new ArrayList<>();
+		this.medecinDao =new MedecinDAOimpl();
+		list=medecinDao.getAllMdcs();
+		this.medecinlist=FXCollections.observableArrayList(list);
 		tableView.setItems(medecinlist);
 	}
 
@@ -256,11 +248,12 @@ public class MedecinController implements Initializable{
 		if(enService1.isSelected())serv=true;
 		if(horsService1.isSelected())serv=false;
 		
-		Medecin med=new Medecin(id0,nom,prenom,cne,sexe,age0,numTel,adress,special,0,serv);
+		Medecin med=new Medecin(id0,nom,prenom,cne,sexe,age0,numTel,adress,special,serv);
 		
 		int status=medecinDao.updateMedecin(med);
 		
 		if(status>0) {
+			tabPane.getSelectionModel().select(medecinTab);
 	    		Alert alert=new Alert(AlertType.INFORMATION);
 	    		alert.setTitle("modifier medecin ");
 	    		alert.setContentText("medecin est modifier");
@@ -301,7 +294,7 @@ public class MedecinController implements Initializable{
 			
 			
 			
-			Medecin medecin=new Medecin(0,nom,prenom,cne,sexe,age,numTel,adress,special,17,serv);
+			Medecin medecin=new Medecin(0,nom,prenom,cne,sexe,age,numTel,adress,special,serv);
 			
 			
 			
@@ -322,6 +315,9 @@ public class MedecinController implements Initializable{
 
 	    }
 	
+	 public void Search() {
+		 
+	 }
 	
 	
 	 

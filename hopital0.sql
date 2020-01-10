@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  Dim 08 déc. 2019 à 18:36
--- Version du serveur :  10.4.6-MariaDB
--- Version de PHP :  7.3.9
+-- Généré le :  ven. 10 jan. 2020 à 03:00
+-- Version du serveur :  10.4.8-MariaDB
+-- Version de PHP :  7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -95,17 +95,18 @@ CREATE TABLE `medecin` (
   `numTel` varchar(10) NOT NULL,
   `adresse` varchar(100) NOT NULL,
   `specialisation` varchar(30) NOT NULL,
-  `departement` int(30) NOT NULL
+  `departement` int(30) NOT NULL,
+  `enservice` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `medecin`
 --
 
-INSERT INTO `medecin` (`id`, `cne`, `nom`, `prenom`, `sexe`, `age`, `numTel`, `adresse`, `specialisation`, `departement`) VALUES
-(4, 'EE213655', 'smiytTbiba', 'kniytha', 'femme', 20, '0632302864', 'N 33 bis marrakech', 'radio', 17),
-(6, '', 'smiytTbiba', 'kniytha', 'femme', 20, '0632302877', 'N 33 bis marrakech', 'radio', 18),
-(7, '', 'smiytTbiba', 'kniytha', 'femme', 20, '0632302847', 'N 33 bis marrakech', 'radio', 18);
+INSERT INTO `medecin` (`id`, `cne`, `nom`, `prenom`, `sexe`, `age`, `numTel`, `adresse`, `specialisation`, `departement`, `enservice`) VALUES
+(4, 'EE213655', 'smiytTbiba', 'kniytha', 'homme', 20, '0632302864', 'N 33 bis marrakech', 'radio', 17, 1),
+(6, 'EEnsjnjsvd', 'smiytTbiba', 'kniytha', 'homme', 25, '0632302877', 'N 33 bis marrakech', 'radio', 18, 1),
+(7, 'EE54799', 'smiytTbiba', 'kniytha', 'homme', 20, '0632302847', 'N 33 bis marrakech', 'radio', 18, 1);
 
 -- --------------------------------------------------------
 
@@ -134,8 +135,9 @@ CREATE TABLE `patient` (
 --
 
 INSERT INTO `patient` (`id`, `lit`, `cne`, `nom`, `prenom`, `sexe`, `age`, `numTel`, `adresse`, `maladie`, `dateEntree`, `dateSortie`, `medecin`) VALUES
-(4, 1, 'EE213655', 'ahmed', 'elatrouz', 'homme', 20, '0632355864', 'N 33 bis marrakech', 'cancer', '10/11/2020', '15/04/2004', 4),
-(40, NULL, 'EE123456', 'ahmed', 'elatrouz', 'homme', 20, '0635555864', 'N 33 bis marrakech', 'cancer', '09/10/2013', NULL, NULL);
+(4, 1, 'EE213655', 'ahmed', 'elatrouz', 'Homme', 25, '0632355864', 'N 33 bis marrakech', 'cancer', '10/11/2020', '15/04/2004', 4),
+(40, NULL, 'EE123456', 'ahmed', 'elatrouz', 'homme', 20, '0635555864', 'N 33 bis marrakech', 'cancer', '09/10/2013', NULL, NULL),
+(43, NULL, 'ksnk', 'ksnk', 'nsfkn', 'Homme', 15, '64499797', 'mdamlmlmsdvk', 'haha', '10/01/2020', '01/05/2021', NULL);
 
 -- --------------------------------------------------------
 
@@ -240,7 +242,7 @@ ALTER TABLE `medecin`
 -- AUTO_INCREMENT pour la table `patient`
 --
 ALTER TABLE `patient`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateur`
