@@ -54,7 +54,9 @@
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
                         </TableView>
-                        <TextField layoutX="48.0" layoutY="90.0" prefHeight="35.0" prefWidth="300.0" promptText="Recherche" style="-fx-background-radius: 30;" />
+                        <TextField fx:id="searchField" layoutX="48.0" layoutY="90.0" onKeyPressed="#searchMedecin" prefHeight="35.0" prefWidth="300.0" promptText="Recherche" style="-fx-background-radius: 30;" />
+                        <Button layoutX="440.0" layoutY="90.0" mnemonicParsing="false" onAction="#clearSearchField" prefHeight="35.0" prefWidth="120.0" text="CLEAR" />
+                        <Button layoutX="582.0" layoutY="90.0" mnemonicParsing="false" onAction="#goToAjouter" prefHeight="35.0" prefWidth="120.0" text="Ajouter" />
                      </children>
                   </AnchorPane>
                </content></Tab>

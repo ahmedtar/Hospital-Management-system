@@ -11,7 +11,7 @@ public interface MedecinDAO {
 	public int deleteMedecin(Medecin mdc);
 	
 	public List<Medecin> getAllMdcs();
-	public List<Medecin> searhMdc(String colomn,String str);
+	public List<Medecin> searchMdc(String str);
 	public List<Medecin> searhInServiceMdcs(boolean m);
 	
 	

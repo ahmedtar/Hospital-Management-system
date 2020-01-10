@@ -128,16 +128,24 @@ public class MedecinDAOimpl implements  MedecinDAO {
 	}
 	
 
-public List<Medecin> searhMdc(String colomn,String str) {
+public List<Medecin> searchMdc(String str) {
 		ConnectionDB con=new ConnectionDB();
 		List<Medecin> tmplistmdc=new ArrayList<>();
 		PreparedStatement stm=null;
 		ResultSet rslt=null;
-		if(colomn=="nom" || colomn=="prenom" ||colomn=="cne" ||colomn=="specialisation") {
+		
 			try {
 				str+='%';
-				stm=con.getCon().prepareStatement("select * from medecin where "+colomn+" like ? ");
+				stm=con.getCon().prepareStatement("select * from medecin where"
+						+ " cne like ? "
+						+ " or nom like ?"
+						+ " or prenom like ?"
+						+ " or specialisation like ?");
 				stm.setString(1, str);
+				stm.setString(2, str);
+				stm.setString(3, str);
+				stm.setString(4, str);
+				
 				rslt=stm.executeQuery();
 				
 				while(rslt.next()) {
@@ -151,9 +159,7 @@ public List<Medecin> searhMdc(String colomn,String str) {
 				close(stm,rslt);
 			}
 			
-		}else {
-			System.out.println("erreur de recherche");
-		}
+		
 		
 		return tmplistmdc;
 	}

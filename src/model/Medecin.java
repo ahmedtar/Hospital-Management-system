@@ -17,12 +17,6 @@ public class Medecin extends Personne {
 	}
 	
 	
-<<<<<<< HEAD
-	
-
-	
-=======
->>>>>>> 2711d2b15ff92ed9c6bec983ab3f3c809d8dc125
 
 	//Constructeur ajouté
 	public Medecin(String nom, String prenom, String cne, String sexe, int age, String numTel, String adresse, int id) {
@@ -32,10 +26,7 @@ public class Medecin extends Personne {
 
 
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 2711d2b15ff92ed9c6bec983ab3f3c809d8dc125
 	public int getId() {
 		return id;
 	}
