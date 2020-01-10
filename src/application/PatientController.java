@@ -135,7 +135,7 @@ private void populateTableView() {
 		prenomCol.setCellValueFactory(new PropertyValueFactory<Patient, String>("prenom"));
 		sexeCol.setCellValueFactory(new PropertyValueFactory<Patient, String>("sexe"));
 		ageCol.setCellValueFactory(new PropertyValueFactory<Patient, Integer>("age"));
-		teleCol.setCellValueFactory(new PropertyValueFactory<Patient, String>("tele"));
+		teleCol.setCellValueFactory(new PropertyValueFactory<Patient, String>("numTel"));
 		adressCol.setCellValueFactory(new PropertyValueFactory<Patient, String>("adresse"));
 		maladieCol.setCellValueFactory(new PropertyValueFactory<Patient, String>("maladie"));
 		entreeCOl.setCellValueFactory(new PropertyValueFactory<Patient, Date>("dateEntree"));
