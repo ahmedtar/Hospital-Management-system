@@ -24,12 +24,7 @@ public class Medecin extends Personne {
 		this.id = id;
 	}
 
-<<<<<<< HEAD
 
-
-
-=======
->>>>>>> refs/remotes/origin/master
 	public int getId() {
 		return id;
 	}
