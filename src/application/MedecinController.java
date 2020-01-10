@@ -8,7 +8,6 @@ import java.util.ResourceBundle;
 
 
 import daoImpl.MedecinDAOimpl;
-import daoImpl.PatientDaoImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -28,11 +27,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import model.Medecin;
+import model.Patient;
 
 public class MedecinController implements Initializable{
 	
@@ -86,7 +87,7 @@ public class MedecinController implements Initializable{
 	    @FXML private Tab modifierTab;
 	    @FXML private Tab ajouterTab;
 
-	
+	    @FXML private TextField searchField;
 	    private MedecinDAOimpl medecinDao;
 	    
 	    private ObservableList<Medecin> medecinlist;
@@ -221,10 +222,44 @@ public class MedecinController implements Initializable{
 		this.medecinlist=FXCollections.observableArrayList(list);
 		tableView.setItems(medecinlist);
 	}
+	
+	@FXML
+    void searchMedecin(KeyEvent event) {
+		List<Medecin> list=new ArrayList<>();
+	    this.medecinDao=new MedecinDAOimpl();
+	    list=medecinDao.searchMdc(searchField.getText());
+	    this.medecinlist=FXCollections.observableArrayList(list);
+	    tableView.setItems(medecinlist);
+    }
+	
+	@FXML
+	public void clearSearchField()throws Exception {
+		searchField.setText("");
+		LoadTable();
+	}
+	
+	@FXML
+	public void insertLoad(Medecin medecin) throws Exception {
+		List<Medecin> list=new ArrayList<>();
+		list.add(medecin);
+		this.medecinlist=FXCollections.observableArrayList(list);
+		tableView.setItems(null);
+		tableView.setItems(medecinlist);
+		System.out.println("check 1111");
+		LoadTable();
+	    tableView.refresh();
+		System.out.println("check 22222");
+	}
+
+
+	
+	
+	
+	
 
 	
 	@FXML
-	public void update(ActionEvent e) {
+	public void update(ActionEvent e) throws Exception {
 		medecinDao=new MedecinDAOimpl();
 		
 		String sexe=null;
@@ -254,6 +289,7 @@ public class MedecinController implements Initializable{
 		
 		if(status>0) {
 			tabPane.getSelectionModel().select(medecinTab);
+			LoadTable();
 	    		Alert alert=new Alert(AlertType.INFORMATION);
 	    		alert.setTitle("modifier medecin ");
 	    		alert.setContentText("medecin est modifier");
@@ -270,7 +306,7 @@ public class MedecinController implements Initializable{
 	}
 	
 	 @FXML
-	    void insert(ActionEvent event) {
+	    void insert(ActionEvent event) throws Exception {
 		 medecinDao=new MedecinDAOimpl();
 		 boolean serv=false;
 		 String age0=ageField2.getText();
@@ -300,6 +336,8 @@ public class MedecinController implements Initializable{
 			
 			int status=medecinDao.addMedecin(medecin);
 			if(status>0) {
+				tabPane.getSelectionModel().select(medecinTab);
+				this.insertLoad(medecin);
 	    		Alert alert=new Alert(AlertType.INFORMATION);
 	    		alert.setTitle("ajouter medecin ");
 	    		alert.setContentText("medecin est ahoute");
@@ -315,12 +353,11 @@ public class MedecinController implements Initializable{
 
 	    }
 	
-	 public void Search() {
-		 
-	 }
-	
-	
 	 
+	  @FXML
+	    void goToAjouter(ActionEvent event) {
+		  tabPane.getSelectionModel().select(ajouterTab);
+	    }
 	 
 	 
 	 
