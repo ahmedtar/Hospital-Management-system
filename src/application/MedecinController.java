@@ -111,7 +111,7 @@ public class MedecinController implements Initializable{
 		cneCol.setCellValueFactory(new PropertyValueFactory<>("cne"));
 		nomCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
 		prenomCol.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-		sexeCol.setCellValueFactory(new PropertyValueFactory<>("sex"));
+		sexeCol.setCellValueFactory(new PropertyValueFactory<>("sexe"));
 		AgeCol.setCellValueFactory(new PropertyValueFactory<>("age"));
 		numCol.setCellValueFactory(new PropertyValueFactory<>("numTel"));
 		adressCol.setCellValueFactory(new PropertyValueFactory<>("adresse"));

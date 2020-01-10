@@ -148,18 +148,14 @@ public class MedecinDAOimpl implements  MedecinDAO {
 	}
 	
 
-<<<<<<< HEAD
 public List<Medecin> searchMdc(String str) {
-		ConnectionDB con=new ConnectionDB();
-=======
-public List<Medecin> searhMdc(String colomn,String str) {
 		ConnectionDB con=null;
 		try {
 			con = new ConnectionDB();
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
->>>>>>> refs/remotes/origin/master
+		
 		List<Medecin> tmplistmdc=new ArrayList<>();
 		PreparedStatement stm=null;
 		ResultSet rslt=null;
@@ -245,13 +241,13 @@ public List<Medecin> searhInServiceMdcs(boolean m) {
 			String prenom=rslt.getString("prenom");
 			String cne=rslt.getString("cne");
 			String sexe=rslt.getString("sexe");
+			
 			int age=rslt.getInt("age");
 			String numTel=rslt.getString("numTel");
 			String adresse=rslt.getString("adresse");
 			String specialisation=rslt.getString("specialisation");
 			boolean enservice=rslt.getBoolean("enservice");
 			tmpmdc= new Medecin(id,nom, prenom, cne, sexe, age, numTel, adresse, specialisation, enservice);
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
