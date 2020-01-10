@@ -10,7 +10,12 @@ public class MedecinDAOimpl implements  MedecinDAO {
 	
 	
 	public int addMedecin(Medecin mdc){
-		ConnectionDB con=new ConnectionDB();
+		ConnectionDB con=null;
+		try {
+			con = new ConnectionDB();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
 		PreparedStatement stm = null;
 		
 		int r=0;
@@ -43,7 +48,12 @@ public class MedecinDAOimpl implements  MedecinDAO {
 	
 	
 	public int updateMedecin(Medecin mdc){
-		ConnectionDB con=new ConnectionDB();
+		ConnectionDB con=null;
+		try {
+			con = new ConnectionDB();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
 		PreparedStatement stm = null;
         int r=0;
 		try {
@@ -78,7 +88,12 @@ public class MedecinDAOimpl implements  MedecinDAO {
 	
 	
 	public int deleteMedecin(Medecin mdc){
-		ConnectionDB con=new ConnectionDB();
+		ConnectionDB con=null;
+		try {
+			con = new ConnectionDB();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
 		PreparedStatement stm = null;
         int r=0;
 		try {
@@ -107,7 +122,12 @@ public class MedecinDAOimpl implements  MedecinDAO {
 	
 	
 	public List<Medecin> getAllMdcs(){
-		ConnectionDB con=new ConnectionDB();
+		ConnectionDB con=null;
+		try {
+			con = new ConnectionDB();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
 		List<Medecin> tmplistmdc=new ArrayList<>();
 		Statement stm=null;
 		ResultSet rslt=null;
@@ -128,8 +148,18 @@ public class MedecinDAOimpl implements  MedecinDAO {
 	}
 	
 
+<<<<<<< HEAD
 public List<Medecin> searchMdc(String str) {
 		ConnectionDB con=new ConnectionDB();
+=======
+public List<Medecin> searhMdc(String colomn,String str) {
+		ConnectionDB con=null;
+		try {
+			con = new ConnectionDB();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+>>>>>>> refs/remotes/origin/master
 		List<Medecin> tmplistmdc=new ArrayList<>();
 		PreparedStatement stm=null;
 		ResultSet rslt=null;
@@ -166,7 +196,12 @@ public List<Medecin> searchMdc(String str) {
 
 	
 public List<Medecin> searhInServiceMdcs(boolean m) {
-	ConnectionDB con=new ConnectionDB();
+	ConnectionDB con=null;
+	try {
+		con = new ConnectionDB();
+	} catch (SQLException e1) {
+		e1.printStackTrace();
+	}
 	List<Medecin> tmplistmdc=new ArrayList<>();
 	PreparedStatement stm=null;
 	ResultSet rslt=null;

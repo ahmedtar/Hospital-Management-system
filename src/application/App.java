@@ -18,9 +18,10 @@ public class App extends Application {
 			Image image=new Image("/application/imgs/logo.png");
 			primaryStage.getIcons().add(image);
 			primaryStage.setTitle("Hospital Management System");
+			//primaryStage.initStyle(StageStyle.UNDECORATED);
 			primaryStage.setScene(scene);
 			primaryStage.show();
-		} catch(Exception e) { 
+		} catch(Exception e) {
 			e.printStackTrace();
 		}
 	}

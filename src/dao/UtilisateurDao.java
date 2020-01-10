@@ -12,7 +12,7 @@ public interface UtilisateurDao {
 	
 	int AddUtilisateur(Utilisateur u);
 	int deleteUtilisateur(int id);
-	int login(String login,String password);
+	int login(String login,String password)throws SQLException;
 	int updateUtilisateur(Utilisateur utilisateur) throws SQLException;
 	List<Utilisateur> getAllUtilisateurs() throws Exception;
 }

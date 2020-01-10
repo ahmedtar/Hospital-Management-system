@@ -1,0 +1,24 @@
+.room {
+	-fx-border-color:  #009eff;
+	-fx-border-style: solid ;
+	-fx-border-width: 1px;
+}
+
+.roomNum{
+	-fx-border-color: #2b00ff;
+	-fx-border-style: solid ;
+	-fx-border-width: 1px;
+	-fx-border-radius: 50%;
+	
+}
+
+.bed {
+	-fx-background-image: url("../imgs/BedEmpty.png") ;
+	-fx-background-size: 150px 70px;
+	-fx-background-repeat: no-repeat ;
+	-fx-background-position: center ;
+}
+
+.bedReserved {
+	-fx-background-image: url("../imgs/BedBlue.png") ;
+}
