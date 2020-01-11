@@ -12,5 +12,7 @@ public interface LitDao {
 	List<Lit> searchLitByChambre(int chambreId) throws Exception;
 	
 	Lit searchLitById(int id) throws Exception;
+	ObservableList<Lit> getLitsEnService() throws Exception;
+	public ObservableList<Lit> getLitsHorsService() throws Exception;
 
 }
