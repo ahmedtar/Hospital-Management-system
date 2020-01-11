@@ -276,12 +276,12 @@
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <DatePicker fx:id="datePickerE" editable="false" prefHeight="25.0" prefWidth="115.0" styleClass="datepicker" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+                  <DatePicker fx:id="datePickerE" editable="false" prefHeight="25.0" prefWidth="115.0" styleClass="non-editable-datepicker" stylesheets="@Style/lit.css" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
                   </DatePicker>
-                  <DatePicker fx:id="datePickerS" editable="false" styleClass="datepicker" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+                  <DatePicker fx:id="datePickerS" editable="false" styleClass="non-editable-datepicker" stylesheets="@Style/lit.css" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>

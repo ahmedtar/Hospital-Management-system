@@ -1,16 +1,25 @@
 package application;
 
+import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import model.Patient;
 
 public class LitPanelController {
-     
+	
+	  
+	
+	
+	
+	
+
 	//UpdatePane Input List
 	   @FXML public TextField idField;
 	   @FXML  public TextField litField;
@@ -30,10 +39,16 @@ public class LitPanelController {
 	   @FXML public TextField medecinField;
 	   
 	   
+	   public void setLit(int litId) {
+		   litField.setText(""+litId);
+	   }
+	   
+	
 	   public void setUpdateInputList(Patient p) {
+		    
 			idField.setText(""+p.getId());
 			
-		    litField.setText(""+p.getLit());
+		    litField.setText(""+p.getLit().getId());
 			cneField.setText(p.getCne());
 			nomField.setText(p.getNom());
 			prenomField.setText(p.getPrenom());
