@@ -128,6 +128,7 @@ private Lit  convertRowToLit(ResultSet myRs) throws Exception {
 	    
 		PatientDaoImpl Pdao=new PatientDaoImpl();
 		int id = myRs.getInt("id");
+		System.out.println(id);
 		boolean enService = myRs.getBoolean("enService");
 		int chambreId=myRs.getInt("chambre");
 		
