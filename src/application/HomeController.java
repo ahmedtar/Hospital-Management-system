@@ -10,7 +10,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -62,28 +61,6 @@ public class HomeController implements Initializable{
 			stage.setX(180);
 			stage.setY(50);
 			stage.show();
-		}
-		
-		@FXML
-		public void changeToChambre(ActionEvent event) throws IOException {
-			Stage stage = new Stage();
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("Patient.fxml"));
-//		    AnchorPane pane=FXMLLoader.load(getClass().getResource("LitPanel.fxml"));
-			
-			Parent pane = (Parent) loader.load();
-			PatientController pCtrl = loader.getController();
-//			litPanel.setLit(p.getLit().getId());
-			pCtrl.tabPane.getSelectionModel().select(pCtrl.LitTabPane);
-			
-			Scene scene=new Scene(pane);
-
-			stage.setScene(scene);
-			stage.setX(0);
-			stage.setY(0);
-			stage.show();
-			
-			
-			
 		}
 	 
 	 @FXML
