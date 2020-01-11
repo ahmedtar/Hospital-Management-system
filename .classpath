@@ -18,6 +18,10 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="C:/Users/User/Desktop/J-Workspace/hospital-management-systeme/lib/jfoenix-8.0.8.jar"/>
+=======
+	<classpathentry kind="lib" path="C:/Users/asus/Desktop/HMS5/hospital-management-systeme/lib/jfoenix-8.0.8.jar"/>
+>>>>>>> fbd2fc3ad3db7af06a1eae745e7337185cd67212
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

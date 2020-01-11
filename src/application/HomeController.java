@@ -18,6 +18,19 @@ import javafx.util.Duration;
 
 public class HomeController implements Initializable{ 
 	
+	
+	 @FXML
+	    void goToUser(ActionEvent event) throws Exception {
+		 AnchorPane pane=FXMLLoader.load(getClass().getResource("Utilisateur.fxml"));
+			Scene scene=new Scene(pane);
+			Stage stage=(Stage) ((Node) event.getSource()).getScene().getWindow();
+			stage.setScene(scene);
+			stage.setX(180);
+			stage.setY(50);
+			stage.show();
+
+	    }
+	 
 	 @FXML
 		public void exit(ActionEvent event) throws IOException {
 			AnchorPane pane=FXMLLoader.load(getClass().getResource("Sample.fxml"));
