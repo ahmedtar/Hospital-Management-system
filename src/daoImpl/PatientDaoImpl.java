@@ -381,14 +381,11 @@ private Patient  convertRowToPatient(ResultSet myRs) throws Exception {
 	tempPatient.setId(id);
 	tempPatient.setDateSortie(dateSortie);
 	
-	// Il faut  Importer les arguments de lits du DataBase
-	Lit lit = new Lit();
-	lit.setId(litId);
 	
 	// Il faut  Importer les arguments de medecin du DataBase
 	Medecin medecin = new Medecin(medecinId);
 	
-	tempPatient.setLit(lit);
+	tempPatient.setLit(new LitDaoImpl().searchLitById(litId));
 	tempPatient.setMedecin(medecin);
 	
 	return tempPatient;

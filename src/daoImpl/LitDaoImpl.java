@@ -137,7 +137,7 @@ private Lit  convertRowToLit(ResultSet myRs) throws Exception {
 	//	Chambre chambre=dao.searchChambre(chambreId);
 		
 		
-		Lit lit=new Lit(id, enService, Pdao.searchPatientByLit(id) , null);
+		Lit lit=new Lit(id, enService , null);
 		return lit;
 
 	 }
@@ -145,7 +145,7 @@ private Lit  convertRowToLit(ResultSet myRs) throws Exception {
 public static void main(String[] args) throws Exception {
 	LitDaoImpl dao = new LitDaoImpl();
 	
-	System.out.println(new LitDaoImpl().searchLit(1));
+	System.out.println(new LitDaoImpl().searchLitById(1).getId());
 }
 
 // ----------------------FIN -------------------------
