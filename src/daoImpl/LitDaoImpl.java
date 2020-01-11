@@ -202,6 +202,7 @@ public class LitDaoImpl implements LitDao {
 	    
 		PatientDaoImpl Pdao=new PatientDaoImpl();
 		int id = myRs.getInt("id");
+		System.out.println(id);
 		boolean enService = myRs.getBoolean("enService");
 		int chambreId=myRs.getInt("chambre");
 		
