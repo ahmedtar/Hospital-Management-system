@@ -17,7 +17,25 @@ public class Lit {
 		this.chambre = chambre;
 	}
 	
-	//Constructeurs ajourtés
+	
+	
+	@Override
+	public String toString() {
+		return "Lit [id=" + id + ", enService=" + enService + ", patient=" + patient.getNom() +  "]";
+	}
+
+
+
+	public Lit(int id, boolean enService, Chambre chambre) {
+		super();
+		this.id = id;
+		this.enService = enService;
+		this.chambre = chambre;
+	}
+
+
+
+	//Constructeurs ajoutés
 	public Lit() {
 		super();
 	}

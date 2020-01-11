@@ -23,7 +23,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PatientController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PatientController">
    <children>
       <TabPane fx:id="tabPane" prefHeight="685.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="30.0" tabMaxWidth="100.0" tabMinHeight="10.0" tabMinWidth="100.0">
         <tabs>
@@ -491,12 +491,18 @@
                               </Label>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Porte" GridPane.columnIndex="1" />
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="57.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Fenetre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Button fx:id="bed1p" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" styleClass="bed" textAlignment="CENTER" GridPane.columnIndex="2" />
-                              <Button fx:id="bed1f" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <Button fx:id="lit1" alignment="CENTER" cancelButton="true" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="75.0" prefWidth="174.0" styleClass="bed" text="1" textAlignment="CENTER" GridPane.columnIndex="2">
+                                 <font>
+                                    <Font size="1.0" />
+                                 </font></Button>
+                              <Button fx:id="bed1f" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" text="2" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <styleClass>
                                     <String fx:value="bed" />
                                     <String fx:value="bedReserved" />
                                  </styleClass>
+                                 <font>
+                                    <Font size="1.0" />
+                                 </font>
                               </Button>
                            </children>
                         </GridPane>
@@ -518,12 +524,18 @@
                               </Label>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Porte" GridPane.columnIndex="1" />
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="57.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Fenetre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Button fx:id="bed1p1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" styleClass="bed" textAlignment="CENTER" GridPane.columnIndex="2" />
-                              <Button fx:id="bed1f1" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <Button fx:id="bed1p1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" styleClass="bed" text="3" textAlignment="CENTER" GridPane.columnIndex="2">
+                                 <font>
+                                    <Font size="1.0" />
+                                 </font></Button>
+                              <Button fx:id="bed1f1" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" text="4" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <styleClass>
                                     <String fx:value="bed" />
                                     <String fx:value="bedReserved" />
                                  </styleClass>
+                                 <font>
+                                    <Font size="1.0" />
+                                 </font>
                               </Button>
                            </children>
                         </GridPane>
@@ -545,12 +557,18 @@
                               </Label>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Porte" GridPane.columnIndex="1" />
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="57.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Fenetre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Button fx:id="bed1p11" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" styleClass="bed" textAlignment="CENTER" GridPane.columnIndex="2" />
-                              <Button fx:id="bed1f11" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <Button fx:id="bed1p11" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" styleClass="bed" text="5" textAlignment="CENTER" GridPane.columnIndex="2">
+                                 <font>
+                                    <Font size="1.0" />
+                                 </font></Button>
+                              <Button fx:id="bed1f11" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" text="6" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <styleClass>
                                     <String fx:value="bed" />
                                     <String fx:value="bedReserved" />
                                  </styleClass>
+                                 <font>
+                                    <Font size="1.0" />
+                                 </font>
                               </Button>
                            </children>
                         </GridPane>
@@ -572,12 +590,18 @@
                               </Label>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Porte" GridPane.columnIndex="1" />
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="57.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Fenetre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Button fx:id="bed1p111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" styleClass="bed" textAlignment="CENTER" GridPane.columnIndex="2" />
-                              <Button fx:id="bed1f111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <Button fx:id="bed1p111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" styleClass="bed" text="7" textAlignment="CENTER" GridPane.columnIndex="2">
+                                 <font>
+                                    <Font size="1.0" />
+                                 </font></Button>
+                              <Button fx:id="bed1f111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" text="8" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <styleClass>
                                     <String fx:value="bed" />
                                     <String fx:value="bedReserved" />
                                  </styleClass>
+                                 <font>
+                                    <Font size="1.0" />
+                                 </font>
                               </Button>
                            </children>
                         </GridPane>
@@ -599,12 +623,18 @@
                               </Label>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Porte" GridPane.columnIndex="1" />
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="57.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Fenetre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Button fx:id="bed1p1111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" styleClass="bed" textAlignment="CENTER" GridPane.columnIndex="2" />
-                              <Button fx:id="bed1f1111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <Button fx:id="bed1p1111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" styleClass="bed" text="9" textAlignment="CENTER" GridPane.columnIndex="2">
+                                 <font>
+                                    <Font size="1.0" />
+                                 </font></Button>
+                              <Button fx:id="bed1f1111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" text="10" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <styleClass>
                                     <String fx:value="bed" />
                                     <String fx:value="bedReserved" />
                                  </styleClass>
+                                 <font>
+                                    <Font size="1.0" />
+                                 </font>
                               </Button>
                            </children>
                         </GridPane>
@@ -626,12 +656,18 @@
                               </Label>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Porte" GridPane.columnIndex="1" />
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="57.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Fenetre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Button fx:id="bed1p11111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" styleClass="bed" textAlignment="CENTER" GridPane.columnIndex="2" />
-                              <Button fx:id="bed1f11111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <Button fx:id="bed1p11111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" styleClass="bed" text="11" textAlignment="CENTER" GridPane.columnIndex="2">
+                                 <font>
+                                    <Font size="1.0" />
+                                 </font></Button>
+                              <Button fx:id="bed1f11111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" text="12" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <styleClass>
                                     <String fx:value="bed" />
                                     <String fx:value="bedReserved" />
                                  </styleClass>
+                                 <font>
+                                    <Font size="1.0" />
+                                 </font>
                               </Button>
                            </children>
                         </GridPane>
@@ -653,12 +689,18 @@
                               </Label>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Porte" GridPane.columnIndex="1" />
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="57.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Fenetre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Button fx:id="bed1p111111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" styleClass="bed" textAlignment="CENTER" GridPane.columnIndex="2" />
-                              <Button fx:id="bed1f111111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <Button fx:id="bed1p111111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" styleClass="bed" text="13" textAlignment="CENTER" GridPane.columnIndex="2">
+                                 <font>
+                                    <Font size="1.0" />
+                                 </font></Button>
+                              <Button fx:id="bed1f111111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" text="14" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <styleClass>
                                     <String fx:value="bed" />
                                     <String fx:value="bedReserved" />
                                  </styleClass>
+                                 <font>
+                                    <Font size="1.0" />
+                                 </font>
                               </Button>
                            </children>
                         </GridPane>
@@ -680,12 +722,18 @@
                               </Label>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Porte" GridPane.columnIndex="1" />
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="57.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Fenetre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Button fx:id="bed1p1111111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" styleClass="bed" textAlignment="CENTER" GridPane.columnIndex="2" />
-                              <Button fx:id="bed1f1111111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <Button fx:id="bed1p1111111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" styleClass="bed" text="15" textAlignment="CENTER" GridPane.columnIndex="2">
+                                 <font>
+                                    <Font size="1.0" />
+                                 </font></Button>
+                              <Button fx:id="bed1f1111111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" text="16" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <styleClass>
                                     <String fx:value="bed" />
                                     <String fx:value="bedReserved" />
                                  </styleClass>
+                                 <font>
+                                    <Font size="1.0" />
+                                 </font>
                               </Button>
                            </children>
                         </GridPane>
@@ -707,12 +755,18 @@
                               </Label>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Porte" GridPane.columnIndex="1" />
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="57.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Fenetre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Button fx:id="bed1p11111111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" styleClass="bed" textAlignment="CENTER" GridPane.columnIndex="2" />
-                              <Button fx:id="bed1f11111111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <Button fx:id="bed1p11111111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" styleClass="bed" text="17" textAlignment="CENTER" GridPane.columnIndex="2">
+                                 <font>
+                                    <Font size="1.0" />
+                                 </font></Button>
+                              <Button fx:id="bed1f11111111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" text="18" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <styleClass>
                                     <String fx:value="bed" />
                                     <String fx:value="bedReserved" />
                                  </styleClass>
+                                 <font>
+                                    <Font size="1.0" />
+                                 </font>
                               </Button>
                            </children>
                         </GridPane>
@@ -734,12 +788,18 @@
                               </Label>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Porte" GridPane.columnIndex="1" />
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="57.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Fenetre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Button fx:id="bed1p111111111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" styleClass="bed" textAlignment="CENTER" GridPane.columnIndex="2" />
-                              <Button fx:id="bed1f111111111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <Button fx:id="bed1p111111111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" styleClass="bed" text="19" textAlignment="CENTER" GridPane.columnIndex="2">
+                                 <font>
+                                    <Font size="1.0" />
+                                 </font></Button>
+                              <Button fx:id="bed1f111111111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" text="20" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <styleClass>
                                     <String fx:value="bed" />
                                     <String fx:value="bedReserved" />
                                  </styleClass>
+                                 <font>
+                                    <Font size="1.0" />
+                                 </font>
                               </Button>
                            </children>
                         </GridPane>
@@ -761,12 +821,18 @@
                               </Label>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Porte" GridPane.columnIndex="1" />
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="57.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Fenetre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Button fx:id="bed1p1111111111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" styleClass="bed" textAlignment="CENTER" GridPane.columnIndex="2" />
-                              <Button fx:id="bed1f1111111111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <Button fx:id="bed1p1111111111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" styleClass="bed" text="21" textAlignment="CENTER" GridPane.columnIndex="2">
+                                 <font>
+                                    <Font size="1.0" />
+                                 </font></Button>
+                              <Button fx:id="bed1f1111111111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" text="22" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <styleClass>
                                     <String fx:value="bed" />
                                     <String fx:value="bedReserved" />
                                  </styleClass>
+                                 <font>
+                                    <Font size="1.0" />
+                                 </font>
                               </Button>
                            </children>
                         </GridPane>
@@ -788,12 +854,18 @@
                               </Label>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Porte" GridPane.columnIndex="1" />
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="57.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Fenetre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Button fx:id="bed1p11111111111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" styleClass="bed" textAlignment="CENTER" GridPane.columnIndex="2" />
-                              <Button fx:id="bed1f11111111111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <Button fx:id="bed1p11111111111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" styleClass="bed" text="23" textAlignment="CENTER" GridPane.columnIndex="2">
+                                 <font>
+                                    <Font size="1.0" />
+                                 </font></Button>
+                              <Button fx:id="bed1f11111111111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" text="24" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <styleClass>
                                     <String fx:value="bed" />
                                     <String fx:value="bedReserved" />
                                  </styleClass>
+                                 <font>
+                                    <Font size="1.0" />
+                                 </font>
                               </Button>
                            </children>
                         </GridPane>

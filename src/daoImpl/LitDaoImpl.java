@@ -7,9 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dao.LitDao;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import model.Chambre;
 import model.Lit;
-import model.Patient;
 
 
 public class LitDaoImpl implements LitDao {
@@ -17,26 +18,28 @@ public class LitDaoImpl implements LitDao {
 	
 	
 	@Override
-	public List<Lit> searchLit(int id) throws Exception {
+	public ObservableList<Lit> searchLit(int id) throws Exception {
 		
 		ConnectionDB con=new ConnectionDB();
-		List<Lit> list = new ArrayList<>();
+		ObservableList<Lit> list = FXCollections.observableArrayList();
 
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
 
 		try {
 			
-			myStmt = con.getCon().prepareStatement("select * from lit where id=?  order by id");
+			myStmt = con.getCon().prepareStatement("select * from lit where id like ?");
 			
-			myStmt.setInt(1, id);
+			myStmt.setInt(1,id);
 			
 			myRs = myStmt.executeQuery();
 			
-			while (myRs.next()) {
+			myRs.next();
+			
 				Lit tempLit= convertRowToLit(myRs);
 				list.add(tempLit);
-			}
+			
+			
 			
 			
 		}
@@ -47,6 +50,39 @@ public class LitDaoImpl implements LitDao {
 			con.close();
 		}
 		return list;
+
+	}
+	
+	@Override
+	public Lit searchLitById(int id) throws Exception {
+		
+		ConnectionDB con=new ConnectionDB();
+		Lit lit = new Lit();
+
+		PreparedStatement myStmt = null;
+		ResultSet myRs = null;
+
+		try {
+			
+			myStmt = con.getCon().prepareStatement("select * from lit where id=?");
+			
+			myStmt.setInt(1,id);
+			
+			myRs = myStmt.executeQuery();
+			
+			myRs.next();
+			 
+			
+			lit = convertRowToLit(myRs);
+			
+		}
+		 catch (SQLException e) {
+				e.printStackTrace();
+			}
+		finally {
+			con.close();
+		}
+		return lit;
 
 	}
 	
@@ -89,21 +125,30 @@ public class LitDaoImpl implements LitDao {
 	
 private Lit  convertRowToLit(ResultSet myRs) throws Exception {
 	
-	ChambreDaoImpl dao=new ChambreDaoImpl();
+	    
 		PatientDaoImpl Pdao=new PatientDaoImpl();
 		int id = myRs.getInt("id");
 		boolean enService = myRs.getBoolean("enService");
 		int chambreId=myRs.getInt("chambre");
 		
 		
-		Patient patient=Pdao.searchPatientByLit(id);
+//		Patient patient=Pdao.searchPatientByLit(id);
+		ChambreDaoImpl dao=new ChambreDaoImpl();
+	//	Chambre chambre=dao.searchChambre(chambreId);
 		
-		Chambre chambre=dao.searchChambre(chambreId);
 		
-		
-		Lit lit=new Lit(id, enService, patient, chambre);
+		Lit lit=new Lit(id, enService, Pdao.searchPatientByLit(id) , null);
 		return lit;
 
 	 }
+
+public static void main(String[] args) throws Exception {
+	LitDaoImpl dao = new LitDaoImpl();
 	
+	System.out.println(new LitDaoImpl().searchLit(1));
 }
+
+// ----------------------FIN -------------------------
+}
+
+

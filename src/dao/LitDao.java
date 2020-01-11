@@ -2,12 +2,15 @@ package dao;
 
 import java.util.List;
 
+import javafx.collections.ObservableList;
 import model.Lit;
 
 public interface LitDao {
 
-	List<Lit> searchLit(int id) throws Exception;
+	ObservableList<Lit> searchLit(int id) throws Exception;
 
 	List<Lit> searchLitByChambre(int chambreId) throws Exception;
+	
+	Lit searchLitById(int id) throws Exception;
 
 }

@@ -27,7 +27,7 @@ public int addPatient(Patient patient) throws SQLException   {
 		// ************Foreign Key Problem************** with MEDECIN and LIT
 		myStmt = con.getCon().prepareStatement("insert into patient"
 				+ " (nom, prenom, cne, age,dateEntree,numTel,sexe,adresse,maladie,dateSortie,lit,medecin )"
-				+ " values (?, ?, ?, ?, ?, ?, ?, ?, ? ,?,null,null)");
+				+ " values (?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?,null)");
 		
 		
 		myStmt.setString(1, patient.getNom());
@@ -40,7 +40,7 @@ public int addPatient(Patient patient) throws SQLException   {
 		myStmt.setString(8, patient.getAdresse());
 		myStmt.setString(9, patient.getMaladie());
 		myStmt.setString(10, patient.getDateSortie());
-//		myStmt.setInt(11, patient.getLit().getId());
+		myStmt.setInt(11, patient.getLit().getId());
 //		myStmt.setInt(12, patient.getMedecin().getId());
 		
 		
@@ -65,8 +65,9 @@ public int updatePatient(Patient patient) throws SQLException {
 		// prepared statement
 		myStmt = con.getCon().prepareStatement("update patient"
 				+ " set nom=?, prenom=?, cne=?, age=?,dateEntree=?,numTel=?,sexe=?,"
-				+ "adresse=?,maladie=?"
-//				+ ",lit=?,medecin=?"  // Foreign Key Problem
+				+ " adresse=?,maladie=?"
+				+ ",lit=?"
+//				+ " medecin=?"  // Foreign Key Problem
 				+ " where id=?");
 		
 		
@@ -79,9 +80,9 @@ public int updatePatient(Patient patient) throws SQLException {
 		myStmt.setString(7, patient.getSexe());
 		myStmt.setString(8, patient.getAdresse());
 		myStmt.setString(9, patient.getMaladie());
-//		myStmt.setInt(10, patient.getLit().getId());
+		myStmt.setInt(10, patient.getLit().getId());
 //		myStmt.setInt(11, patient.getMedecin().getId());
-		myStmt.setInt(10, patient.getId());
+		myStmt.setInt(11, patient.getId());
 		r=myStmt.executeUpdate();			
 	}
 	 catch (SQLException e) {
@@ -203,6 +204,9 @@ public ObservableList<Patient> searchPatient(String n) throws Exception{
 	
 	 
 }
+
+
+
 
 
 
@@ -369,14 +373,23 @@ private Patient  convertRowToPatient(ResultSet myRs) throws Exception {
 	String sexe = myRs.getString("sexe");
 	String adresse = myRs.getString("adresse");
 	String maladie = myRs.getString("maladie");
-	//int litId=myRs.getInt("lit");
-	//int medecinId=myRs.getInt("medecin");
+	int litId=myRs.getInt("lit");
+	int medecinId=myRs.getInt("medecin");
+	
+
 	Patient tempPatient = new Patient(nom, prenom, cne, sexe, age, numTel, adresse, maladie, dateEntree);
 	tempPatient.setId(id);
 	tempPatient.setDateSortie(dateSortie);
 	
-	//tempPatient.setLit();
-	tempPatient.setMedecin(null);
+	// Il faut  Importer les arguments de lits du DataBase
+	Lit lit = new Lit();
+	lit.setId(litId);
+	
+	// Il faut  Importer les arguments de medecin du DataBase
+	Medecin medecin = new Medecin(medecinId);
+	
+	tempPatient.setLit(lit);
+	tempPatient.setMedecin(medecin);
 	
 	return tempPatient;
 
@@ -386,11 +399,10 @@ private Patient  convertRowToPatient(ResultSet myRs) throws Exception {
 
 public static void main(String[] args) throws Exception{
 	PatientDaoImpl dao = new PatientDaoImpl();
-	Patient p = new Patient("test", "test", "test", "test", 0, "test", "test", "test", "20/20/2020");
-//	Lit l = ;
-	p.setLit(new Lit(1));
 	
-	dao.addPatient(p);
+//	Lit l = ;
+	
+	System.out.println(dao.searchPatient("ahmed").get(0).getId());
 	
 }
 

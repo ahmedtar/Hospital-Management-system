@@ -10,6 +10,13 @@ public abstract class Personne {
 	private String adresse;
 	
 	
+    
+	
+	public Personne() {
+		super();
+	}
+
+
 
 	public Personne(String nom, String prenom, String cne, String sexe, int age, String numTel, String adresse) {
 		super();

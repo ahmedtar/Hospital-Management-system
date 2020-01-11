@@ -7,6 +7,18 @@ public class Medecin extends Personne {
 	private boolean enservice;
 	
 
+	
+
+	
+
+
+
+	public Medecin(int id) {
+		super();
+		this.id = id;
+	}
+
+
 
 	public Medecin(int id,String nom, String prenom,String cne, String sex, int age, String numTel,
 			String adresse,String specialisation,boolean enservice) {

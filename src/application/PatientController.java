@@ -15,12 +15,15 @@ import com.mysql.cj.result.LocalDateValueFactory;
 //Classes Import
 import dao.PatientDao;
 import model.Patient;
+import daoImpl.LitDaoImpl;
 import daoImpl.PatientDaoImpl;
 import model.Lit;
 
 
 //javaFX Import
 import javafx.beans.property.Property;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -36,6 +39,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
@@ -82,7 +86,7 @@ public class PatientController implements Initializable{
 	// TableView & Columns
 	  @FXML public TableView<Patient> tableView;
 	  @FXML public TableColumn<Patient,Integer> idCol;
-	  @FXML public TableColumn<Patient, Lit> litCol;	   
+	  @FXML public TableColumn<Patient, String> litCol;	   
 	  @FXML public TableColumn<Patient,String> cneCol;
 	  @FXML public TableColumn<Patient,String> nomCol;
 	  @FXML public TableColumn<Patient,String> prenomCol;
@@ -93,7 +97,7 @@ public class PatientController implements Initializable{
 	  @FXML public TableColumn<Patient,String> maladieCol;
 	  @FXML public TableColumn<Patient,Date> entreeCOl;
 	  @FXML public TableColumn<Patient,Date> sortieCol;
-	  @FXML public TableColumn<Patient,Medecin> medecinCol;
+	  @FXML public TableColumn<Patient,String> medecinCol;
 	  
 	  @FXML public TableColumn<Patient,String> editCol;
 	  
@@ -131,8 +135,8 @@ public class PatientController implements Initializable{
 private void populateTableView() {
 		
 		// Initialising the main Column
+//	    litCol.setCellValueFactory(new PropertyValueFactory<Patient, Integer>("litId"));
 	    idCol.setCellValueFactory(new PropertyValueFactory<Patient, Integer>("id"));
-	    litCol.setCellValueFactory(new PropertyValueFactory<Patient, Lit>("lit"));
 		cneCol.setCellValueFactory(new PropertyValueFactory<Patient, String>("cne"));
 		nomCol.setCellValueFactory(new PropertyValueFactory<Patient, String>("nom"));
 		prenomCol.setCellValueFactory(new PropertyValueFactory<Patient, String>("prenom"));
@@ -143,7 +147,25 @@ private void populateTableView() {
 		maladieCol.setCellValueFactory(new PropertyValueFactory<Patient, String>("maladie"));
 		entreeCOl.setCellValueFactory(new PropertyValueFactory<Patient, Date>("dateEntree"));
 		sortieCol.setCellValueFactory(new PropertyValueFactory<Patient, Date>("dateSortie"));
-		medecinCol.setCellValueFactory(new PropertyValueFactory<Patient, Medecin>("medecin"));
+//		medecinCol.setCellValueFactory(new PropertyValueFactory<Patient, Medecin>("medecin"));
+		
+		
+		litCol.setCellValueFactory(new Callback<CellDataFeatures<Patient,String> , ObservableValue<String>>(){
+
+            @Override
+            public ObservableValue<String> call(CellDataFeatures<Patient, String> param) {
+                return new SimpleStringProperty(""+param.getValue().getLit().getId());
+            }
+        });
+		
+		medecinCol.setCellValueFactory(new Callback<CellDataFeatures<Patient,String> , ObservableValue<String>>(){
+
+            @Override
+            public ObservableValue<String> call(CellDataFeatures<Patient, String> param) {
+                return new SimpleStringProperty(param.getValue().getMedecin().getNom()+" "
+                		                        +param.getValue().getMedecin().getPrenom());
+            }
+        });
 		
 		//Adding the Special cells
         Callback<TableColumn<Patient, String>, TableCell<Patient, String>> cellFactory=(param) -> {
@@ -178,32 +200,7 @@ private void populateTableView() {
 								
 			    			   
 								
-							   idLabel.setText(""+p.getId());
-								
-							    litField.setText(""+p.getLit());
-								cneField.setText(p.getCne());
-								nomField.setText(p.getNom());
-								prenomField.setText(p.getPrenom());
-								String sexe = p.getSexe();
-								if(sexe.equals("Homme")) {
-									hommeRadio.setSelected(true);
-								}
-								else if(sexe.equals("Femme")) {
-									femmeRadio.setSelected(true);
-								}
-								else {
-									hommeRadio.setSelected(false);
-									femmeRadio.setSelected(false);
-								}
-								
-								ageField.setText(""+p.getAge());
-								teleField.setText(p.getNumTel());
-								adressField.setText(p.getAdresse());
-								maladieField.setText(p.getMaladie());
-								
-								DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-								datePickerE.setValue(LocalDate.parse(p.getDateEntree(), formatter));
-								datePickerS.setValue(LocalDate.parse(p.getDateSortie(), formatter));
+							  setUpdateInputList(p);
 								
 //								medecinField.setText(""+p.getMedecin());
 			    		       
@@ -255,6 +252,8 @@ private void populateTableView() {
 			    		   setText(null);
 			    	   }
 			    }
+
+				
 			};
 
 		 return cell;
@@ -270,6 +269,38 @@ private void populateTableView() {
 		}
 	
 	}
+
+
+
+private void setUpdateInputList(Patient p) {
+	idLabel.setText(""+p.getId());
+	
+    litField.setText(""+p.getLit().getId());
+	cneField.setText(p.getCne());
+	nomField.setText(p.getNom());
+	prenomField.setText(p.getPrenom());
+	String sexe = p.getSexe();
+	if(sexe.equals("Homme")) {
+		hommeRadio.setSelected(true);
+	}
+	else if(sexe.equals("Femme")) {
+		femmeRadio.setSelected(true);
+	}
+	else {
+		hommeRadio.setSelected(false);
+		femmeRadio.setSelected(false);
+	}
+	
+	ageField.setText(""+p.getAge());
+	teleField.setText(p.getNumTel());
+	adressField.setText(p.getAdresse());
+	maladieField.setText(p.getMaladie());
+	
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	datePickerE.setValue(LocalDate.parse(p.getDateEntree(), formatter));
+	datePickerS.setValue(LocalDate.parse(p.getDateSortie(), formatter));
+	
+}
 
 
 @FXML
@@ -378,6 +409,7 @@ public Patient patientToEdit;
    	String numTel=teleField.getText();
    	String adress=adressField.getText();
    	String maladie=maladieField.getText();
+   
    	
    	
  // ************Foreign Key Problem**************
@@ -390,7 +422,7 @@ public Patient patientToEdit;
    	//Create and Insert New Patient
    	Patient patient=new Patient( nom, prenom, cne , sexe, age, numTel, adress, maladie, datePickerE_str);
    	  // ************Foreign Key Problem**************
-//   	patient.setLit(new Lit(Integer.parseInt(lit)));
+   	    patient.setLit(new Lit(Integer.parseInt(lit)));
 //   	patient.setMedecin(null);
     	patient.setDateSortie(datePickerS_str);
 //   	patient.setId(id);
@@ -467,7 +499,7 @@ public Patient patientToEdit;
   	//Create and Insert New Patient
   	Patient patient=new Patient( nom, prenom, cne , sexe, age, numTel, adress, maladie, datePickerE_str);
   	  // ************Foreign Key Problem**************
-//  	patient.setLit(new Lit(Integer.parseInt(lit)));
+  	patient.setLit(new Lit(Integer.parseInt(lit)));
 //  	patient.setMedecin(null);
    	patient.setDateSortie(datePickerS_str);
   	patient.setId(Integer.parseInt(idLabel.getText()));
@@ -511,12 +543,70 @@ public Patient patientToEdit;
    
    @FXML
    public void goToPatientTabPane() {
+
 	   tabPane.getSelectionModel().select(PatientTabPane);
 	   updateGridBtn.setVisible(false);
 	   insertBtn.setVisible(true);
 	   UpdateTabPane.setText("Ajouter");
    }
 
+   
+// +++++++++++++++++++++++++++++++++++++++ LIT TABPANE +++++++++++++++++++++++++++++++++++
+   
+   @FXML Button lit1 = new Button();
+   @FXML Button lit2 = new Button();
+   @FXML Button lit3 = new Button();
+   @FXML Button lit4 = new Button();
+   @FXML Button lit5 = new Button();
+   @FXML Button lit6 = new Button();
+   @FXML Button lit7 = new Button();
+   @FXML Button lit8 = new Button();
+   @FXML Button lit9 = new Button();
+   @FXML Button lit10 = new Button();
+   @FXML Button lit11 = new Button();
+   @FXML Button lit12 = new Button();
+   @FXML Button lit13 = new Button();
+   @FXML Button lit14 = new Button();
+   @FXML Button lit15 = new Button();
+   @FXML Button lit16 = new Button();
+   @FXML Button lit17 = new Button();
+   @FXML Button lit18 = new Button();
+   @FXML Button lit19 = new Button();
+   @FXML Button lit20 = new Button();
+   @FXML Button lit21 = new Button();
+   @FXML Button lit22 = new Button();
+   @FXML Button lit23 = new Button();
+   @FXML Button lit24  = new Button();
+   
+   @FXML
+   public void openLitPanel(ActionEvent event) throws Exception{
+	    Button b = (Button) event.getSource();
+		int litId = Integer.parseInt(b.getText());
+		
+		LitDaoImpl litDao = new LitDaoImpl();
+		litDao.searchLitById(litId);
+		
+		PatientDaoImpl pDao = new PatientDaoImpl();
+		
+		Patient p = pDao.searchPatientByLit(litId);
+		
+		LitPanelController litPanel = new LitPanelController();
+		
+	    
+		
+		
+	    AnchorPane pane=FXMLLoader.load(getClass().getResource("LitPanel.fxml"));
+		Scene scene=new Scene(pane);
+		Stage stage=new Stage();
+		stage.setScene(scene);
+		stage.setX(500);
+		stage.setY(150);
+		stage.show();
+		
+		litPanel.setUpdateInputList(p);
+		
+		
+   }
 
 // ------------------------------- FIN -------------------------------- 
 }
