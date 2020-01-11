@@ -3,12 +3,15 @@ package application;
 //JAVA Import
 import java.io.IOException;
 import java.net.URL;
+import java.rmi.server.LoaderHandler;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
+
+import javax.swing.ButtonModel;
 
 import com.mysql.cj.result.LocalDateValueFactory;
 
@@ -51,6 +54,8 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.converter.LocalDateStringConverter;
 import javafx.scene.control.Labeled;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -65,10 +70,21 @@ import model.Patient;
 public class PatientController implements Initializable{ 
 	
 	
+	Patient p;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		
 		populateTableView();
+		litBtnsAppend();
+		
+		try {
+			populateLitMenuList();
+			populateLitBtns();
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
 		updateGridBtn.setVisible(false);
 		datePickerE.setValue(LocalDate.now());
 		datePickerS.setValue(LocalDate.now());
@@ -361,15 +377,15 @@ public void insertLoad(Patient patient) throws Exception {
    @FXML public TextField medecinField;
    
    
-   
-   
-   
-   
    @FXML private Button updateBtn;
    @FXML private Button anullerBtn;
    @FXML private GridPane updateGridBtn;
    
-   private PatientDaoImpl patientDao;
+   @FXML private MenuButton litMenuBtn = new MenuButton("Lits");
+   @FXML private ObservableList<MenuItem> litMenuList = FXCollections.observableArrayList();
+   
+   
+private PatientDaoImpl patientDao;
 
 
 public Patient patientToEdit;
@@ -550,6 +566,19 @@ public Patient patientToEdit;
 	   UpdateTabPane.setText("Ajouter");
    }
 
+   public void populateLitMenuList() throws Exception{
+	   
+	   LitDaoImpl litDao = new LitDaoImpl();
+	   
+	   int litMenuSize = litDao.getLitsEnService().size();
+	   
+	   for (int i=0 ; i<litMenuSize ; i++) {
+		   MenuItem litItem = new MenuItem(""+litDao.getLitsEnService().get(i).getId());
+		   litItem.setOnAction(e -> litMenuBtn.setText(litItem.getText()));
+		   litMenuBtn.getItems().add(litItem);
+	   }
+	   
+   }
    
 // +++++++++++++++++++++++++++++++++++++++ LIT TABPANE +++++++++++++++++++++++++++++++++++
    
@@ -578,6 +607,43 @@ public Patient patientToEdit;
    @FXML Button lit23 = new Button();
    @FXML Button lit24  = new Button();
    
+   ObservableList<Button> litBtns = FXCollections.observableArrayList();
+   
+   @FXML 
+   public void litBtnsAppend() {
+	   // Append all btns in the list litBtns
+	   ObservableList<Button> litBtnsTemp = FXCollections.observableArrayList();
+	   litBtnsTemp.addAll(lit1 ,lit2 ,lit3 ,lit4 ,lit5 ,lit6 ,lit7 ,lit8 ,lit9 ,lit10 ,lit11 ,lit12
+			   ,lit13 ,lit14 ,lit15 ,lit16 ,lit17 ,lit18 ,lit19 ,lit20 ,lit21 ,lit22 ,lit23 ,lit24);
+	   litBtns = litBtnsTemp;
+   }
+   
+   ObservableList<Integer> LitExistedIds = FXCollections.observableArrayList();
+   //put the existed Lit in a list LitExistedIds
+   public void updateLitExistedIds() throws Exception {
+	   LoadTable() ;
+	   int n = list.size();
+	   for(int i=0; i<n; i++) {
+		   ObservableList<Integer> LitExistedIdsTemp = FXCollections.observableArrayList();
+		   LitExistedIdsTemp.add(list.get(i).getLit().getId());
+		   LitExistedIds = LitExistedIdsTemp;
+	   }
+   }
+   
+   @FXML
+   public void populateLitBtns() throws Exception {
+	   
+	   updateLitExistedIds();
+	   for(int i=0 ; i<24; i++) {
+		   if(LitExistedIds.contains(i)) {
+			   Button b = litBtns.get(i);
+			   b.setDisable(true);
+			   
+		   }
+		
+	   }
+   }
+   
    @FXML
    public void openLitPanel(ActionEvent event) throws Exception{
 	    Button b = (Button) event.getSource();
@@ -588,25 +654,34 @@ public Patient patientToEdit;
 		
 		PatientDaoImpl pDao = new PatientDaoImpl();
 		
-		Patient p = pDao.searchPatientByLit(litId);
+        p = pDao.searchPatientByLit(litId);
+//		System.out.println("CLICK : "+p.getNom());
 		
-		LitPanelController litPanel = new LitPanelController();
 		
 	    
 		
+		Stage stage = new Stage();
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("LitPanel.fxml"));
+//	    AnchorPane pane=FXMLLoader.load(getClass().getResource("LitPanel.fxml"));
 		
-	    AnchorPane pane=FXMLLoader.load(getClass().getResource("LitPanel.fxml"));
+		Parent pane = (Parent) loader.load();
+		LitPanelController litPanel = loader.getController();
+//		litPanel.setLit(p.getLit().getId());
+		litPanel.setUpdateInputList(p);
+		
 		Scene scene=new Scene(pane);
-		Stage stage=new Stage();
+
 		stage.setScene(scene);
 		stage.setX(500);
 		stage.setY(150);
 		stage.show();
 		
-		litPanel.setUpdateInputList(p);
-		
-		
+//		
+//		
+			
    }
+   
+
 
 // ------------------------------- FIN -------------------------------- 
 }

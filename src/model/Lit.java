@@ -21,7 +21,7 @@ public class Lit {
 	
 	@Override
 	public String toString() {
-		return "Lit [id=" + id + ", enService=" + enService + ", patient=" + patient.getNom() +  "]";
+		return "Lit [id=" + id + ", enService=" + enService + ", ]";
 	}
 
 

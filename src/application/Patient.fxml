@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -117,14 +118,15 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                    <Button id="add" fx:id="insertBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#inserePatient" prefHeight="38.0" prefWidth="148.0" style="-fx-background-radius: 50PX;" stylesheets="@Style/StylePatient.css" text="AJOUTER" textAlignment="CENTER" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="11" GridPane.valignment="CENTER">
+                                    <Button id="add" fx:id="insertBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#inserePatient" prefHeight="38.0" prefWidth="148.0" style="-fx-background-radius: 50PX;" stylesheets="@Style/StylePatient.css" text="AJOUTER" textAlignment="CENTER" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="12" GridPane.valignment="CENTER">
                                        <GridPane.margin>
                                           <Insets bottom="2.0" />
                                        </GridPane.margin>
                                     </Button>
-                                    <GridPane>
+                                    <GridPane GridPane.rowIndex="1">
                                        <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="220.0" minWidth="100.0" prefWidth="67.0" />
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="391.0" minWidth="10.0" prefWidth="383.0" />
@@ -141,14 +143,14 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="litField" promptText="LIT" GridPane.columnIndex="1">
+                                          <MenuButton fx:id="litMenuBtn" minWidth="50.0" mnemonicParsing="false" GridPane.columnIndex="1">
                                              <GridPane.margin>
-                                                <Insets right="20.0" />
+                                                <Insets />
                                              </GridPane.margin>
-                                          </TextField>
+                                          </MenuButton>
                                        </children>
                                     </GridPane>
-                                    <GridPane layoutX="10.0" layoutY="42.0" GridPane.rowIndex="1">
+                                    <GridPane layoutX="10.0" layoutY="42.0" GridPane.rowIndex="2">
                                        <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="220.0" minWidth="100.0" prefWidth="67.0" />
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="391.0" minWidth="10.0" prefWidth="383.0" />
@@ -172,7 +174,7 @@
                                           </TextField>
                                        </children>
                                     </GridPane>
-                                    <GridPane layoutX="10.0" layoutY="10.0" GridPane.rowIndex="2">
+                                    <GridPane layoutX="10.0" layoutY="10.0" GridPane.rowIndex="3">
                                        <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="220.0" minWidth="100.0" prefWidth="67.0" />
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="391.0" minWidth="10.0" prefWidth="383.0" />
@@ -196,7 +198,7 @@
                                           </TextField>
                                        </children>
                                     </GridPane>
-                                    <GridPane layoutX="10.0" layoutY="10.0" GridPane.rowIndex="3">
+                                    <GridPane layoutX="10.0" layoutY="10.0" GridPane.rowIndex="4">
                                        <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="220.0" minWidth="100.0" prefWidth="67.0" />
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="391.0" minWidth="10.0" prefWidth="383.0" />
@@ -220,7 +222,7 @@
                                           </TextField>
                                        </children>
                                     </GridPane>
-                                    <GridPane layoutX="10.0" layoutY="10.0" GridPane.rowIndex="4">
+                                    <GridPane layoutX="10.0" layoutY="10.0" GridPane.rowIndex="5">
                                        <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="220.0" minWidth="100.0" prefWidth="67.0" />
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="391.0" minWidth="10.0" prefWidth="383.0" />
@@ -252,7 +254,7 @@
                                           </HBox>
                                        </children>
                                     </GridPane>
-                                    <GridPane layoutX="10.0" layoutY="10.0" GridPane.rowIndex="5">
+                                    <GridPane layoutX="10.0" layoutY="10.0" GridPane.rowIndex="6">
                                        <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="220.0" minWidth="100.0" prefWidth="67.0" />
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="391.0" minWidth="10.0" prefWidth="383.0" />
@@ -276,7 +278,7 @@
                                           </TextField>
                                        </children>
                                     </GridPane>
-                                    <GridPane layoutX="10.0" layoutY="10.0" GridPane.rowIndex="6">
+                                    <GridPane layoutX="10.0" layoutY="10.0" GridPane.rowIndex="7">
                                        <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="220.0" minWidth="100.0" prefWidth="67.0" />
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="391.0" minWidth="10.0" prefWidth="383.0" />
@@ -300,7 +302,7 @@
                                           </TextField>
                                        </children>
                                     </GridPane>
-                                    <GridPane layoutX="10.0" layoutY="10.0" GridPane.rowIndex="7">
+                                    <GridPane layoutX="10.0" layoutY="10.0" GridPane.rowIndex="8">
                                        <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="220.0" minWidth="100.0" prefWidth="67.0" />
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="391.0" minWidth="10.0" prefWidth="383.0" />
@@ -324,7 +326,7 @@
                                           </TextField>
                                        </children>
                                     </GridPane>
-                                    <GridPane layoutX="10.0" layoutY="10.0" GridPane.rowIndex="8">
+                                    <GridPane layoutX="10.0" layoutY="10.0" GridPane.rowIndex="9">
                                        <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="220.0" minWidth="100.0" prefWidth="67.0" />
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="391.0" minWidth="10.0" prefWidth="383.0" />
@@ -348,7 +350,7 @@
                                           </TextField>
                                        </children>
                                     </GridPane>
-                                    <GridPane layoutX="10.0" layoutY="10.0" GridPane.rowIndex="9">
+                                    <GridPane layoutX="10.0" layoutY="10.0" GridPane.rowIndex="10">
                                        <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="100.0" prefWidth="67.0" />
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="155.0" minWidth="10.0" prefWidth="383.0" />
@@ -384,7 +386,7 @@
                                           <Insets right="20.0" />
                                        </GridPane.margin>
                                     </GridPane>
-                                    <GridPane layoutX="10.0" layoutY="10.0" GridPane.rowIndex="10">
+                                    <GridPane layoutX="10.0" layoutY="10.0" GridPane.rowIndex="11">
                                        <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="220.0" minWidth="100.0" prefWidth="67.0" />
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="391.0" minWidth="10.0" prefWidth="383.0" />
@@ -408,7 +410,7 @@
                                           </TextField>
                                        </children>
                                     </GridPane>
-                                    <GridPane fx:id="updateGridBtn" GridPane.rowIndex="11">
+                                    <GridPane fx:id="updateGridBtn" GridPane.rowIndex="12">
                                       <columnConstraints>
                                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -429,6 +431,11 @@
                                           </Button>
                                        </children>
                                     </GridPane>
+                                    <TextField fx:id="litField" promptText="LIT">
+                                       <GridPane.margin>
+                                          <Insets right="20.0" />
+                                       </GridPane.margin>
+                                    </TextField>
                                  </children>
                                  <effect>
                                     <DropShadow />
@@ -495,7 +502,7 @@
                                  <font>
                                     <Font size="1.0" />
                                  </font></Button>
-                              <Button fx:id="bed1f" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" text="2" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <Button fx:id="bed1f" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="75.0" prefWidth="174.0" text="2" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <styleClass>
                                     <String fx:value="bed" />
                                     <String fx:value="bedReserved" />
@@ -524,11 +531,11 @@
                               </Label>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Porte" GridPane.columnIndex="1" />
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="57.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Fenetre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Button fx:id="bed1p1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" styleClass="bed" text="3" textAlignment="CENTER" GridPane.columnIndex="2">
+                              <Button fx:id="bed1p1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="75.0" prefWidth="174.0" styleClass="bed" text="3" textAlignment="CENTER" GridPane.columnIndex="2">
                                  <font>
                                     <Font size="1.0" />
                                  </font></Button>
-                              <Button fx:id="bed1f1" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" text="4" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <Button fx:id="bed1f1" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="75.0" prefWidth="174.0" text="4" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <styleClass>
                                     <String fx:value="bed" />
                                     <String fx:value="bedReserved" />
@@ -557,11 +564,11 @@
                               </Label>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Porte" GridPane.columnIndex="1" />
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="57.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Fenetre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Button fx:id="bed1p11" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" styleClass="bed" text="5" textAlignment="CENTER" GridPane.columnIndex="2">
+                              <Button fx:id="bed1p11" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="75.0" prefWidth="174.0" styleClass="bed" text="5" textAlignment="CENTER" GridPane.columnIndex="2">
                                  <font>
                                     <Font size="1.0" />
                                  </font></Button>
-                              <Button fx:id="bed1f11" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" text="6" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <Button fx:id="bed1f11" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="75.0" prefWidth="174.0" text="6" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <styleClass>
                                     <String fx:value="bed" />
                                     <String fx:value="bedReserved" />
@@ -590,11 +597,11 @@
                               </Label>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Porte" GridPane.columnIndex="1" />
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="57.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Fenetre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Button fx:id="bed1p111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" styleClass="bed" text="7" textAlignment="CENTER" GridPane.columnIndex="2">
+                              <Button fx:id="bed1p111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="75.0" prefWidth="174.0" styleClass="bed" text="7" textAlignment="CENTER" GridPane.columnIndex="2">
                                  <font>
                                     <Font size="1.0" />
                                  </font></Button>
-                              <Button fx:id="bed1f111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" text="8" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <Button fx:id="bed1f111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="75.0" prefWidth="174.0" text="8" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <styleClass>
                                     <String fx:value="bed" />
                                     <String fx:value="bedReserved" />
@@ -623,11 +630,11 @@
                               </Label>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Porte" GridPane.columnIndex="1" />
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="57.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Fenetre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Button fx:id="bed1p1111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" styleClass="bed" text="9" textAlignment="CENTER" GridPane.columnIndex="2">
+                              <Button fx:id="bed1p1111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="75.0" prefWidth="174.0" styleClass="bed" text="9" textAlignment="CENTER" GridPane.columnIndex="2">
                                  <font>
                                     <Font size="1.0" />
                                  </font></Button>
-                              <Button fx:id="bed1f1111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" text="10" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <Button fx:id="bed1f1111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="75.0" prefWidth="174.0" text="10" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <styleClass>
                                     <String fx:value="bed" />
                                     <String fx:value="bedReserved" />
@@ -656,11 +663,11 @@
                               </Label>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Porte" GridPane.columnIndex="1" />
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="57.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Fenetre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Button fx:id="bed1p11111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" styleClass="bed" text="11" textAlignment="CENTER" GridPane.columnIndex="2">
+                              <Button fx:id="bed1p11111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="75.0" prefWidth="174.0" styleClass="bed" text="11" textAlignment="CENTER" GridPane.columnIndex="2">
                                  <font>
                                     <Font size="1.0" />
                                  </font></Button>
-                              <Button fx:id="bed1f11111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" text="12" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <Button fx:id="bed1f11111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="75.0" prefWidth="174.0" text="12" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <styleClass>
                                     <String fx:value="bed" />
                                     <String fx:value="bedReserved" />
@@ -689,11 +696,11 @@
                               </Label>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Porte" GridPane.columnIndex="1" />
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="57.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Fenetre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Button fx:id="bed1p111111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" styleClass="bed" text="13" textAlignment="CENTER" GridPane.columnIndex="2">
+                              <Button fx:id="bed1p111111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="75.0" prefWidth="174.0" styleClass="bed" text="13" textAlignment="CENTER" GridPane.columnIndex="2">
                                  <font>
                                     <Font size="1.0" />
                                  </font></Button>
-                              <Button fx:id="bed1f111111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" text="14" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <Button fx:id="bed1f111111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="75.0" prefWidth="174.0" text="14" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <styleClass>
                                     <String fx:value="bed" />
                                     <String fx:value="bedReserved" />
@@ -722,11 +729,11 @@
                               </Label>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Porte" GridPane.columnIndex="1" />
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="57.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Fenetre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Button fx:id="bed1p1111111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" styleClass="bed" text="15" textAlignment="CENTER" GridPane.columnIndex="2">
+                              <Button fx:id="bed1p1111111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="75.0" prefWidth="174.0" styleClass="bed" text="15" textAlignment="CENTER" GridPane.columnIndex="2">
                                  <font>
                                     <Font size="1.0" />
                                  </font></Button>
-                              <Button fx:id="bed1f1111111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" text="16" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <Button fx:id="bed1f1111111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="75.0" prefWidth="174.0" text="16" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <styleClass>
                                     <String fx:value="bed" />
                                     <String fx:value="bedReserved" />
@@ -755,11 +762,11 @@
                               </Label>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Porte" GridPane.columnIndex="1" />
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="57.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Fenetre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Button fx:id="bed1p11111111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" styleClass="bed" text="17" textAlignment="CENTER" GridPane.columnIndex="2">
+                              <Button fx:id="bed1p11111111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="75.0" prefWidth="174.0" styleClass="bed" text="17" textAlignment="CENTER" GridPane.columnIndex="2">
                                  <font>
                                     <Font size="1.0" />
                                  </font></Button>
-                              <Button fx:id="bed1f11111111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" text="18" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <Button fx:id="bed1f11111111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="75.0" prefWidth="174.0" text="18" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <styleClass>
                                     <String fx:value="bed" />
                                     <String fx:value="bedReserved" />
@@ -788,11 +795,11 @@
                               </Label>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Porte" GridPane.columnIndex="1" />
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="57.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Fenetre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Button fx:id="bed1p111111111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" styleClass="bed" text="19" textAlignment="CENTER" GridPane.columnIndex="2">
+                              <Button fx:id="bed1p111111111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="75.0" prefWidth="174.0" styleClass="bed" text="19" textAlignment="CENTER" GridPane.columnIndex="2">
                                  <font>
                                     <Font size="1.0" />
                                  </font></Button>
-                              <Button fx:id="bed1f111111111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" text="20" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <Button fx:id="bed1f111111111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="75.0" prefWidth="174.0" text="20" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <styleClass>
                                     <String fx:value="bed" />
                                     <String fx:value="bedReserved" />
@@ -821,11 +828,11 @@
                               </Label>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Porte" GridPane.columnIndex="1" />
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="57.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Fenetre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Button fx:id="bed1p1111111111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" styleClass="bed" text="21" textAlignment="CENTER" GridPane.columnIndex="2">
+                              <Button fx:id="bed1p1111111111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="75.0" prefWidth="174.0" styleClass="bed" text="21" textAlignment="CENTER" GridPane.columnIndex="2">
                                  <font>
                                     <Font size="1.0" />
                                  </font></Button>
-                              <Button fx:id="bed1f1111111111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" text="22" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <Button fx:id="bed1f1111111111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="75.0" prefWidth="174.0" text="22" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <styleClass>
                                     <String fx:value="bed" />
                                     <String fx:value="bedReserved" />
@@ -854,11 +861,11 @@
                               </Label>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Porte" GridPane.columnIndex="1" />
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="57.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Fenetre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Button fx:id="bed1p11111111111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" styleClass="bed" text="23" textAlignment="CENTER" GridPane.columnIndex="2">
+                              <Button fx:id="bed1p11111111111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="75.0" prefWidth="174.0" styleClass="bed" text="23" textAlignment="CENTER" GridPane.columnIndex="2">
                                  <font>
                                     <Font size="1.0" />
                                  </font></Button>
-                              <Button fx:id="bed1f11111111111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="174.0" text="24" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <Button fx:id="bed1f11111111111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="75.0" prefWidth="174.0" text="24" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <styleClass>
                                     <String fx:value="bed" />
                                     <String fx:value="bedReserved" />
