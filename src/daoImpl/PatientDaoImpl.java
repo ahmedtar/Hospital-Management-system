@@ -386,7 +386,7 @@ private Patient  convertRowToPatient(ResultSet myRs) throws Exception {
 	Medecin medecin = new Medecin(medecinId);
 	
 	tempPatient.setLit(new LitDaoImpl().searchLitById(litId));
-	tempPatient.setMedecin(medecin);
+	tempPatient.setMedecin(new MedecinDAOimpl().searchMedecinById(medecinId));
 	
 	return tempPatient;
 

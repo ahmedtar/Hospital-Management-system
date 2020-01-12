@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.*;
 
 import dao.MedecinDAO;
+import model.Lit;
 import model.Medecin;
 
 public class MedecinDAOimpl implements  MedecinDAO {
@@ -191,6 +192,70 @@ public List<Medecin> searchMdc(String str) {
 		
 		return tmplistmdc;
 	}
+
+public Medecin searchMedecinById(int id) throws Exception {
+	
+	ConnectionDB con=new ConnectionDB();
+	Medecin medecin = new Medecin(id);
+
+	PreparedStatement myStmt = null;
+	ResultSet myRs = null;
+
+	try {
+		
+		myStmt = con.getCon().prepareStatement("select * from medecin where id=?");
+		
+		myStmt.setInt(1,id);
+		
+		myRs = myStmt.executeQuery();
+		
+		myRs.next();
+		 
+		
+		medecin = convertRowToMdc(myRs);
+		
+	}
+	 catch (SQLException e) {
+			e.printStackTrace();
+		}
+	finally {
+		con.close();
+	}
+	return medecin;
+
+}
+
+public Medecin searchMedecinByNom(String str) throws Exception {
+	
+	ConnectionDB con=new ConnectionDB();
+	Medecin medecin = new Medecin(0);
+
+	PreparedStatement myStmt = null;
+	ResultSet myRs = null;
+
+	try {
+		
+		myStmt = con.getCon().prepareStatement("select * from medecin where nom=?");
+		
+		myStmt.setString(1,str);
+		
+		myRs = myStmt.executeQuery();
+		
+		myRs.next();
+		 
+		
+		medecin = convertRowToMdc(myRs);
+		
+	}
+	 catch (SQLException e) {
+			e.printStackTrace();
+		}
+	finally {
+		con.close();
+	}
+	return medecin;
+
+}
 
 	
 public List<Medecin> searhInServiceMdcs(boolean m) {

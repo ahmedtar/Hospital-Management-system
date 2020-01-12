@@ -178,8 +178,7 @@ private void populateTableView() {
 
             @Override
             public ObservableValue<String> call(CellDataFeatures<Patient, String> param) {
-                return new SimpleStringProperty(param.getValue().getMedecin().getNom()+" "
-                		                        +param.getValue().getMedecin().getPrenom());
+                return new SimpleStringProperty(param.getValue().getMedecin().getNom());
             }
         });
 		
@@ -315,6 +314,8 @@ private void setUpdateInputList(Patient p) {
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	datePickerE.setValue(LocalDate.parse(p.getDateEntree(), formatter));
 	datePickerS.setValue(LocalDate.parse(p.getDateSortie(), formatter));
+	
+	medecinField.setText(""+p.getMedecin().getNom());
 	
 }
 
