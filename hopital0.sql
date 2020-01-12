@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 12, 2020 at 07:27 AM
+-- Generation Time: Jan 12, 2020 at 11:56 PM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.1.33
 
@@ -150,7 +150,8 @@ CREATE TABLE `patient` (
 INSERT INTO `patient` (`id`, `lit`, `cne`, `nom`, `prenom`, `sexe`, `age`, `numTel`, `adresse`, `maladie`, `dateEntree`, `dateSortie`, `medecin`) VALUES
 (4, 1, 'EE213655', 'ahmed', 'elatrouz', 'Homme', 25, '0632355864', 'N 33 bis marrakech', 'cancer', '10/11/2020', '15/04/2004', 4),
 (43, 3, 'ksnk', 'ksnk', 'nsfkn', 'Homme', 15, '64499797', 'mdamlmlmsdvk', 'haha', '10/01/2020', '01/05/2021', 6),
-(44, 21, 'lit', 'lit', '', 'Homme', 20, '', '', '', '11/01/2020', '11/01/2020', 10);
+(44, 21, 'lit', 'lit', '', 'Homme', 20, '', '', '', '11/01/2020', '11/01/2020', 10),
+(57, 20, '', '', '', '', 0, '', '', '', '12/01/2020', '12/01/2020', NULL);
 
 -- --------------------------------------------------------
 
@@ -174,9 +175,10 @@ CREATE TABLE `utilisateur` (
 
 INSERT INTO `utilisateur` (`id`, `login`, `nom`, `prenom`, `password`, `estActif`, `isAdmin`) VALUES
 (1, 'hola', 'elatrouz', 'ahmed', '123456', 0, 0),
-(2, 'admin', 'Fattas', 'Amine', '123456', 0, 1),
+(2, 'admin', 'Fattas', 'Amine', '0', 0, 1),
 (3, 'admin2', 'admin', 'admin', '123', 0, 1),
-(4, 'Recep', 'Nom', 'Prenom', '123', 0, 0);
+(4, 'Recep', 'Nom', 'Prenom', '123', 0, 0),
+(5, 'ad', 'test', 'test', '0', 0, 1);
 
 --
 -- Indexes for dumped tables
@@ -207,7 +209,6 @@ ALTER TABLE `medecin`
 --
 ALTER TABLE `patient`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `numTel` (`numTel`),
   ADD UNIQUE KEY `lit` (`lit`),
   ADD KEY `clé étrangère medecin-patient` (`medecin`);
 
@@ -238,13 +239,13 @@ ALTER TABLE `medecin`
 -- AUTO_INCREMENT for table `patient`
 --
 ALTER TABLE `patient`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
