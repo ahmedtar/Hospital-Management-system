@@ -228,7 +228,7 @@ public class MedecinController implements Initializable{
 		List<Medecin> list=new ArrayList<>();
 	    this.medecinDao=new MedecinDAOimpl();
 	    list=medecinDao.searchMdc(searchField.getText());
-	    this.medecinlist=FXCollections.observableArrayList(list);
+	    this.medecinlist=FXCollections.observableArrayList(list); 
 	    tableView.setItems(medecinlist);
     }
 	

@@ -21,87 +21,104 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PatientController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PatientController">
    <children>
-      <TabPane fx:id="tabPane" prefHeight="685.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="30.0" tabMaxWidth="100.0" tabMinHeight="10.0" tabMinWidth="100.0">
+      <TabPane fx:id="tabPane" prefHeight="685.0" prefWidth="1000.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="30.0" tabMaxWidth="100.0" tabMinHeight="10.0" tabMinWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
           <Tab fx:id="PatientTabPane" text="Patients">
                <content>
-                  <VBox prefHeight="719.0" prefWidth="1204.0">
+                  <AnchorPane minHeight="-Infinity" prefHeight="569.0" prefWidth="100.0" style="-fx-border-color: #e0e0e0;">
                      <children>
-                        <AnchorPane prefHeight="66.0" prefWidth="1204.0" style="-fx-background-color: #44ccff;">
+                        <TextField fx:id="searchField" layoutX="44.0" layoutY="116.0" onKeyPressed="#searchPatient" prefHeight="40.0" prefWidth="300.0" promptText="Recherche" style="-fx-background-radius: 50px;" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="100.0">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </TextField>
+                        <TableView fx:id="tableView" layoutX="3.0" layoutY="61.0" prefHeight="522.0" prefWidth="632.0" AnchorPane.bottomAnchor="-0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="170.0">
+                           <columns>
+                              <TableColumn fx:id="litCol" prefWidth="62.0" text="LIT" />
+                              <TableColumn fx:id="idCol" prefWidth="110.00003051757812" text="ID" />
+                              <TableColumn fx:id="cneCol" prefWidth="124.99996948242188" text="CNE" />
+                              <TableColumn fx:id="nomCol" prefWidth="75.0" text="NOM" />
+                              <TableColumn fx:id="prenomCol" prefWidth="75.0" text="PRENOM" />
+                              <TableColumn fx:id="sexeCol" prefWidth="75.0" text="SEXE" />
+                              <TableColumn fx:id="ageCol" prefWidth="75.0" text="AGE" />
+                              <TableColumn fx:id="teleCol" prefWidth="75.0" text="NUM TELE" />
+                              <TableColumn fx:id="adressCol" prefWidth="75.0" text="ADRESSE" />
+                              <TableColumn fx:id="maladieCol" prefWidth="75.0" text="MALADIE" />
+                              <TableColumn fx:id="entreeCOl" prefWidth="75.0" text="DATE ENTREE" />
+                              <TableColumn fx:id="sortieCol" prefWidth="75.0" text="DATE SORTIE" />
+                              <TableColumn fx:id="medecinCol" prefWidth="75.0" text="MEDECIN" />
+                              <TableColumn fx:id="editCol" prefWidth="84.00003051757812" text="EDIT" />
+                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                        <Button id="btns" fx:id="searchBtn" layoutX="634.0" layoutY="154.0" mnemonicParsing="false" onAction="#searchPatient" prefHeight="40.0" prefWidth="148.0" style="-fx-background-radius: 50px;" stylesheets="@Style/StyleMedecin.css" text="RECHERCHER" textFill="WHITE" AnchorPane.leftAnchor="600.0" AnchorPane.topAnchor="100.0">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Button>
+                        <Button id="btns" fx:id="clearBtn" layoutX="441.0" layoutY="153.0" mnemonicParsing="false" onAction="#clearSearchField" prefHeight="40.0" prefWidth="148.0" style="-fx-background-radius: 50px;" stylesheets="@Style/StyleMedecin.css" text="CLEAR" textFill="WHITE" AnchorPane.leftAnchor="400.0" AnchorPane.topAnchor="100.0">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Button>
+                        <AnchorPane layoutX="315.0" layoutY="14.0" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #44ccff;" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
                            <children>
-                              <Button layoutX="14.0" layoutY="7.0" mnemonicParsing="false" onAction="#goBackToHome" prefHeight="47.0" prefWidth="52.0">
+                              <Label layoutX="164.0" layoutY="17.0" prefHeight="50.0" prefWidth="177.0" text="PATIENTS" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="0.0">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                              </Label>
+                              <Button layoutX="896.0" layoutY="13.0" mnemonicParsing="false" onAction="#exit" style="-fx-background-color: #44ccff;" AnchorPane.bottomAnchor="2.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <graphic>
-                                    <ImageView fitHeight="45.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@imgs/back.png" />
+                                          <Image url="@imgs/exit.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <Label alignment="CENTER" layoutX="450.0" layoutY="12.0" prefHeight="53.0" prefWidth="300.0" text="PATIENT" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="450.0" AnchorPane.rightAnchor="450.0" AnchorPane.topAnchor="12.0">
-                                 <font>
-                                    <Font name="System Bold Italic" size="35.0" />
-                                 </font>
-                              </Label>
+                              <Button layoutX="836.0" mnemonicParsing="false" onAction="#goBackToHome" prefHeight="50.0" prefWidth="57.0" style="-fx-background-color: #44ccff;" AnchorPane.bottomAnchor="2.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="0.0">
+                                 <graphic>
+                                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@imgs/baseline_house_white_18dp.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
                            </children>
                         </AnchorPane>
-                        <AnchorPane minHeight="-Infinity" prefHeight="581.0" prefWidth="1204.0" style="-fx-border-color: #e0e0e0;">
+                        <AnchorPane layoutX="14.0" layoutY="9.0" prefHeight="85.0" prefWidth="85.0" style="-fx-background-radius: 50; -fx-background-color: #44ccff;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <AnchorPane layoutX="1.0" minHeight="-Infinity" prefHeight="94.0" prefWidth="1199.0">
-                                 <children>
-                                    <Button id="insert" fx:id="searchBtn" layoutX="449.0" layoutY="11.0" mnemonicParsing="false" onAction="#searchPatient" prefHeight="38.0" prefWidth="148.0" style="-fx-background-radius: 50px; -fx-background-color: #44ccff;" stylesheets="@Style/StylePatient.css" text="RECHERCHER" textFill="WHITE" AnchorPane.leftAnchor="449.0" />
-                                    <Button id="insert" fx:id="clearBtn" layoutX="649.0" layoutY="10.0" mnemonicParsing="false" onAction="#clearSearchField" prefHeight="40.0" prefWidth="148.0" style="-fx-background-radius: 50px; -fx-background-color: #44ccff;" stylesheets="@Style/StylePatient.css" text="CLEAR" textFill="WHITE" AnchorPane.leftAnchor="649.0" />
-                                    <TextField fx:id="searchField" layoutX="36.0" layoutY="-488.0" onKeyPressed="#searchPatient" prefHeight="0.0" prefWidth="380.0" promptText="Recherche" style="-fx-background-radius: 50px;" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="783.0" AnchorPane.topAnchor="10.0">
-                                       <font>
-                                          <Font size="16.0" />
-                                       </font>
-                                    </TextField>
-                                 </children>
-                              </AnchorPane>
-                              <TableView fx:id="tableView" layoutX="3.0" layoutY="61.0" prefHeight="524.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
-                                 <columns>
-                                    <TableColumn fx:id="litCol" prefWidth="62.0" text="LIT" />
-                                    <TableColumn fx:id="idCol" prefWidth="110.00003051757812" text="ID" />
-                                    <TableColumn fx:id="cneCol" prefWidth="124.99996948242188" text="CNE" />
-                                    <TableColumn fx:id="nomCol" prefWidth="75.0" text="NOM" />
-                                    <TableColumn fx:id="prenomCol" prefWidth="75.0" text="PRENOM" />
-                                    <TableColumn fx:id="sexeCol" prefWidth="75.0" text="SEXE" />
-                                    <TableColumn fx:id="ageCol" prefWidth="75.0" text="AGE" />
-                                    <TableColumn fx:id="teleCol" prefWidth="75.0" text="NUM TELE" />
-                                    <TableColumn fx:id="adressCol" prefWidth="75.0" text="ADRESSE" />
-                                    <TableColumn fx:id="maladieCol" prefWidth="75.0" text="MALADIE" />
-                                    <TableColumn fx:id="entreeCOl" prefWidth="75.0" text="DATE ENTREE" />
-                                    <TableColumn fx:id="sortieCol" prefWidth="75.0" text="DATE SORTIE" />
-                                    <TableColumn fx:id="medecinCol" prefWidth="75.0" text="MEDECIN" />
-                                    <TableColumn fx:id="editCol" prefWidth="84.00003051757812" text="EDIT" />
-                                 </columns>
-                                 <columnResizePolicy>
-                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                                 </columnResizePolicy>
-                              </TableView>
+                              <ImageView fitHeight="65.0" fitWidth="63.0" layoutX="10.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@imgs/patient-blanc.png" />
+                                 </image>
+                              </ImageView>
                            </children>
                         </AnchorPane>
                      </children>
-                  </VBox>
+                  </AnchorPane>
                </content>
           </Tab>
             <Tab fx:id="UpdateTabPane" text="Ajouter">
                <content>
                   <AnchorPane fx:id="ajouteForm" onDragDetected="#goToPatientTabPane" prefHeight="200.0" prefWidth="200.0" stylesheets="@Style/StylePatient.css">
                      <children>
-                        <AnchorPane layoutY="97.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="563.0" prefWidth="750.0">
+                        <AnchorPane layoutY="70.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="508.0" prefWidth="750.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="70.0">
                            <children>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="313.0" layoutY="14.0" prefHeight="45.0" prefWidth="269.0" textAlignment="CENTER" textFill="#0193e8" underline="true">
                                  <font>
                                     <Font name="System Bold Italic" size="21.0" />
                                  </font>
                               </Label>
-                              <GridPane layoutX="223.0" layoutY="62.0" prefHeight="479.0" prefWidth="449.0" style="-fx-background-color: ffffff67; -fx-background-radius: 20;" AnchorPane.leftAnchor="223.0" AnchorPane.rightAnchor="78.0">
+                              <GridPane layoutX="223.0" layoutY="17.0" prefHeight="524.0" prefWidth="449.0" style="-fx-background-color: ffffff67; -fx-background-radius: 20;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="10.0">
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                  </columnConstraints>
@@ -121,7 +138,7 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                    <Button id="add" fx:id="insertBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#inserePatient" prefHeight="38.0" prefWidth="148.0" style="-fx-background-radius: 50PX;" stylesheets="@Style/StylePatient.css" text="AJOUTER" textAlignment="CENTER" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="12" GridPane.valignment="CENTER">
+                                    <Button id="add" fx:id="insertBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#inserePatient" prefHeight="30.0" prefWidth="148.0" style="-fx-background-radius: 50PX;" stylesheets="@Style/StylePatient.css" text="AJOUTER" textAlignment="CENTER" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="12" GridPane.valignment="CENTER">
                                        <GridPane.margin>
                                           <Insets bottom="2.0" />
                                        </GridPane.margin>
@@ -143,7 +160,7 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <MenuButton fx:id="litMenuBtn" minWidth="50.0" mnemonicParsing="false" GridPane.columnIndex="1">
+                                          <MenuButton fx:id="litMenuBtn" minWidth="50.0" mnemonicParsing="false" prefHeight="30.0" style="-fx-background-radius: 20;" GridPane.columnIndex="1">
                                              <GridPane.margin>
                                                 <Insets />
                                              </GridPane.margin>
@@ -167,7 +184,7 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="cneField" promptText="CNE" GridPane.columnIndex="1">
+                                          <TextField fx:id="cneField" prefHeight="30.0" prefWidth="0.0" promptText="CNE" style="-fx-background-radius: 30;" GridPane.columnIndex="1">
                                              <GridPane.margin>
                                                 <Insets right="20.0" />
                                              </GridPane.margin>
@@ -191,7 +208,7 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="nomField" promptText="NOM" GridPane.columnIndex="1">
+                                          <TextField fx:id="nomField" prefHeight="30.0" prefWidth="0.0" promptText="NOM" style="-fx-background-radius: 30;" GridPane.columnIndex="1">
                                              <GridPane.margin>
                                                 <Insets right="20.0" />
                                              </GridPane.margin>
@@ -215,7 +232,7 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="prenomField" promptText="PRENOM" GridPane.columnIndex="1">
+                                          <TextField fx:id="prenomField" prefHeight="30.0" prefWidth="0.0" promptText="PRENOM" style="-fx-background-radius: 30;" GridPane.columnIndex="1">
                                              <GridPane.margin>
                                                 <Insets right="20.0" />
                                              </GridPane.margin>
@@ -271,7 +288,7 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="ageField" promptText="AGE" GridPane.columnIndex="1">
+                                          <TextField fx:id="ageField" prefHeight="30.0" prefWidth="0.0" promptText="AGE" style="-fx-background-radius: 30;" GridPane.columnIndex="1">
                                              <GridPane.margin>
                                                 <Insets right="20.0" />
                                              </GridPane.margin>
@@ -295,7 +312,7 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="teleField" promptText="NUMERO DE TELEPHONE" GridPane.columnIndex="1">
+                                          <TextField fx:id="teleField" prefHeight="30.0" prefWidth="0.0" promptText="NUMERO DE TELEPHONE" style="-fx-background-radius: 30;" GridPane.columnIndex="1">
                                              <GridPane.margin>
                                                 <Insets right="20.0" />
                                              </GridPane.margin>
@@ -319,7 +336,7 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="adressField" promptText="ADRESSE" GridPane.columnIndex="1">
+                                          <TextField fx:id="adressField" prefHeight="30.0" prefWidth="0.0" promptText="ADRESSE" style="-fx-background-radius: 30;" GridPane.columnIndex="1">
                                              <GridPane.margin>
                                                 <Insets right="20.0" />
                                              </GridPane.margin>
@@ -343,7 +360,7 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="maladieField" promptText="MALADIE" GridPane.columnIndex="1">
+                                          <TextField fx:id="maladieField" prefHeight="30.0" prefWidth="0.0" promptText="MALADIE" style="-fx-background-radius: 30;" GridPane.columnIndex="1">
                                              <GridPane.margin>
                                                 <Insets right="20.0" />
                                              </GridPane.margin>
@@ -366,12 +383,12 @@
                                                 <Insets left="10.0" />
                                              </GridPane.margin>
                                           </Label>
-                                          <DatePicker fx:id="datePickerE" prefHeight="25.0" prefWidth="115.0" styleClass="datepicker" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+                                          <DatePicker fx:id="datePickerE" prefHeight="30.0" prefWidth="115.0" style="-fx-background-radius: 20;" styleClass="datepicker" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
                                              <GridPane.margin>
                                                 <Insets />
                                              </GridPane.margin>
                                           </DatePicker>
-                                          <DatePicker fx:id="datePickerS" styleClass="datepicker" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+                                          <DatePicker fx:id="datePickerS" prefHeight="30.0" style="-fx-background-radius: 20;" styleClass="datepicker" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
                                              <GridPane.margin>
                                                 <Insets />
                                              </GridPane.margin>
@@ -403,14 +420,14 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="medecinField" promptText="MEDECIN" GridPane.columnIndex="1">
+                                          <TextField fx:id="medecinField" prefHeight="30.0" prefWidth="0.0" promptText="MEDECIN" style="-fx-background-radius: 30;" GridPane.columnIndex="1">
                                              <GridPane.margin>
                                                 <Insets right="20.0" />
                                              </GridPane.margin>
                                           </TextField>
                                        </children>
                                     </GridPane>
-                                    <GridPane fx:id="updateGridBtn" GridPane.rowIndex="12">
+                                    <GridPane fx:id="updateGridBtn" prefHeight="30.0" GridPane.rowIndex="12">
                                       <columnConstraints>
                                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -419,21 +436,21 @@
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <Button id="add" fx:id="updateBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#updatePatient" prefHeight="38.0" prefWidth="148.0" style="-fx-background-radius: 50PX;" stylesheets="@Style/StylePatient.css" text="MODIFIER" textAlignment="CENTER" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+                                          <Button id="add" fx:id="updateBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#updatePatient" prefHeight="30.0" prefWidth="148.0" style="-fx-background-radius: 50PX;" stylesheets="@Style/StylePatient.css" text="MODIFIER" textAlignment="CENTER" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
                                              <GridPane.margin>
                                                 <Insets bottom="2.0" right="20.0" />
                                              </GridPane.margin>
                                           </Button>
-                                          <Button id="add" fx:id="anullerBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="49.0" layoutY="10.0" mnemonicParsing="false" onAction="#goToPatientTabPane" prefHeight="38.0" prefWidth="148.0" style="-fx-background-radius: 50PX;" stylesheets="@Style/StylePatient.css" text="ANULLER" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+                                          <Button id="add" fx:id="anullerBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="49.0" layoutY="10.0" mnemonicParsing="false" onAction="#goToPatientTabPane" prefHeight="30.0" prefWidth="148.0" style="-fx-background-radius: 50PX;" stylesheets="@Style/StylePatient.css" text="ANULLER" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
                                              <GridPane.margin>
                                                 <Insets bottom="2.0" left="20.0" />
                                              </GridPane.margin>
                                           </Button>
                                        </children>
                                     </GridPane>
-                                    <TextField fx:id="litField" promptText="LIT">
+                                    <TextField fx:id="litField" prefHeight="30.0" prefWidth="0.0" promptText="LIT" style="-fx-background-radius: 30;">
                                        <GridPane.margin>
-                                          <Insets right="20.0" />
+                                          <Insets left="100.0" right="20.0" />
                                        </GridPane.margin>
                                     </TextField>
                                  </children>
@@ -441,7 +458,7 @@
                                     <DropShadow />
                                  </effect>
                               </GridPane>
-                              <Label layoutX="27.0" layoutY="130.0" prefHeight="51.0" prefWidth="50.0" text="ID : ">
+                              <Label layoutX="27.0" layoutY="130.0" opacity="0.0" prefHeight="40.0" prefWidth="50.0" text="ID : ">
                                  <font>
                                     <Font name="System Bold" size="22.0" />
                                  </font>
@@ -453,13 +470,22 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane layoutX="62.0" layoutY="11.0" prefHeight="66.0" prefWidth="1142.0" style="-fx-background-color: #5cf;" AnchorPane.leftAnchor="62.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+                        <AnchorPane layoutX="62.0" layoutY="11.0" prefHeight="50.0" prefWidth="1142.0" style="-fx-background-color: #5cf;" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
                            <children>
-                              <Label layoutX="82.0" layoutY="8.0" prefHeight="51.0" prefWidth="298.0" text="Modifier Patient" textFill="WHITE">
+                              <Label layoutX="82.0" layoutY="8.0" prefHeight="50.0" prefWidth="298.0" text="MODIFIER PATIENT" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="0.0">
                                  <font>
-                                    <Font name="Verdana Bold" size="24.0" />
+                                    <Font name="Verdana" size="25.0" />
                                  </font>
                               </Label>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="85.0" prefWidth="85.0" style="-fx-background-radius: 50; -fx-background-color: #44ccff;">
+                           <children>
+                              <ImageView fitHeight="65.0" fitWidth="63.0" layoutX="10.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@imgs/patient-blanc.png" />
+                                 </image>
+                              </ImageView>
                            </children>
                         </AnchorPane>
                      </children>
@@ -498,11 +524,11 @@
                               </Label>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Porte" GridPane.columnIndex="1" />
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="57.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Fenetre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Button fx:id="lit1" alignment="CENTER" cancelButton="true" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="75.0" prefWidth="174.0" styleClass="bed" text="1" textAlignment="CENTER" GridPane.columnIndex="2">
+                              <Button fx:id="lit1" alignment="CENTER" cancelButton="true" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="70.0" prefWidth="150.0" styleClass="bed" text="1" textAlignment="CENTER" GridPane.columnIndex="2">
                                  <font>
                                     <Font size="1.0" />
                                  </font></Button>
-                              <Button fx:id="bed1f" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="75.0" prefWidth="174.0" text="2" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <Button fx:id="bed1f" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="70.0" prefWidth="150.0" text="2" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <styleClass>
                                     <String fx:value="bed" />
                                     <String fx:value="bedReserved" />
@@ -531,11 +557,11 @@
                               </Label>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Porte" GridPane.columnIndex="1" />
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="57.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Fenetre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Button fx:id="bed1p1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="75.0" prefWidth="174.0" styleClass="bed" text="3" textAlignment="CENTER" GridPane.columnIndex="2">
+                              <Button fx:id="bed1p1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="70.0" prefWidth="150.0" styleClass="bed" text="3" textAlignment="CENTER" GridPane.columnIndex="2">
                                  <font>
                                     <Font size="1.0" />
                                  </font></Button>
-                              <Button fx:id="bed1f1" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="75.0" prefWidth="174.0" text="4" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <Button fx:id="bed1f1" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="70.0" prefWidth="150.0" text="4" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <styleClass>
                                     <String fx:value="bed" />
                                     <String fx:value="bedReserved" />
@@ -564,11 +590,11 @@
                               </Label>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Porte" GridPane.columnIndex="1" />
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="57.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Fenetre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Button fx:id="bed1p11" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="75.0" prefWidth="174.0" styleClass="bed" text="5" textAlignment="CENTER" GridPane.columnIndex="2">
+                              <Button fx:id="bed1p11" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="70.0" prefWidth="150.0" styleClass="bed" text="5" textAlignment="CENTER" GridPane.columnIndex="2">
                                  <font>
                                     <Font size="1.0" />
                                  </font></Button>
-                              <Button fx:id="bed1f11" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="75.0" prefWidth="174.0" text="6" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <Button fx:id="bed1f11" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="70.0" prefWidth="150.0" text="6" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <styleClass>
                                     <String fx:value="bed" />
                                     <String fx:value="bedReserved" />
@@ -597,11 +623,11 @@
                               </Label>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Porte" GridPane.columnIndex="1" />
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="57.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Fenetre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Button fx:id="bed1p111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="75.0" prefWidth="174.0" styleClass="bed" text="7" textAlignment="CENTER" GridPane.columnIndex="2">
+                              <Button fx:id="bed1p111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="70.0" prefWidth="150.0" styleClass="bed" text="7" textAlignment="CENTER" GridPane.columnIndex="2">
                                  <font>
                                     <Font size="1.0" />
                                  </font></Button>
-                              <Button fx:id="bed1f111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="75.0" prefWidth="174.0" text="8" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <Button fx:id="bed1f111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="70.0" prefWidth="150.0" text="8" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <styleClass>
                                     <String fx:value="bed" />
                                     <String fx:value="bedReserved" />
@@ -630,11 +656,11 @@
                               </Label>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Porte" GridPane.columnIndex="1" />
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="57.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Fenetre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Button fx:id="bed1p1111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="75.0" prefWidth="174.0" styleClass="bed" text="9" textAlignment="CENTER" GridPane.columnIndex="2">
+                              <Button fx:id="bed1p1111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="70.0" prefWidth="150.0" styleClass="bed" text="9" textAlignment="CENTER" GridPane.columnIndex="2">
                                  <font>
                                     <Font size="1.0" />
                                  </font></Button>
-                              <Button fx:id="bed1f1111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="75.0" prefWidth="174.0" text="10" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <Button fx:id="bed1f1111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="70.0" prefWidth="150.0" text="10" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <styleClass>
                                     <String fx:value="bed" />
                                     <String fx:value="bedReserved" />
@@ -663,11 +689,11 @@
                               </Label>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Porte" GridPane.columnIndex="1" />
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="57.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Fenetre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Button fx:id="bed1p11111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="75.0" prefWidth="174.0" styleClass="bed" text="11" textAlignment="CENTER" GridPane.columnIndex="2">
+                              <Button fx:id="bed1p11111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="70.0" prefWidth="150.0" styleClass="bed" text="11" textAlignment="CENTER" GridPane.columnIndex="2">
                                  <font>
                                     <Font size="1.0" />
                                  </font></Button>
-                              <Button fx:id="bed1f11111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="75.0" prefWidth="174.0" text="12" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <Button fx:id="bed1f11111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="70.0" prefWidth="150.0" text="12" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <styleClass>
                                     <String fx:value="bed" />
                                     <String fx:value="bedReserved" />
@@ -696,11 +722,11 @@
                               </Label>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Porte" GridPane.columnIndex="1" />
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="57.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Fenetre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Button fx:id="bed1p111111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="75.0" prefWidth="174.0" styleClass="bed" text="13" textAlignment="CENTER" GridPane.columnIndex="2">
+                              <Button fx:id="bed1p111111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="70.0" prefWidth="150.0" styleClass="bed" text="13" textAlignment="CENTER" GridPane.columnIndex="2">
                                  <font>
                                     <Font size="1.0" />
                                  </font></Button>
-                              <Button fx:id="bed1f111111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="75.0" prefWidth="174.0" text="14" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <Button fx:id="bed1f111111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="70.0" prefWidth="150.0" text="14" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <styleClass>
                                     <String fx:value="bed" />
                                     <String fx:value="bedReserved" />
@@ -729,11 +755,11 @@
                               </Label>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Porte" GridPane.columnIndex="1" />
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="57.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Fenetre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Button fx:id="bed1p1111111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="75.0" prefWidth="174.0" styleClass="bed" text="15" textAlignment="CENTER" GridPane.columnIndex="2">
+                              <Button fx:id="bed1p1111111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="70.0" prefWidth="150.0" styleClass="bed" text="15" textAlignment="CENTER" GridPane.columnIndex="2">
                                  <font>
                                     <Font size="1.0" />
                                  </font></Button>
-                              <Button fx:id="bed1f1111111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="75.0" prefWidth="174.0" text="16" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <Button fx:id="bed1f1111111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="70.0" prefWidth="150.0" text="16" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <styleClass>
                                     <String fx:value="bed" />
                                     <String fx:value="bedReserved" />
@@ -762,11 +788,11 @@
                               </Label>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Porte" GridPane.columnIndex="1" />
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="57.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Fenetre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Button fx:id="bed1p11111111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="75.0" prefWidth="174.0" styleClass="bed" text="17" textAlignment="CENTER" GridPane.columnIndex="2">
+                              <Button fx:id="bed1p11111111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="70.0" prefWidth="150.0" styleClass="bed" text="17" textAlignment="CENTER" GridPane.columnIndex="2">
                                  <font>
                                     <Font size="1.0" />
                                  </font></Button>
-                              <Button fx:id="bed1f11111111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="75.0" prefWidth="174.0" text="18" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <Button fx:id="bed1f11111111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="70.0" prefWidth="150.0" text="18" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <styleClass>
                                     <String fx:value="bed" />
                                     <String fx:value="bedReserved" />
@@ -779,27 +805,27 @@
                         </GridPane>
                         <GridPane fx:id="room1111111111" alignment="CENTER" layoutX="10.0" layoutY="385.0" styleClass="room" stylesheets="@Style/lit.css" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="143.0" minWidth="10.0" prefWidth="48.66666603088379" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="143.0" minWidth="10.0" prefWidth="71.33333396911621" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="218.0" minWidth="10.0" prefWidth="184.66666412353516" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="143.0" minWidth="10.0" prefWidth="57.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="143.0" minWidth="10.0" prefWidth="44.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="218.0" minWidth="10.0" prefWidth="153.0" />
                            </columnConstraints>
                            <rowConstraints>
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="18.0" prefHeight="48.0" prefWidth="47.0" styleClass="roomNum" text="10" textFill="#2b00ff">
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="18.0" prefHeight="58.0" prefWidth="49.0" styleClass="roomNum" text="10" textFill="#2b00ff">
                                  <font>
                                     <Font name="Britannic Bold" size="35.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Porte" GridPane.columnIndex="1" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="33.0" prefHeight="48.0" prefWidth="63.0" text="Porte" GridPane.columnIndex="1" />
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="57.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Fenetre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Button fx:id="bed1p111111111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="75.0" prefWidth="174.0" styleClass="bed" text="19" textAlignment="CENTER" GridPane.columnIndex="2">
+                              <Button fx:id="bed1p111111111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="70.0" prefWidth="150.0" styleClass="bed" text="19" textAlignment="CENTER" GridPane.columnIndex="2">
                                  <font>
                                     <Font size="1.0" />
                                  </font></Button>
-                              <Button fx:id="bed1f111111111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="75.0" prefWidth="174.0" text="20" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <Button fx:id="bed1f111111111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="70.0" prefWidth="150.0" text="20" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <styleClass>
                                     <String fx:value="bed" />
                                     <String fx:value="bedReserved" />
@@ -812,9 +838,9 @@
                         </GridPane>
                         <GridPane fx:id="room11111111111" alignment="CENTER" layoutX="10.0" layoutY="10.0" styleClass="room" stylesheets="@Style/lit.css" GridPane.columnIndex="2" GridPane.rowIndex="2">
                            <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="143.0" minWidth="10.0" prefWidth="48.66666603088379" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="143.0" minWidth="10.0" prefWidth="71.33333396911621" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="218.0" minWidth="10.0" prefWidth="184.66666412353516" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="143.0" minWidth="10.0" prefWidth="50.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="143.0" minWidth="10.0" prefWidth="47.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="218.0" minWidth="10.0" prefWidth="157.0" />
                            </columnConstraints>
                            <rowConstraints>
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -828,11 +854,11 @@
                               </Label>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Porte" GridPane.columnIndex="1" />
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="57.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Fenetre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Button fx:id="bed1p1111111111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="75.0" prefWidth="174.0" styleClass="bed" text="21" textAlignment="CENTER" GridPane.columnIndex="2">
+                              <Button fx:id="bed1p1111111111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="70.0" prefWidth="150.0" styleClass="bed" text="21" textAlignment="CENTER" GridPane.columnIndex="2">
                                  <font>
                                     <Font size="1.0" />
                                  </font></Button>
-                              <Button fx:id="bed1f1111111111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="75.0" prefWidth="174.0" text="22" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <Button fx:id="bed1f1111111111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="70.0" prefWidth="150.0" text="22" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <styleClass>
                                     <String fx:value="bed" />
                                     <String fx:value="bedReserved" />
@@ -845,9 +871,9 @@
                         </GridPane>
                         <GridPane fx:id="room111111111111" alignment="CENTER" layoutX="10.0" layoutY="10.0" styleClass="room" stylesheets="@Style/lit.css" GridPane.columnIndex="3" GridPane.rowIndex="2">
                            <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="143.0" minWidth="10.0" prefWidth="48.66666603088379" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="143.0" minWidth="10.0" prefWidth="71.33333396911621" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="218.0" minWidth="10.0" prefWidth="184.66666412353516" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="143.0" minWidth="10.0" prefWidth="51.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="143.0" minWidth="10.0" prefWidth="47.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="218.0" minWidth="10.0" prefWidth="156.0" />
                            </columnConstraints>
                            <rowConstraints>
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -861,11 +887,11 @@
                               </Label>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Porte" GridPane.columnIndex="1" />
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="57.0" layoutY="33.0" prefHeight="48.0" prefWidth="72.0" text="Fenetre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Button fx:id="bed1p11111111111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="75.0" prefWidth="174.0" styleClass="bed" text="23" textAlignment="CENTER" GridPane.columnIndex="2">
+                              <Button fx:id="bed1p11111111111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="70.0" prefWidth="150.0" styleClass="bed" text="23" textAlignment="CENTER" GridPane.columnIndex="2">
                                  <font>
                                     <Font size="1.0" />
                                  </font></Button>
-                              <Button fx:id="bed1f11111111111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="75.0" prefWidth="174.0" text="24" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <Button fx:id="bed1f11111111111" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="20.0" mnemonicParsing="false" onAction="#openLitPanel" prefHeight="70.0" prefWidth="150.0" text="24" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <styleClass>
                                     <String fx:value="bed" />
                                     <String fx:value="bedReserved" />

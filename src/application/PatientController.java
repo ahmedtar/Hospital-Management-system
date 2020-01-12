@@ -680,6 +680,14 @@ public Patient patientToEdit;
 //		
 			
    }
+   @FXML
+   void exit(ActionEvent event) throws Exception {
+	   AnchorPane pane=FXMLLoader.load(getClass().getResource("Sample.fxml"));
+		Scene scene=new Scene(pane);
+		Stage stage=(Stage) ((Node) event.getSource()).getScene().getWindow();
+		stage.setScene(scene);
+		stage.show();
+   }
    
 
 

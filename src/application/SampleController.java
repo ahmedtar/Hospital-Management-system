@@ -44,7 +44,7 @@ public class SampleController implements Initializable{
     	
     	
     	
-    	userDao=new UtilisateurDaoImpl();
+    	userDao=new UtilisateurDaoImpl(); 
     	String login=user.getText();
     	String password=pass.getText();
     	// status => 1: no authentification => 0 : required authentif
