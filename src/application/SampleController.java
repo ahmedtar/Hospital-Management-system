@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -23,8 +24,9 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
+import model.Utilisateur;
 
-public class SampleController implements Initializable{ 
+public class SampleController implements Initializable{  
 	
 	@FXML
     private JFXPasswordField pass;
@@ -38,7 +40,10 @@ public class SampleController implements Initializable{
 	 private UtilisateurDaoImpl userDao;
 	 
     @FXML
-	public void changeScene(ActionEvent event) throws IOException {
+	public void changeScene(ActionEvent event) throws Exception {
+    	
+    	
+    	
     	userDao=new UtilisateurDaoImpl();
     	String login=user.getText();
     	String password=pass.getText();
@@ -46,7 +51,7 @@ public class SampleController implements Initializable{
     	int status=0;
 		try {
 			status = userDao.login(login, password);
-			status = 1;
+			//status = 1;
 		} catch (SQLException e) {
 			Alert alert = new Alert(AlertType.ERROR);
 		    alert.setTitle("DataBase connection");
@@ -57,9 +62,17 @@ public class SampleController implements Initializable{
     	
     	if(status>0) {
     		
-    		AnchorPane pane=FXMLLoader.load(getClass().getResource("home.fxml"));
+    		FXMLLoader loader=new FXMLLoader(getClass().getResource("home.fxml"));
+    		AnchorPane pane =(AnchorPane) loader.load();
+    		
+    		//AnchorPane pane=FXMLLoader.load(getClass().getResource("home.fxml"));
     		Scene scene=new Scene(pane);
     		Stage stage=(Stage) ((Node) event.getSource()).getScene().getWindow();
+    		
+    		
+    		HomeController userContr=loader.getController();
+    	    userContr.getPass(password);
+    	
     		Image image=new Image("/application/imgs/logo.png");
     		
     		stage.getIcons().add(image);

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  ven. 10 jan. 2020 à 18:08
+-- Généré le :  Dim 12 jan. 2020 à 02:07
 -- Version du serveur :  10.4.8-MariaDB
 -- Version de PHP :  7.3.11
 
@@ -84,7 +84,8 @@ CREATE TABLE `medecin` (
 
 INSERT INTO `medecin` (`id`, `cne`, `nom`, `prenom`, `sexe`, `age`, `numTel`, `adresse`, `specialisation`, `enservice`) VALUES
 (4, 'EE213655', 'smiytTbiba', 'kniytha', 'homme', 20, '0632302864', 'N 33 bis marrakech', 'radio', 1),
-(6, 'EEnsjnjsvd', 'smiytTbiba', 'kniytha', 'homme', 25, '0632302877', 'N 33 bis marrakech', 'radio', 1);
+(6, 'EEnsjnjsvd', 'smiytTbiba', 'kniytha', 'homme', 25, '0632302877', 'N 33 bis marrakech', 'radio', 1),
+(10, 'kwkn', 'nskn', 'kndekn', 'homme', 25, 'fmkm', 'kdmk', 'ksdnkn', 1);
 
 -- --------------------------------------------------------
 
@@ -129,7 +130,6 @@ CREATE TABLE `utilisateur` (
   `nom` varchar(15) NOT NULL,
   `prenom` varchar(15) NOT NULL,
   `password` varchar(20) NOT NULL,
-  `estAdmin` tinyint(1) NOT NULL,
   `estActif` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -137,8 +137,9 @@ CREATE TABLE `utilisateur` (
 -- Déchargement des données de la table `utilisateur`
 --
 
-INSERT INTO `utilisateur` (`id`, `login`, `nom`, `prenom`, `password`, `estAdmin`, `estActif`) VALUES
-(1, 'hooola', 'nom', 'prenom', 'password', 1, 0);
+INSERT INTO `utilisateur` (`id`, `login`, `nom`, `prenom`, `password`, `estActif`) VALUES
+(1, 'hooola', 'Ahmed', 'El Atrouz', 'ahmed1234', 0),
+(2, 'ippo', 'dafali', 'youssef', 'dafali12345', 0);
 
 --
 -- Index pour les tables déchargées
@@ -200,7 +201,7 @@ ALTER TABLE `lit`
 -- AUTO_INCREMENT pour la table `medecin`
 --
 ALTER TABLE `medecin`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT pour la table `patient`
@@ -212,7 +213,7 @@ ALTER TABLE `patient`
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Contraintes pour les tables déchargées

@@ -356,7 +356,7 @@ public class MedecinController implements Initializable{
 	 
 	  @FXML
 	    void goToAjouter(ActionEvent event) {
-		  tabPane.getSelectionModel().select(ajouterTab);
+		  tabPane.getSelectionModel().select(ajouterTab); 
 	    }
 	 
 	 

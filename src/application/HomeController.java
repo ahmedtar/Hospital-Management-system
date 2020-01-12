@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import javafx.animation.FadeTransition;
+import daoImpl.UtilisateurDaoImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,20 +13,36 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.util.Duration;
+import model.Utilisateur;
 
 public class HomeController implements Initializable{ 
+	
+	private static String pass0;
+    private UtilisateurDaoImpl userDao;
+	
+	
+	public void getPass(String pass) {
+		pass0=pass;
+    }
 	
 	
 	 @FXML
 	    void goToUser(ActionEvent event) throws Exception {
-		 AnchorPane pane=FXMLLoader.load(getClass().getResource("Utilisateur.fxml"));
+		 FXMLLoader loader=new FXMLLoader(getClass().getResource("Utilisateur.fxml"));
+ 		AnchorPane pane =(AnchorPane) loader.load();
+ 		
+ 		userDao=new UtilisateurDaoImpl();
+ 		UtilisateurController userContr=loader.getController();
+	    userContr.getUser(userDao.getUserByPassword(pass0));
+	    
 			Scene scene=new Scene(pane);
 			Stage stage=(Stage) ((Node) event.getSource()).getScene().getWindow();
+			
+			
 			stage.setScene(scene);
 			stage.setX(180);
 			stage.setY(50);
-			stage.show();
+			stage.show(); 
 
 	    }
 	 

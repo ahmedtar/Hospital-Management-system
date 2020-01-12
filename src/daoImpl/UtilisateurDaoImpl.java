@@ -12,7 +12,10 @@ import dao.UtilisateurDao;
 import model.Utilisateur;
 
 public class UtilisateurDaoImpl implements UtilisateurDao {
-
+ 
+	
+	
+	
 	@Override
 	public int AddUtilisateur(Utilisateur u)  {
 		ConnectionDB con=null;
@@ -26,16 +29,15 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 		try {
 			// prepared statement
 			myStmt = con.getCon().prepareStatement("insert into utilisateur"
-					+ " (login, nom, prenom, password,estAdmin, estActif )"
-					+ " values ( ?, ?, ?, ?, ? ,?)");
+					+ " (login, nom, prenom, password, estActif )"
+					+ " values ( ?, ?, ?, ?, ? )");
 			
 			
 			myStmt.setString(1, u.getLogin());
 			myStmt.setString(2, u.getNom());
 			myStmt.setString(3,u.getPrenom());
 			myStmt.setString(4, u.getPassword());
-			myStmt.setBoolean(5, u.EstAdmin());
-			myStmt.setBoolean(6,u.EstActif());
+			myStmt.setBoolean(5,u.EstActif());
 			
 			
 			
@@ -49,6 +51,8 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 		return r;
 
 	}
+	
+	
 
 	@Override
 	public int deleteUtilisateur(int id) {
@@ -84,7 +88,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 	@Override
 	public int login(String login,String password) throws SQLException {
 		
-		ConnectionDB myCon=new ConnectionDB();
+		ConnectionDB myCon=new ConnectionDB(); 
 		int r=0;
 		ResultSet rsl=null;
 		try {
@@ -105,6 +109,30 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 		return r;
 	}
 	
+	@Override
+	public Utilisateur getUserByPassword(String pass) throws Exception {
+		Utilisateur user=new Utilisateur();
+		ConnectionDB myCon=new ConnectionDB(); 
+		
+		ResultSet rsl=null;
+		try {
+			PreparedStatement myStmt=myCon.getCon().prepareStatement("SELECT * FROM utilisateur where password = ? ");
+			myStmt.setString(1, pass);
+			rsl=myStmt.executeQuery();
+			while (rsl.next()) {
+				user= convertRowToUtilisateur(rsl);
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+	finally {
+		myCon.close();
+	}
+	
+	return user;
+	}
+	
 	
 	
 	
@@ -117,16 +145,15 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 		try {
 			// prepared statement
 			myStmt = con.getCon().prepareStatement("update utilisateur"
-					+ " set login=?, nom=?, prenom=?, password=?, estAdmin=?, estActif=? where id=?");
+					+ " set login=?, nom=?, prenom=?, password=?, estActif=? where id=?");
 			
 			
 			myStmt.setString(1, utilisateur.getLogin());
 			myStmt.setString(2, utilisateur.getNom());
 			myStmt.setString(3,utilisateur.getPrenom());
 			myStmt.setString(4,utilisateur.getPassword());
-			myStmt.setBoolean(5,utilisateur.EstAdmin());
-			myStmt.setBoolean(6,utilisateur.EstActif());
-			myStmt.setInt(7, utilisateur.getId());
+			myStmt.setBoolean(5,utilisateur.EstActif());
+			myStmt.setInt(6, utilisateur.getId());
 			
 			
 			
@@ -182,14 +209,17 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 		String prenom = myRs.getString("prenom");
 		String login=myRs.getString("login");
 		String password=myRs.getString("password");
-		boolean estAdmin=myRs.getBoolean("estAdmin");
 		
 		boolean estActif=myRs.getBoolean("estActif");
-		Utilisateur u = new Utilisateur(id, login, nom, prenom, password, estAdmin, estActif);
+		Utilisateur u = new Utilisateur(id, login, nom, prenom, password, estActif);
 		
 		return u;
 
 	 }
+
+
+
+	
 
 
 }

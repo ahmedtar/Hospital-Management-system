@@ -7,18 +7,19 @@ public class Utilisateur {
 	private String nom;
 	private String prenom;
 	private String password;
-	private boolean estAdmin;
-	private boolean estActif;
-	public Utilisateur(int id, String login, String nom, String prenom, String password, boolean estAdmin,
-			boolean estActif) {
+	private boolean estActif; 
+	public Utilisateur(int id, String login, String nom, String prenom, String password, boolean estActif) {
 		super();
 		this.id = id;
 		this.login = login;
 		this.nom = nom;
-		this.prenom = prenom;
+		this.prenom = prenom; 
 		this.password = password;
-		this.estAdmin = estAdmin;
 		this.estActif = estActif;
+	}
+	
+	public Utilisateur() {
+		
 	}
 	public int getId() {
 		return id;
@@ -50,22 +51,17 @@ public class Utilisateur {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public boolean EstAdmin() {
-		return estAdmin;
-	}
-	public void setEstAdmin(boolean estAdmin) {
-		this.estAdmin = estAdmin;
-	}
+	
 	public boolean EstActif() {
 		return estActif;
-	}
+	} 
 	public void setEstActif(boolean estActif) {
 		this.estActif = estActif;
 	}
 	@Override
 	public String toString() {
 		return "Utilisateur [id=" + id + ", login=" + login + ", nom=" + nom + ", prenom=" + prenom + ", password="
-				+ password + ", estAdmin=" + estAdmin + ", estActif=" + estActif + "]";
+				+ password +", estActif=" + estActif + "]";
 	}
 	
 	
