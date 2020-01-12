@@ -89,7 +89,6 @@ public class UtilisateurController implements Initializable{
 		try {
 			populateTableView();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -100,7 +99,6 @@ public class UtilisateurController implements Initializable{
 		loginCol.setCellValueFactory(new PropertyValueFactory<>("login"));
 		nomCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
 		prenomCol.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-		
 		
 		//update button in table rows----------------------------------------------------------------------------------------------------------------
 		

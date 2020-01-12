@@ -105,7 +105,7 @@
                   </Button>
                   <Label alignment="CENTER" prefHeight="35.0" prefWidth="110.0" text="PATIENT" textFill="WHITE" GridPane.rowIndex="1">
                      <GridPane.margin>
-                        <Insets bottom="20.0" left="50.0" top="150.0" />
+                        <Insets bottom="25.0" left="55.0" top="150.0" />
                      </GridPane.margin>
                      <font>
                         <Font name="System Bold" size="17.0" />
@@ -121,7 +121,7 @@
                   </Label>
                   <Label alignment="CENTER" prefHeight="35.0" prefWidth="110.0" text="MEDECIN" textFill="WHITE" GridPane.columnIndex="1">
                      <GridPane.margin>
-                        <Insets bottom="20.0" left="50.0" top="150.0" />
+                        <Insets bottom="23.0" left="55.0" top="150.0" />
                      </GridPane.margin>
                      <font>
                         <Font name="System Bold" size="17.0" />
