@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1
--- Généré le :  Dim 12 jan. 2020 à 02:07
--- Version du serveur :  10.4.8-MariaDB
--- Version de PHP :  7.3.11
+-- Host: 127.0.0.1
+-- Generation Time: Jan 12, 2020 at 07:27 AM
+-- Server version: 10.4.10-MariaDB
+-- PHP Version: 7.1.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `hopital0`
+-- Database: `hopital0`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `chambre`
+-- Table structure for table `chambre`
 --
 
 CREATE TABLE `chambre` (
@@ -34,16 +34,27 @@ CREATE TABLE `chambre` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `chambre`
+-- Dumping data for table `chambre`
 --
 
 INSERT INTO `chambre` (`id`, `enService`) VALUES
-(1, 1);
+(1, 1),
+(2, 1),
+(3, 1),
+(4, 1),
+(5, 1),
+(6, 1),
+(7, 1),
+(8, 1),
+(9, 1),
+(10, 1),
+(11, 1),
+(12, 1);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `lit`
+-- Table structure for table `lit`
 --
 
 CREATE TABLE `lit` (
@@ -53,16 +64,39 @@ CREATE TABLE `lit` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `lit`
+-- Dumping data for table `lit`
 --
 
 INSERT INTO `lit` (`id`, `enService`, `chambre`) VALUES
-(1, 1, 1);
+(1, 1, 1),
+(2, 1, 1),
+(3, 1, 2),
+(4, 1, 2),
+(5, 1, 3),
+(6, 1, 3),
+(7, 1, 4),
+(8, 1, 4),
+(9, 1, 5),
+(10, 1, 5),
+(11, 1, 6),
+(12, 1, 6),
+(13, 1, 7),
+(14, 1, 7),
+(15, 1, 8),
+(16, 1, 8),
+(17, 1, 9),
+(18, 1, 9),
+(19, 1, 10),
+(20, 1, 10),
+(21, 1, 11),
+(22, 1, 11),
+(23, 1, 12),
+(24, 1, 12);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `medecin`
+-- Table structure for table `medecin`
 --
 
 CREATE TABLE `medecin` (
@@ -79,18 +113,18 @@ CREATE TABLE `medecin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `medecin`
+-- Dumping data for table `medecin`
 --
 
 INSERT INTO `medecin` (`id`, `cne`, `nom`, `prenom`, `sexe`, `age`, `numTel`, `adresse`, `specialisation`, `enservice`) VALUES
-(4, 'EE213655', 'smiytTbiba', 'kniytha', 'homme', 20, '0632302864', 'N 33 bis marrakech', 'radio', 1),
-(6, 'EEnsjnjsvd', 'smiytTbiba', 'kniytha', 'homme', 25, '0632302877', 'N 33 bis marrakech', 'radio', 1),
-(10, 'kwkn', 'nskn', 'kndekn', 'homme', 25, 'fmkm', 'kdmk', 'ksdnkn', 1);
+(4, 'EE213655', 'nomMedecin', 'PrenomMedecin', 'homme', 20, '0632302864', 'N 33 bis marrakech', 'radio', 1),
+(6, 'EEnsjnjsvd', 'Banani', 'Dalal', 'femme', 30, '0632302877', 'N 33 bis marrakech', 'Dormatologie', 1),
+(10, 'EXXXXXX', 'X', 'Salah', 'homme', 46, '06xxxxxxxx', 'Mhamid XXXXXXXX', 'Urologie', 0);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `patient`
+-- Table structure for table `patient`
 --
 
 CREATE TABLE `patient` (
@@ -110,18 +144,18 @@ CREATE TABLE `patient` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `patient`
+-- Dumping data for table `patient`
 --
 
 INSERT INTO `patient` (`id`, `lit`, `cne`, `nom`, `prenom`, `sexe`, `age`, `numTel`, `adresse`, `maladie`, `dateEntree`, `dateSortie`, `medecin`) VALUES
 (4, 1, 'EE213655', 'ahmed', 'elatrouz', 'Homme', 25, '0632355864', 'N 33 bis marrakech', 'cancer', '10/11/2020', '15/04/2004', 4),
-(40, NULL, 'EE123456', 'ahmed', 'elatrouz', 'homme', 20, '0635555864', 'N 33 bis marrakech', 'cancer', '09/10/2013', NULL, NULL),
-(43, NULL, 'ksnk', 'ksnk', 'nsfkn', 'Homme', 15, '64499797', 'mdamlmlmsdvk', 'haha', '10/01/2020', '01/05/2021', NULL);
+(43, 3, 'ksnk', 'ksnk', 'nsfkn', 'Homme', 15, '64499797', 'mdamlmlmsdvk', 'haha', '10/01/2020', '01/05/2021', 6),
+(44, 21, 'lit', 'lit', '', 'Homme', 20, '', '', '', '11/01/2020', '11/01/2020', 10);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `utilisateur`
+-- Table structure for table `utilisateur`
 --
 
 CREATE TABLE `utilisateur` (
@@ -130,43 +164,46 @@ CREATE TABLE `utilisateur` (
   `nom` varchar(15) NOT NULL,
   `prenom` varchar(15) NOT NULL,
   `password` varchar(20) NOT NULL,
-  `estActif` tinyint(1) NOT NULL
+  `estActif` tinyint(1) NOT NULL,
+  `isAdmin` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `utilisateur`
+-- Dumping data for table `utilisateur`
 --
 
-INSERT INTO `utilisateur` (`id`, `login`, `nom`, `prenom`, `password`, `estActif`) VALUES
-(1, 'hooola', 'Ahmed', 'El Atrouz', 'ahmed1234', 0),
-(2, 'ippo', 'dafali', 'youssef', 'dafali12345', 0);
+INSERT INTO `utilisateur` (`id`, `login`, `nom`, `prenom`, `password`, `estActif`, `isAdmin`) VALUES
+(1, 'hola', 'elatrouz', 'ahmed', '123456', 0, 0),
+(2, 'admin', 'Fattas', 'Amine', '123456', 0, 1),
+(3, 'admin2', 'admin', 'admin', '123', 0, 1),
+(4, 'Recep', 'Nom', 'Prenom', '123', 0, 0);
 
 --
--- Index pour les tables déchargées
+-- Indexes for dumped tables
 --
 
 --
--- Index pour la table `chambre`
+-- Indexes for table `chambre`
 --
 ALTER TABLE `chambre`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `lit`
+-- Indexes for table `lit`
 --
 ALTER TABLE `lit`
   ADD PRIMARY KEY (`id`),
   ADD KEY `chambre` (`chambre`);
 
 --
--- Index pour la table `medecin`
+-- Indexes for table `medecin`
 --
 ALTER TABLE `medecin`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `numTel` (`numTel`);
 
 --
--- Index pour la table `patient`
+-- Indexes for table `patient`
 --
 ALTER TABLE `patient`
   ADD PRIMARY KEY (`id`),
@@ -175,58 +212,52 @@ ALTER TABLE `patient`
   ADD KEY `clé étrangère medecin-patient` (`medecin`);
 
 --
--- Index pour la table `utilisateur`
+-- Indexes for table `utilisateur`
 --
 ALTER TABLE `utilisateur`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `login` (`login`);
 
 --
--- AUTO_INCREMENT pour les tables déchargées
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT pour la table `chambre`
+-- AUTO_INCREMENT for table `chambre`
 --
 ALTER TABLE `chambre`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT pour la table `lit`
---
-ALTER TABLE `lit`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT pour la table `medecin`
+-- AUTO_INCREMENT for table `medecin`
 --
 ALTER TABLE `medecin`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT pour la table `patient`
+-- AUTO_INCREMENT for table `patient`
 --
 ALTER TABLE `patient`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
--- AUTO_INCREMENT pour la table `utilisateur`
+-- AUTO_INCREMENT for table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- Contraintes pour les tables déchargées
+-- Constraints for dumped tables
 --
 
 --
--- Contraintes pour la table `lit`
+-- Constraints for table `lit`
 --
 ALTER TABLE `lit`
   ADD CONSTRAINT `lit_ibfk_1` FOREIGN KEY (`chambre`) REFERENCES `chambre` (`id`) ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `patient`
+-- Constraints for table `patient`
 --
 ALTER TABLE `patient`
   ADD CONSTRAINT `clé étrangère medecin-patient` FOREIGN KEY (`medecin`) REFERENCES `medecin` (`id`) ON UPDATE CASCADE,

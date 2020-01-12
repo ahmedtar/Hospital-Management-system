@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dao.UtilisateurDao;
+import model.Lit;
 import model.Utilisateur;
 
 public class UtilisateurDaoImpl implements UtilisateurDao {
@@ -29,8 +30,8 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 		try {
 			// prepared statement
 			myStmt = con.getCon().prepareStatement("insert into utilisateur"
-					+ " (login, nom, prenom, password, estActif )"
-					+ " values ( ?, ?, ?, ?, ? )");
+					+ " (login, nom, prenom, password, estActif, isAdmin)"
+					+ " values ( ?, ?, ?, ?, ?,?)");
 			
 			
 			myStmt.setString(1, u.getLogin());
@@ -38,6 +39,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 			myStmt.setString(3,u.getPrenom());
 			myStmt.setString(4, u.getPassword());
 			myStmt.setBoolean(5,u.EstActif());
+			myStmt.setBoolean(6,u.isAdmin());
 			
 			
 			
@@ -133,6 +135,31 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 	return user;
 	}
 	
+	@Override
+	public Utilisateur getUserByLoginAndPassword(String login , String pass) throws Exception {
+		Utilisateur user=new Utilisateur();
+		ConnectionDB myCon=new ConnectionDB(); 
+		
+		ResultSet rsl=null;
+		try {
+			PreparedStatement myStmt=myCon.getCon().prepareStatement("SELECT * FROM utilisateur where login = ? and password = ?");
+			myStmt.setString(1, login);
+			myStmt.setString(2, pass);
+			rsl=myStmt.executeQuery();
+			while (rsl.next()) {
+				user= convertRowToUtilisateur(rsl);
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+	finally {
+		myCon.close();
+	}
+	
+	return user;
+	}
+	
 	
 	
 	
@@ -145,7 +172,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 		try {
 			// prepared statement
 			myStmt = con.getCon().prepareStatement("update utilisateur"
-					+ " set login=?, nom=?, prenom=?, password=?, estActif=? where id=?");
+					+ " set login=?, nom=?, prenom=?, password=?, estActif=? , isAdmin=? where id=?");
 			
 			
 			myStmt.setString(1, utilisateur.getLogin());
@@ -153,7 +180,8 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 			myStmt.setString(3,utilisateur.getPrenom());
 			myStmt.setString(4,utilisateur.getPassword());
 			myStmt.setBoolean(5,utilisateur.EstActif());
-			myStmt.setInt(6, utilisateur.getId());
+			myStmt.setBoolean(6,utilisateur.isAdmin());
+			myStmt.setInt(7, utilisateur.getId());
 			
 			
 			
@@ -209,9 +237,11 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 		String prenom = myRs.getString("prenom");
 		String login=myRs.getString("login");
 		String password=myRs.getString("password");
+		Boolean isAdmin = myRs.getBoolean("isAdmin");
 		
 		boolean estActif=myRs.getBoolean("estActif");
-		Utilisateur u = new Utilisateur(id, login, nom, prenom, password, estActif);
+		Utilisateur u = new Utilisateur(id, login, nom, prenom, password, estActif, isAdmin);
+		
 		
 		return u;
 

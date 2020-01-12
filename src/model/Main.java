@@ -30,7 +30,7 @@ public class Main {
 	//p.setDateSortie("05/11/2016");
 	PatientDaoImpl dao=new PatientDaoImpl();
 	//System.out.println(dao.addPatient(p));
-	Utilisateur u1=new Utilisateur(1, "hooola", "ahmed", "kniyti", "password", false);
+	Utilisateur u1=new Utilisateur(1, "hooola", "ahmed", "kniyti", "password", false,true);
 	UtilisateurDao dao1=new UtilisateurDaoImpl();
 	System.out.println(dao1.updateUtilisateur(u1));
 	//System.out.println(dao1.AddUtilisateur(u1));

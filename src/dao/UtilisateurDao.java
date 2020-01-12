@@ -16,5 +16,6 @@ public interface UtilisateurDao {
 	int updateUtilisateur(Utilisateur utilisateur) throws SQLException;
 	List<Utilisateur> getAllUtilisateurs() throws Exception;
 	Utilisateur getUserByPassword(String pass) throws Exception;
+	Utilisateur getUserByLoginAndPassword(String login , String pass) throws Exception;
 	
 }

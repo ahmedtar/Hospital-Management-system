@@ -8,7 +8,8 @@ public class Utilisateur {
 	private String prenom;
 	private String password;
 	private boolean estActif; 
-	public Utilisateur(int id, String login, String nom, String prenom, String password, boolean estActif) {
+	private boolean Admin; 
+	public Utilisateur(int id, String login, String nom, String prenom, String password, boolean estActif, Boolean Admin) {
 		super();
 		this.id = id;
 		this.login = login;
@@ -16,6 +17,7 @@ public class Utilisateur {
 		this.prenom = prenom; 
 		this.password = password;
 		this.estActif = estActif;
+		this.Admin = Admin;
 	}
 	
 	public Utilisateur() {
@@ -58,11 +60,22 @@ public class Utilisateur {
 	public void setEstActif(boolean estActif) {
 		this.estActif = estActif;
 	}
+	
+	public boolean isAdmin() {
+		return Admin;
+	}
+
+	public void setAdmin(boolean Admin) {
+		this.Admin = Admin;
+	}
+
 	@Override
 	public String toString() {
 		return "Utilisateur [id=" + id + ", login=" + login + ", nom=" + nom + ", prenom=" + prenom + ", password="
-				+ password +", estActif=" + estActif + "]";
+				+ password + ", estActif=" + estActif + ", Admin=" + Admin + "]";
 	}
+
+	
 	
 	
 	

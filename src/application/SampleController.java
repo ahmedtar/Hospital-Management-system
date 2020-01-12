@@ -47,6 +47,7 @@ public class SampleController implements Initializable{
     	userDao=new UtilisateurDaoImpl(); 
     	String login=user.getText();
     	String password=pass.getText();
+    	
     	// status => 1: no authentification => 0 : required authentif
     	int status=0;
 		try {
@@ -59,6 +60,8 @@ public class SampleController implements Initializable{
 		    alert.setContentText(s);
 		    alert.showAndWait();
 		}
+		
+		Boolean isAdmin = userDao.getUserByLoginAndPassword(login, password).isAdmin();
     	
     	if(status>0) {
     		
@@ -71,6 +74,11 @@ public class SampleController implements Initializable{
     		
     		
     		HomeController userContr=loader.getController();
+    		if (isAdmin) {
+				userContr.showIcons();
+			} else {
+                userContr.hideIcons();
+			}
     	    userContr.getPass(password);
     	
     		Image image=new Image("/application/imgs/logo.png");

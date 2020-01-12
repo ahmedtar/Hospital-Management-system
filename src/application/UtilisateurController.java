@@ -45,6 +45,7 @@ public class UtilisateurController implements Initializable{
 	    @FXML private TableColumn<Utilisateur,String> loginCol;
 	    @FXML private TableColumn<Utilisateur,String> nomCol;
 	    @FXML private TableColumn<Utilisateur,String> prenomCol;
+	    @FXML private TableColumn<Utilisateur,String> adminCol;
 	    @FXML private TableColumn<Utilisateur,String> updateCol;
 
 	    
@@ -53,13 +54,14 @@ public class UtilisateurController implements Initializable{
 	    @FXML private TextField nomField;
 	    @FXML private TextField prenomField;
 	    @FXML private TextField passwordField;
+	    @FXML private TextField adminField;
 	    
 	    
 	    @FXML private TextField loginField1;
 	    @FXML private TextField nomField1;
 	    @FXML private TextField prenomField1;
 	    @FXML private TextField passwordField1;
-
+	    @FXML private TextField adminField2;
 	    
 	    @FXML private Label nomLabel;
 	    @FXML private Label prenomLabel;
@@ -99,6 +101,8 @@ public class UtilisateurController implements Initializable{
 		loginCol.setCellValueFactory(new PropertyValueFactory<>("login"));
 		nomCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
 		prenomCol.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+		adminCol.setCellValueFactory(new PropertyValueFactory<Utilisateur, String>("Admin"));
+		
 		
 		//update button in table rows----------------------------------------------------------------------------------------------------------------
 		
@@ -122,6 +126,7 @@ public class UtilisateurController implements Initializable{
                         		 nomField.setText(user.getNom());
                         		 prenomField.setText(user.getPrenom());
                         		 passwordField.setText(user.getPassword());
+                        		 adminField.setText(""+user.isAdmin());
                         		 id0=user.getId();
                         		 tabPane.getSelectionModel().select(modifTab);
                         	  });
@@ -199,6 +204,7 @@ public class UtilisateurController implements Initializable{
 		  user.setNom(nomField.getText());
 		  user.setPrenom(prenomField.getText());
 		  user.setPassword(passwordField.getText());
+		  user.setAdmin(Boolean.parseBoolean(adminField.getText()));
 		  int status=utilisateurDao.updateUtilisateur(user);
 		  
 		  if(status>0) {
@@ -229,6 +235,7 @@ public class UtilisateurController implements Initializable{
 		  user.setNom(nomField1.getText());
 		  user.setPrenom(prenomField1.getText());
 		  user.setPassword(passwordField1.getText());
+		  user.setAdmin(Boolean.parseBoolean(adminField.getText()));
 		  int status=utilisateurDao.AddUtilisateur(user);
 		  if(status>0) {
 				tabPane.getSelectionModel().select(userTab);

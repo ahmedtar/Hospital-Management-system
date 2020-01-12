@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javax.swing.text.StyledEditorKit.BoldAction;
+
 import daoImpl.PatientDaoImpl;
 import daoImpl.UtilisateurDaoImpl;
 import javafx.event.ActionEvent;
@@ -13,6 +15,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.Utilisateur;
@@ -22,6 +26,19 @@ public class HomeController implements Initializable{
 	private static String pass0;
     private UtilisateurDaoImpl userDao;
 	
+    public Boolean admin;
+    
+    @FXML Button recepBtn = new Button();
+    @FXML Button medecinBtn = new Button();
+    @FXML Button patientBtn = new Button();
+    @FXML Button chambreBtn = new Button();
+    
+    @FXML Label recepLabel = new Label();
+    @FXML Label medecinLabel = new Label();
+    @FXML Label patientLabel = new Label();
+    @FXML Label chambreLabel = new Label();
+    
+    @FXML Label adminLabel = new Label();
 	
 	public void getPass(String pass) {
 		pass0=pass;
@@ -105,6 +122,24 @@ public class HomeController implements Initializable{
 		
 	 @FXML
 	 private AnchorPane pane1,pane2,pane3,pane4;
+	 
+	 
+	 public void hideIcons() {
+		 recepLabel.setVisible(false);
+		 medecinLabel.setVisible(false);
+		 recepBtn.setVisible(false);
+		 medecinBtn.setVisible(false);
+		 adminLabel.setText("RECEPTIONNISTE");
+	 }
+	 
+	
+	 public void showIcons() {
+		 recepLabel.setVisible(true);
+		 medecinLabel.setVisible(true);
+		 recepBtn.setVisible(true);
+		 medecinBtn.setVisible(true);
+		 adminLabel.setText("ADMIN");
+	 }
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
