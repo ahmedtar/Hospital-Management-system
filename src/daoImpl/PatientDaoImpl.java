@@ -332,7 +332,7 @@ public Patient searchPatientByLit(int litId ) throws Exception {
 	Patient tempPatient=null;
 	
 		
-		myStmt = con.getCon().prepareStatement("select * from patient where lit= ? ");
+		myStmt = con.getCon().prepareStatement("select * from patient where lit=? ");
 		
 		myStmt.setInt(1,litId);
 		

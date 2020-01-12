@@ -177,13 +177,13 @@ private void populateTableView() {
             }
         });
 		
-		medecinCol.setCellValueFactory(new Callback<CellDataFeatures<Patient,String> , ObservableValue<String>>(){
-
-            @Override
-            public ObservableValue<String> call(CellDataFeatures<Patient, String> param) {
-                return new SimpleStringProperty(param.getValue().getMedecin().getNom());
-            }
-        });
+//		medecinCol.setCellValueFactory(new Callback<CellDataFeatures<Patient,String> , ObservableValue<String>>(){
+//
+//            @Override
+//            public ObservableValue<String> call(CellDataFeatures<Patient, String> param) {
+//                return new SimpleStringProperty(param.getValue().getMedecin().getNom());
+//            }
+//        });
 		
 		//Adding the Special cells
         Callback<TableColumn<Patient, String>, TableCell<Patient, String>> cellFactory=(param) -> {
@@ -258,7 +258,7 @@ private void populateTableView() {
 			    		   		} else {
 			    		   		    alert.close();
 			    		   		}
-			    			   
+			    		   		setLitIconColor();
 			    			   
 			    		   });
 			    		   
@@ -433,9 +433,7 @@ public Patient patientToEdit;
    	
    	
  // ************Foreign Key Problem**************
-   	
-   	//String lit=litField.getText();
-   	//int idLit=Integer.parseInt(lit);
+
    	//String medecin=medecinField.getText();
    	//int idMedcin=Integer.parseInt(medecin);
    	
@@ -512,8 +510,6 @@ public Patient patientToEdit;
   	
 // ************Foreign Key Problem**************
   	
-  	//String lit=litField.getText();
-  	//int idLit=Integer.parseInt(lit);
   	//String medecin=medecinField.getText();
   	//int idMedcin=Integer.parseInt(medecin);
   	
@@ -583,15 +579,15 @@ public Patient patientToEdit;
 ////		   MenuItem tempItem = new MenuItem();
 //		   listLits.add(list.get(i).getLit().getId());
 //	   }
-	   litMenuBtn.getItems().clear();
-	   for(int i=1; i<=24; i++) {
-		       final int j =i;
-			   MenuItem tempItem = new MenuItem();
-			   tempItem.setText(i+"");
-			   tempItem.setOnAction(e -> litMenuBtn.setText(""+j));
-			   litMenuBtn.getItems().add(tempItem);
-			   	   
-	   }
+//	   litMenuBtn.getItems().clear();
+//	   for(int i=1; i<=24; i++) {
+//		       final int j =i;
+//			   MenuItem tempItem = new MenuItem();
+//			   tempItem.setText(i+"");
+//			   tempItem.setOnAction(e -> litMenuBtn.setText(""+j));
+//			   litMenuBtn.getItems().add(tempItem);
+//			   	   
+//	   }
 	     
    }
    
@@ -698,6 +694,7 @@ public Patient patientToEdit;
 				litBtns[i].getStyleClass().add("bedReserved");
 			}
 		   catch (Exception e) {
+			   
 			   litBtns[i].getStyleClass().add("bedNotReserved");
 			   litBtns[i].setDisable(true);
 			}
