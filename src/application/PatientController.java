@@ -7,7 +7,9 @@ import java.rmi.server.LoaderHandler;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -76,11 +78,12 @@ public class PatientController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		
 		populateTableView();
-		litBtnsAppend();
+		setLitIconColor();
 		
 		try {
-			populateLitMenuList();
-			populateLitBtns();
+
+					 populateLitMenuList();
+			
 		} catch (Exception e) {
 			
 			e.printStackTrace();
@@ -470,6 +473,7 @@ public Patient patientToEdit;
    	}
    	
    	System.out.println("done");
+   	setLitIconColor();
    	
    	
    	
@@ -485,7 +489,7 @@ public Patient patientToEdit;
 //  	int id = Integer.parseInt(idLabel.getText());
   	
   	//Get the values of UpdatePane Input List
-  	String lit=litField.getText();
+	String lit=litField.getText();
   	String cne=cneField.getText();
   	String nom=nomField.getText();
   	String prenom=prenomField.getText();
@@ -555,7 +559,7 @@ public Patient patientToEdit;
 		    confirmeAlert.close();
 		}
   	
-   	
+		setLitIconColor();
    }
    
    @FXML
@@ -567,21 +571,34 @@ public Patient patientToEdit;
 	   UpdateTabPane.setText("Ajouter");
    }
 
+   
    public void populateLitMenuList() throws Exception{
 	   
-	   LitDaoImpl litDao = new LitDaoImpl();
-	   
-	   int litMenuSize = litDao.getLitsEnService().size();
-	   
-	   for (int i=0 ; i<litMenuSize ; i++) {
-		   MenuItem litItem = new MenuItem(""+litDao.getLitsEnService().get(i).getId());
-		   litItem.setOnAction(e -> litMenuBtn.setText(litItem.getText()));
-		   litMenuBtn.getItems().add(litItem);
+//	   LoadTable() ;
+//	   int n = list.size();
+//	   litMenuBtn.getItems().clear();
+////	   Integer[] tabLits = new Integer[n];
+//	   List<Integer> listLits = new ArrayList<Integer>();
+//	   for(int i=0; i<n; i++) {
+////		   MenuItem tempItem = new MenuItem();
+//		   listLits.add(list.get(i).getLit().getId());
+//	   }
+	   litMenuBtn.getItems().clear();
+	   for(int i=1; i<=24; i++) {
+		       final int j =i;
+			   MenuItem tempItem = new MenuItem();
+			   tempItem.setText(i+"");
+			   tempItem.setOnAction(e -> litMenuBtn.setText(""+j));
+			   litMenuBtn.getItems().add(tempItem);
+			   	   
 	   }
-	   
+	     
    }
    
-// +++++++++++++++++++++++++++++++++++++++ LIT TABPANE +++++++++++++++++++++++++++++++++++
+
+   
+   
+   // +++++++++++++++++++++++++++++++++++++++ LIT TABPANE +++++++++++++++++++++++++++++++++++
    
    @FXML Button lit1 = new Button();
    @FXML Button lit2 = new Button();
@@ -608,42 +625,20 @@ public Patient patientToEdit;
    @FXML Button lit23 = new Button();
    @FXML Button lit24  = new Button();
    
-   ObservableList<Button> litBtns = FXCollections.observableArrayList();
+   public Button litBtns[];
    
    @FXML 
    public void litBtnsAppend() {
 	   // Append all btns in the list litBtns
-	   ObservableList<Button> litBtnsTemp = FXCollections.observableArrayList();
-	   litBtnsTemp.addAll(lit1 ,lit2 ,lit3 ,lit4 ,lit5 ,lit6 ,lit7 ,lit8 ,lit9 ,lit10 ,lit11 ,lit12
-			   ,lit13 ,lit14 ,lit15 ,lit16 ,lit17 ,lit18 ,lit19 ,lit20 ,lit21 ,lit22 ,lit23 ,lit24);
-	   litBtns = litBtnsTemp;
+	   Button templitBtns[] = {lit1 ,lit2 ,lit3 ,lit4 ,lit5 ,lit6 ,lit7 ,lit8 ,lit9 ,lit10 ,lit11 ,lit12
+			   ,lit13 ,lit14 ,lit15 ,lit16 ,lit17 ,lit18 ,lit19 ,lit20 ,lit21 ,lit22 ,lit23 ,lit24};
+	   litBtns = templitBtns;
    }
    
    ObservableList<Integer> LitExistedIds = FXCollections.observableArrayList();
    //put the existed Lit in a list LitExistedIds
-   public void updateLitExistedIds() throws Exception {
-	   LoadTable() ;
-	   int n = list.size();
-	   for(int i=0; i<n; i++) {
-		   ObservableList<Integer> LitExistedIdsTemp = FXCollections.observableArrayList();
-		   LitExistedIdsTemp.add(list.get(i).getLit().getId());
-		   LitExistedIds = LitExistedIdsTemp;
-	   }
-   }
+ 
    
-   @FXML
-   public void populateLitBtns() throws Exception {
-	   
-	   updateLitExistedIds();
-	   for(int i=0 ; i<24; i++) {
-		   if(LitExistedIds.contains(i)) {
-			   Button b = litBtns.get(i);
-			   b.setDisable(true);
-			   
-		   }
-		
-	   }
-   }
    
    @FXML
    public void openLitPanel(ActionEvent event) throws Exception{
@@ -681,6 +676,8 @@ public Patient patientToEdit;
 //		
 			
    }
+   
+   
    @FXML
    void exit(ActionEvent event) throws Exception {
 	   AnchorPane pane=FXMLLoader.load(getClass().getResource("Sample.fxml"));
@@ -690,7 +687,24 @@ public Patient patientToEdit;
 		stage.show();
    }
    
-
+   private void setLitIconColor() {
+	   PatientDaoImpl dao = new PatientDaoImpl();
+	   litBtnsAppend();
+	   for(int i=0 ; i<24 ; i++) {
+		   
+		   try {
+				dao.searchPatientByLit(i+1);
+				litBtns[i].setDisable(false);
+				litBtns[i].getStyleClass().add("bedReserved");
+			}
+		   catch (Exception e) {
+			   litBtns[i].getStyleClass().add("bedNotReserved");
+			   litBtns[i].setDisable(true);
+			}
+		   
+	   }
+	   
+   }
 
 // ------------------------------- FIN -------------------------------- 
 }

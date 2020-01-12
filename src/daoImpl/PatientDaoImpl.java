@@ -330,7 +330,7 @@ public Patient searchPatientByLit(int litId ) throws Exception {
 	PreparedStatement myStmt = null;
 	ResultSet myRs = null;
 	Patient tempPatient=null;
-	try {
+	
 		
 		myStmt = con.getCon().prepareStatement("select * from patient where lit= ? ");
 		
@@ -339,19 +339,18 @@ public Patient searchPatientByLit(int litId ) throws Exception {
 		myRs = myStmt.executeQuery();
 		
 		myRs.next();
+		
 		tempPatient = convertRowToPatient(myRs);
-		
-		
-	}
-	 catch (SQLException e) {
-			e.printStackTrace();
-		}
-	finally {
+			
+	
+	
+	
 		con.close();
-	}
+	
 	return tempPatient;
 
 }
+
 
 
 
@@ -397,9 +396,14 @@ private Patient  convertRowToPatient(ResultSet myRs) throws Exception {
 public static void main(String[] args) throws Exception{
 	PatientDaoImpl dao = new PatientDaoImpl();
 	
-//	Lit l = ;
+ try {
+	 System.out.println(dao.searchPatientByLit(3));
+	 System.out.println("Succes");
+} catch (Exception e) {
+	System.out.println("Echec");
+}
 	
-	System.out.println(dao.searchPatient("ahmed").get(0).getId());
+	
 	
 }
 

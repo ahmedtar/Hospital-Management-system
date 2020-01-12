@@ -23,6 +23,10 @@
 	-fx-background-image: url("../imgs/BedBlue.png") ;
 }
 
+.bedNotReserved {
+	-fx-background-image: url("../imgs/BedEmpty.png") ;
+}
+
 .non-editable-datepicker > .arrow-button {
     -fx-padding: 0px;
 }

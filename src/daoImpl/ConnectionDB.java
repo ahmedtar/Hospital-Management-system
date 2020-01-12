@@ -25,7 +25,7 @@ public class ConnectionDB {
 			String	dburl="jdbc:mysql://localhost:3306/hopital0";
 			
 			con=DriverManager.getConnection(dburl,user,password);
-			System.out.println("connection successful to "+dburl);
+//			System.out.println("connection successful to "+dburl);
 		/*} catch (IOException  | SQLException e) {
 			e.printStackTrace();
 		}*/
