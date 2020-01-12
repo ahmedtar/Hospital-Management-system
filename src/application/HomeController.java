@@ -4,12 +4,14 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import daoImpl.PatientDaoImpl;
 import daoImpl.UtilisateurDaoImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -78,7 +80,29 @@ public class HomeController implements Initializable{
 			stage.setY(50);
 			stage.show();
 		}
-	 
+		
+		@FXML 
+		void changeToChambre(ActionEvent event) throws IOException{
+			PatientDaoImpl p = new PatientDaoImpl();
+//			System.out.println("CLICK : "+p.getNom());
+			
+			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("Patient.fxml"));
+//		    AnchorPane pane=FXMLLoader.load(getClass().getResource("LitPanel.fxml"));
+			
+			Parent pane = (Parent) loader.load();
+			PatientController pCtrl = loader.getController();
+//			litPanel.setLit(p.getLit().getId());
+			pCtrl.tabPane.getSelectionModel().select(pCtrl.LitTabPane);
+			
+			Scene scene=new Scene(pane);
+
+			stage.setScene(scene);
+			stage.setX(180);
+			stage.setY(50);
+			stage.show();
+		}
+		
 	 @FXML
 	 private AnchorPane pane1,pane2,pane3,pane4;
 
