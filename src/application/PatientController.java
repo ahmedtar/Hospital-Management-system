@@ -691,10 +691,19 @@ public Patient patientToEdit;
 		   try {
 				dao.searchPatientByLit(i+1);
 				litBtns[i].setDisable(false);
+				try {
+					litBtns[i].getStyleClass().remove("bedNotReserved");
+				} catch (Exception e) {
+					
+				}
 				litBtns[i].getStyleClass().add("bedReserved");
 			}
 		   catch (Exception e) {
-			   
+			   try {
+				   litBtns[i].getStyleClass().remove("bedReserved");
+			} catch (Exception e2) {
+				// TODO: handle exception
+			}
 			   litBtns[i].getStyleClass().add("bedNotReserved");
 			   litBtns[i].setDisable(true);
 			}
